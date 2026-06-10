@@ -8,6 +8,16 @@ The public webpage renders PI-specific openings from `content.js`.
 
 Administrators can update the `piOpenings` arrays in Korean and English, then commit and deploy the change.
 
+Each PI detail page is rendered by `pi.html` and `pi.js` from the `mentors` array in `content.js`.
+
+Example:
+
+```text
+pi.html?id=su-mi-hur
+```
+
+The `id` is generated from the PI's English name.
+
 This is safe for public hosting because the page only reads static data.
 
 ## Why A Frontend Password Is Not Enough

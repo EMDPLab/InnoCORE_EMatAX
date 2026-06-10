@@ -144,7 +144,7 @@ window.INNOCORE_CONTENT = {
     mentorsTitle: "E-MatAX 멘토 그룹",
     mentorsLead:
       "DGIST와 국내 주요 대학의 참여 교수진이 에너지 소재, 공정, AI, 분석, 검증 연구를 함께 이끕니다.",
-    mentorColumns: ["역할", "성명", "English Name", "소속", "학과/부서", "Website"],
+    mentorColumns: ["역할", "성명", "English Name", "소속", "학과/부서", "Website", "채용정보"],
     mentors: [
       { role: "Research Director", name: "허수미 교수", nameEn: "Su-Mi Hur", affiliation: "DGIST", department: "Department of Energy Science and Engineering", url: "https://sml-dgist.vercel.app/" },
       { role: "Mentor", name: "고서진 교수", nameEn: "Seo-Jin Ko", affiliation: "DGIST", department: "Department of Energy Science and Engineering", url: "https://hodl.dgist.ac.kr/" },
@@ -346,7 +346,7 @@ window.INNOCORE_CONTENT = {
     mentorsTitle: "E-MatAX mentor group",
     mentorsLead:
       "DGIST and partner faculty cover energy materials, processes, AI, analysis, and validation.",
-    mentorColumns: ["Role", "Name", "English Name", "Affiliation", "Department", "Website"],
+    mentorColumns: ["Role", "Name", "English Name", "Affiliation", "Department", "Website", "Opening"],
     mentors: [
       { role: "Research Director", name: "허수미 교수", nameEn: "Su-Mi Hur", affiliation: "DGIST", department: "Department of Energy Science and Engineering", url: "https://sml-dgist.vercel.app/" },
       { role: "Mentor", name: "고서진 교수", nameEn: "Seo-Jin Ko", affiliation: "DGIST", department: "Department of Energy Science and Engineering", url: "https://hodl.dgist.ac.kr/" },

@@ -5,6 +5,13 @@
 
   const content = () => window.INNOCORE_CONTENT[state.lang] || window.INNOCORE_CONTENT.ko;
 
+  function slugify(text) {
+    return String(text || "")
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "");
+  }
+
   function setText(selector, value) {
     const element = document.querySelector(selector);
     if (element) element.textContent = value || "";
@@ -136,7 +143,7 @@
     if (existingColGroup) existingColGroup.remove();
 
     const colGroup = document.createElement("colgroup");
-    ["role", "name", "name-en", "affiliation", "department", "website"].forEach((name) => {
+    ["role", "name", "name-en", "affiliation", "department", "website", "opening"].forEach((name) => {
       const col = document.createElement("col");
       col.className = `mentor-col-${name}`;
       colGroup.append(col);
@@ -169,6 +176,17 @@
         linkCell.textContent = "-";
       }
       row.append(linkCell);
+
+      const openingCell = document.createElement("td");
+      const detailLink = linkElement(
+        {
+          label: state.lang === "ko" ? "채용정보" : "Opening",
+          href: `./pi.html?id=${slugify(mentor.nameEn)}`
+        },
+        "table-link"
+      );
+      openingCell.append(detailLink);
+      row.append(openingCell);
       return row;
     });
     document.querySelector(".mentor-table tbody").replaceChildren(...rows);
@@ -207,8 +225,16 @@
       const title = document.createElement("h3");
       const meta = document.createElement("dl");
       const fit = document.createElement("p");
+      const actions = document.createElement("div");
       const contact = linkElement(
         { label: opening.contactLabel, href: opening.contactHref },
+        "opening-link"
+      );
+      const detail = linkElement(
+        {
+          label: state.lang === "ko" ? "PI 페이지 보기" : "View PI pages",
+          href: "./index.html#mentors"
+        },
         "opening-link"
       );
 
@@ -230,7 +256,10 @@
         meta.append(term, description);
       });
 
-      article.append(status, title, meta, fit, contact);
+      actions.className = "opening-actions";
+      actions.append(contact, detail);
+
+      article.append(status, title, meta, fit, actions);
       return article;
     });
 

@@ -9,6 +9,7 @@ Because the site is static, it can be hosted directly with GitHub Pages, Netlify
 - `index.html`: page structure. Routine content edits should not require changing this file.
 - `content.js`: editable Korean and English page content.
 - `app.js`: renders navigation, cards, language switching, and links from `content.js`.
+- `pi.html`, `pi.js`: reusable PI detail page template.
 - `styles.css`: visual system and responsive layout.
 - `assets/`: copied logos and campaign visuals used by the page.
 
@@ -51,6 +52,14 @@ For GitHub Pages, publish from the repository root on the `main` branch. The roo
 ## PI Opening Management
 
 PI-specific opening cards are rendered from the `piOpenings` arrays in `content.js`.
+
+Each mentor also has a shareable PI detail page generated from the `mentors` array. The URL format is:
+
+```text
+pi.html?id=su-mi-hur
+```
+
+The `id` is generated from the mentor's English name in `content.js`. For example, `Su-Mi Hur` becomes `su-mi-hur`.
 
 Each entry supports:
 
