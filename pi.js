@@ -143,7 +143,23 @@
     title.id = "pi-title";
     title.textContent = state.lang === "ko" ? mentor.name : mentor.nameEn;
     subtitle.textContent = state.lang === "ko" ? mentor.nameEn : mentor.name;
-    hero.append(back, kicker, title, subtitle);
+    if (openingData?.heroImage) {
+      title.className = "visually-hidden";
+      hero.classList.add("has-visual-header");
+      hero.append(back, title);
+    } else {
+      hero.append(back, kicker, title, subtitle);
+    }
+
+    let visualHeader = null;
+    if (openingData?.heroImage) {
+      visualHeader = document.createElement("figure");
+      const visual = document.createElement("img");
+      visualHeader.className = "pi-visual-header";
+      visual.src = openingData.heroImage;
+      visual.alt = `${openingData.pi} ${openingData.lab} ${openingData.area} visual header`;
+      visualHeader.append(visual);
+    }
 
     const meta = document.createElement("div");
     meta.className = "pi-meta-grid";
@@ -192,17 +208,10 @@
     opening.append(status, openingTitle, openingBody);
     if (openingData) opening.append(openingMeta);
     opening.append(actions);
-    if (openingData?.flyer) {
-      const figure = document.createElement("figure");
-      const image = document.createElement("img");
-      figure.className = "pi-flyer";
-      image.src = openingData.flyer;
-      image.alt = `${openingData.pi} ${openingData.lab} ${openingData.area} flyer`;
-      figure.append(image);
-      opening.append(figure);
-    }
 
-    root.append(hero, meta, opening);
+    root.append(hero);
+    if (visualHeader) root.append(visualHeader);
+    root.append(meta, opening);
   }
 
   document.querySelectorAll("[data-lang]").forEach((button) => {

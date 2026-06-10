@@ -48,11 +48,11 @@ PI submits:
 
 An administrator reviews the submission and updates `content.js`.
 
-For public PI detail pages, create one matching flyer image for the opening:
+For public PI detail pages, create one matching header image for the opening:
 
 - Follow `flyer_design.md`.
-- Save the image as `assets/pi-openings/<pi-slug>-flyer.png`.
-- Add `flyer: "./assets/pi-openings/<pi-slug>-flyer.png"` to the Korean and English `piOpenings` entries.
+- Save the image as `assets/pi-openings/<pi-slug>-header.png`.
+- Add `heroImage: "./assets/pi-openings/<pi-slug>-header.png"` to the Korean and English `piOpenings` entries.
 
 This is the lowest-risk workflow for the first public version.
 

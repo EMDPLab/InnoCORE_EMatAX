@@ -38,6 +38,15 @@ img {
   max-width: 100%;
 }
 
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
 a {
   color: inherit;
 }
@@ -902,6 +911,10 @@ a {
   gap: 16px;
 }
 
+.pi-hero.has-visual-header {
+  gap: 0;
+}
+
 .pi-hero .related-link {
   width: max-content;
 }
@@ -924,7 +937,7 @@ a {
 }
 
 .pi-meta-grid {
-  grid-column: 1 / 8;
+  grid-column: 1 / 6;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px;
@@ -954,7 +967,7 @@ a {
 }
 
 .pi-opening-panel {
-  grid-column: 8 / 13;
+  grid-column: 6 / 13;
   display: grid;
   gap: 18px;
 }
@@ -1000,16 +1013,17 @@ a {
   overflow-wrap: anywhere;
 }
 
-.pi-flyer {
-  margin: 2px 0 0;
+.pi-visual-header {
+  grid-column: 1 / 13;
+  margin: 0;
   border: 1px solid var(--navy);
   background: var(--white);
 }
 
-.pi-flyer img {
+.pi-visual-header img {
   width: 100%;
-  aspect-ratio: 4 / 5;
-  object-fit: cover;
+  height: auto;
+  object-fit: contain;
 }
 
 .secondary-action.dark {
@@ -1120,6 +1134,7 @@ a {
   }
 
   .pi-hero,
+  .pi-visual-header,
   .pi-meta-grid,
   .pi-opening-panel {
     grid-column: 1 / 13;
@@ -1244,6 +1259,7 @@ a {
   }
 
   .pi-hero,
+  .pi-visual-header,
   .pi-meta-grid,
   .pi-opening-panel {
     grid-column: 1 / -1;

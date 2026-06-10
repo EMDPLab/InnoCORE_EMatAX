@@ -1,12 +1,12 @@
-# PI Opening Flyer Design
+# PI Opening Header Image Design
 
-This document standardizes generated flyer images for PI-specific E-MatAX openings.
+This document standardizes generated header images for PI-specific E-MatAX openings.
 
 ## Purpose
 
-Each PI opening page may include one generated flyer image summarizing lab-level recruitment needs.
+Each PI opening page may include one generated header image summarizing lab-level recruitment needs.
 
-The flyer should help applicants understand:
+The header image should help applicants quickly understand:
 
 - PI and lab name
 - Recruiting status
@@ -29,10 +29,10 @@ Use the same visual language as the E-MatAX webpage.
 
 ## Required Format
 
-- Aspect ratio: 4:5 vertical flyer
-- Intended display: PI detail page and social preview
+- Aspect ratio: wide horizontal header, preferably around 2:1
+- Intended display: one full-width row at the top of a PI detail page
 - Background: clean white
-- Composition: structured academic recruitment flyer
+- Composition: structured academic webpage header, not a dense poster
 - No QR code unless explicitly provided
 - No fake institutional seals
 - No excessive body text
@@ -47,8 +47,9 @@ Recommended hierarchy:
 2. Main title: `Postdoctoral Fellow Opening`
 3. PI and lab: PI name, lab name
 4. Research focus
-5. Candidate fit
-6. Timeline and contact
+5. Research visual motif
+
+Recruiting status, timeline, contact, and detailed fit should remain as real HTML text below the image whenever possible. This prevents generated-image text errors from becoming the only source of truth.
 
 Text must be legible, but generated-image text can be imperfect. The webpage should also provide the same information as real HTML text for accessibility and accuracy.
 
@@ -56,29 +57,31 @@ Text must be legible, but generated-image text can be imperfect. The webpage sho
 
 ```text
 Use case: ads-marketing
-Asset type: PI-specific recruitment flyer for the E-MatAX webpage
-Primary request: Create a polished academic recruitment flyer for <PI name>, <Lab name>.
-Scene/backdrop: clean white university research flyer, strict grid layout
+Asset type: PI-specific wide visual header for the E-MatAX webpage
+Primary request: Create a polished academic webpage header image for <PI name>, <Lab name>.
+Scene/backdrop: clean white university research header, strict grid layout
 Subject: energy materials / <research topic> represented abstractly with lab-grade materials imagery
 Style/medium: modern Korean university recruitment design, minimal AI-friendly typography
-Composition/framing: 4:5 vertical poster, large title area, structured information blocks, generous margins
+Composition/framing: wide horizontal image, one full webpage row, large title area on the left, complete technical schematic on the right, generous margins
 Lighting/mood: bright, precise, credible, research-forward
 Color palette: white 70%, navy 13%, blue 13%, lime 4%; no other colors
 Text (verbatim): include only the approved concise copy
-Constraints: no QR code, no fake logos, no watermark, no spellcheck underlines, no decorative blobs, no gradients
-Avoid: crowded layout, stock-photo feel, illegible text, random icons, extra colors
+Constraints: no QR code, no fake logos, no watermark, no spellcheck underlines, no decorative blobs, no gradients, no lower metadata strip
+Avoid: crowded layout, stock-photo feel, illegible text, random icons, extra colors, cropped schematic edges
 ```
 
 ## File Naming
 
-Save generated flyer assets under:
+Save generated header assets under:
 
 ```text
 assets/pi-openings/<pi-slug>-flyer.png
+assets/pi-openings/<pi-slug>-header.png
 ```
 
 Example:
 
 ```text
 assets/pi-openings/dong-hae-ho-flyer.png
+assets/pi-openings/dong-hae-ho-header.png
 ```

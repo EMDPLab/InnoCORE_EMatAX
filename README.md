@@ -73,9 +73,10 @@ Each entry supports:
 - `fit`: preferred candidate fit or project note
 - `timeline`: expected update or hiring timing
 - `contactLabel`, `contactHref`: contact link
-- `flyer`: optional 4:5 flyer image path, usually `./assets/pi-openings/<pi-slug>-flyer.png`
+- `heroImage`: optional wide PI page header image path, usually `./assets/pi-openings/<pi-slug>-header.png`
+- `flyer`: optional legacy/poster image path, usually `./assets/pi-openings/<pi-slug>-flyer.png`
 
-PI opening flyer images should follow `flyer_design.md` so every PI page uses the same visual standard.
+PI opening header images should follow `flyer_design.md` so every PI page uses the same visual standard.
 
 Direct browser-based editing with a shared password cannot be implemented securely in this static-only site. A password embedded in frontend JavaScript would be visible to visitors and would not safely write changes back to GitHub.
 
