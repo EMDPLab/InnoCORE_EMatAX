@@ -12,6 +12,8 @@
       back: "멘토 목록으로 돌아가기",
       status: "채용정보",
       statusBody: "현재 이 PI의 개별 채용 공고는 아직 등록되지 않았습니다. 모집상태, 세부 프로젝트, 선호 역량이 확정되면 이 페이지에 표시됩니다.",
+      area: "연구영역",
+      timeline: "모집 시점",
       affiliation: "소속",
       department: "학과/부서",
       lab: "연구실",
@@ -29,6 +31,8 @@
       back: "Back to mentor list",
       status: "Opening Status",
       statusBody: "This PI-specific opening has not been registered yet. Hiring status, project details, and preferred expertise will appear here when confirmed.",
+      area: "Research Area",
+      timeline: "Timeline",
       affiliation: "Affiliation",
       department: "Department",
       lab: "Lab",
@@ -72,10 +76,27 @@
     return item;
   }
 
-  function findMentor() {
+  function currentId() {
     const params = new URLSearchParams(window.location.search);
-    const id = params.get("id") || "";
+    return params.get("id") || "";
+  }
+
+  function findMentor(id) {
     return content().mentors.find((mentor) => slugify(mentor.nameEn) === id);
+  }
+
+  function findOpening(id) {
+    return (content().piOpenings || []).find((opening) => opening.id === id);
+  }
+
+  function renderOpeningMeta(labelText, value) {
+    const item = document.createElement("div");
+    const key = document.createElement("span");
+    const val = document.createElement("strong");
+    key.textContent = labelText;
+    val.textContent = value || "-";
+    item.append(key, val);
+    return item;
   }
 
   function render() {
@@ -90,7 +111,9 @@
     });
 
     const root = document.querySelector(".pi-detail");
-    const mentor = findMentor();
+    const id = currentId();
+    const mentor = findMentor(id);
+    const openingData = findOpening(id);
     root.replaceChildren();
 
     const back = linkElement(label().back, "./index.html#mentors", "related-link");
@@ -136,23 +159,48 @@
     const status = document.createElement("span");
     const openingTitle = document.createElement("h2");
     const openingBody = document.createElement("p");
+    const openingMeta = document.createElement("div");
     const actions = document.createElement("div");
     status.className = "opening-status";
-    status.textContent = state.lang === "ko" ? "등록 예정" : "Coming soon";
-    openingTitle.textContent = label().status;
-    openingBody.textContent = label().statusBody;
-    actions.className = "pi-actions";
-    if (mentor.url) {
-      actions.append(linkElement(label().website, mentor.url, "primary-action"));
+    status.textContent = openingData ? openingData.status : state.lang === "ko" ? "등록 예정" : "Coming soon";
+    openingTitle.textContent = openingData ? openingData.title : label().status;
+    openingBody.textContent = openingData ? openingData.fit : label().statusBody;
+    openingMeta.className = "pi-opening-meta";
+    if (openingData) {
+      openingMeta.append(
+        renderOpeningMeta(label().area, openingData.area),
+        renderOpeningMeta(label().timeline, openingData.timeline),
+        renderOpeningMeta(label().contact, openingData.contactLabel.replace(/^문의: |^Contact: /, ""))
+      );
     }
-    actions.append(
-      linkElement(
-        label().openingRequest,
-        "https://github.com/EMDPLab/InnoCORE_EMatAX/issues/new?template=pi-opening.yml",
-        mentor.url ? "secondary-action dark" : "primary-action"
-      )
-    );
-    opening.append(status, openingTitle, openingBody, actions);
+    actions.className = "pi-actions";
+    if (openingData?.contactHref) {
+      actions.append(linkElement(openingData.contactLabel, openingData.contactHref, "primary-action"));
+    }
+    if (mentor.url) {
+      actions.append(linkElement(label().website, mentor.url, openingData ? "secondary-action dark" : "primary-action"));
+    }
+    if (!openingData) {
+      actions.append(
+        linkElement(
+          label().openingRequest,
+          "https://github.com/EMDPLab/InnoCORE_EMatAX/issues/new?template=pi-opening.yml",
+          mentor.url ? "secondary-action dark" : "primary-action"
+        )
+      );
+    }
+    opening.append(status, openingTitle, openingBody);
+    if (openingData) opening.append(openingMeta);
+    opening.append(actions);
+    if (openingData?.flyer) {
+      const figure = document.createElement("figure");
+      const image = document.createElement("img");
+      figure.className = "pi-flyer";
+      image.src = openingData.flyer;
+      image.alt = `${openingData.pi} ${openingData.lab} ${openingData.area} flyer`;
+      figure.append(image);
+      opening.append(figure);
+    }
 
     root.append(hero, meta, opening);
   }

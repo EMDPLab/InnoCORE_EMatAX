@@ -9,6 +9,7 @@ The public webpage renders PI-specific openings from `content.js`.
 Administrators can update the `piOpenings` arrays in Korean and English, then commit and deploy the change.
 
 Each PI detail page is rendered by `pi.html` and `pi.js` from the `mentors` array in `content.js`.
+When a `piOpenings` entry has a matching `id`, that detail page also displays the PI-specific opening details and flyer.
 
 Example:
 
@@ -46,6 +47,12 @@ PI submits:
 - Contact link
 
 An administrator reviews the submission and updates `content.js`.
+
+For public PI detail pages, create one matching flyer image for the opening:
+
+- Follow `flyer_design.md`.
+- Save the image as `assets/pi-openings/<pi-slug>-flyer.png`.
+- Add `flyer: "./assets/pi-openings/<pi-slug>-flyer.png"` to the Korean and English `piOpenings` entries.
 
 This is the lowest-risk workflow for the first public version.
 

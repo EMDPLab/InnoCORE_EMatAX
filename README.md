@@ -11,6 +11,7 @@ Because the site is static, it can be hosted directly with GitHub Pages, Netlify
 - `app.js`: renders navigation, cards, language switching, and links from `content.js`.
 - `pi.html`, `pi.js`: reusable PI detail page template.
 - `styles.css`: visual system and responsive layout.
+- `flyer_design.md`: standard image-generation spec for PI opening flyers.
 - `assets/`: copied logos and campaign visuals used by the page.
 
 ## How To Update Content
@@ -63,6 +64,7 @@ The `id` is generated from the mentor's English name in `content.js`. For exampl
 
 Each entry supports:
 
+- `id`: PI detail page id, matching `pi.html?id=<pi-slug>`
 - `status`: recruiting status shown at the top of the card
 - `title`: opening title
 - `pi`: PI name
@@ -71,6 +73,9 @@ Each entry supports:
 - `fit`: preferred candidate fit or project note
 - `timeline`: expected update or hiring timing
 - `contactLabel`, `contactHref`: contact link
+- `flyer`: optional 4:5 flyer image path, usually `./assets/pi-openings/<pi-slug>-flyer.png`
+
+PI opening flyer images should follow `flyer_design.md` so every PI page uses the same visual standard.
 
 Direct browser-based editing with a shared password cannot be implemented securely in this static-only site. A password embedded in frontend JavaScript would be visible to visitors and would not safely write changes back to GitHub.
 

@@ -973,6 +973,45 @@ a {
   line-height: 1.72;
 }
 
+.pi-opening-meta {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  padding-top: 4px;
+}
+
+.pi-opening-meta span,
+.pi-opening-meta strong {
+  display: block;
+}
+
+.pi-opening-meta span {
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.pi-opening-meta strong {
+  margin-top: 8px;
+  color: var(--navy);
+  font-size: 14px;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+.pi-flyer {
+  margin: 2px 0 0;
+  border: 1px solid var(--navy);
+  background: var(--white);
+}
+
+.pi-flyer img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+
 .secondary-action.dark {
   border-color: var(--navy);
   color: var(--navy);
@@ -1217,6 +1256,10 @@ a {
   .pi-actions .primary-action,
   .pi-actions .secondary-action {
     width: 100%;
+  }
+
+  .pi-opening-meta {
+    grid-template-columns: 1fr;
   }
 
   .related-links {

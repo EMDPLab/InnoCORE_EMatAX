@@ -232,8 +232,8 @@
       );
       const detail = linkElement(
         {
-          label: state.lang === "ko" ? "PI 페이지 보기" : "View PI pages",
-          href: "./index.html#mentors"
+          label: state.lang === "ko" ? "PI 페이지 보기" : "View PI page",
+          href: opening.id ? `./pi.html?id=${opening.id}` : "./index.html#mentors"
         },
         "opening-link"
       );
