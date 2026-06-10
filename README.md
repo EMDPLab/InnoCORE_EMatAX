@@ -25,6 +25,7 @@ Common updates:
 - Center snapshot, project period, and related links: `centerDetails`, `teams`, `relatedLinks`
 - Research areas: `research`
 - Fellow support items: `support`
+- PI-specific opening cards: `piOpenings`
 - Mentor/faculty table: `mentors`
 - Recent notices and events: `news`
 - Official notices and contact links: `applyActions`
@@ -46,6 +47,31 @@ Then open `http://localhost:8080`.
 ## Deployment
 
 For GitHub Pages, publish from the repository root on the `main` branch. The root `index.html` is the entry page.
+
+## PI Opening Management
+
+PI-specific opening cards are rendered from the `piOpenings` arrays in `content.js`.
+
+Each entry supports:
+
+- `status`: recruiting status shown at the top of the card
+- `title`: opening title
+- `pi`: PI name
+- `lab`: lab or group name
+- `area`: research area
+- `fit`: preferred candidate fit or project note
+- `timeline`: expected update or hiring timing
+- `contactLabel`, `contactHref`: contact link
+
+Direct browser-based editing with a shared password cannot be implemented securely in this static-only site. A password embedded in frontend JavaScript would be visible to visitors and would not safely write changes back to GitHub.
+
+For PI self-service editing, use one of these managed workflows:
+
+- GitHub-based review: PIs submit updates through a form or issue template; an administrator reviews and merges changes.
+- Headless CMS: connect the repository to a CMS such as Decap CMS with authenticated GitHub access.
+- Database-backed admin page: add a backend such as Supabase or Firebase Auth plus database rules, then render approved openings from that data source.
+
+This repository includes a GitHub Issue Form at `.github/ISSUE_TEMPLATE/pi-opening.yml` so PIs can submit opening updates for administrator review.
 
 ## Release Check
 

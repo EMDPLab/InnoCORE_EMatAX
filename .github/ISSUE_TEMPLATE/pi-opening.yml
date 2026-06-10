@@ -1,0 +1,70 @@
+name: PI Opening Update
+description: Submit or update a PI-specific E-MatAX recruitment opening.
+title: "[PI Opening] "
+labels: ["pi-opening"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form to request a new PI-specific opening or update an existing one.
+        An administrator should review the request before publishing it on the webpage.
+  - type: input
+    id: pi_name
+    attributes:
+      label: PI name
+      placeholder: "e.g., Su-Mi Hur"
+    validations:
+      required: true
+  - type: input
+    id: lab_name
+    attributes:
+      label: Lab or group name
+      placeholder: "e.g., Sustainable Materials Lab"
+    validations:
+      required: true
+  - type: dropdown
+    id: hiring_status
+    attributes:
+      label: Hiring status
+      options:
+        - Actively recruiting
+        - Reviewing candidates
+        - Planning future recruitment
+        - Not currently recruiting
+    validations:
+      required: true
+  - type: input
+    id: research_area
+    attributes:
+      label: Research area
+      placeholder: "e.g., energy storage materials, catalyst AX, dry electrode process"
+    validations:
+      required: true
+  - type: textarea
+    id: project_fit
+    attributes:
+      label: Project fit and preferred background
+      description: Describe the research project, desired expertise, and applicant fit.
+    validations:
+      required: true
+  - type: input
+    id: timeline
+    attributes:
+      label: Hiring timeline
+      placeholder: "e.g., 2026 fall, rolling review, filled for 2026"
+    validations:
+      required: true
+  - type: input
+    id: contact
+    attributes:
+      label: Contact link or email
+      placeholder: "e.g., mailto:innocore@dgist.ac.kr or lab website URL"
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Internal notes
+      description: Optional notes for administrators. Remove sensitive information before public posting.
+    validations:
+      required: false

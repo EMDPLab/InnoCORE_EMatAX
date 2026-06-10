@@ -200,6 +200,43 @@
     document.querySelector(".process-steps").replaceChildren(...steps);
   }
 
+  function renderOpenings() {
+    const openings = content().piOpenings.map((opening) => {
+      const article = document.createElement("article");
+      const status = document.createElement("span");
+      const title = document.createElement("h3");
+      const meta = document.createElement("dl");
+      const fit = document.createElement("p");
+      const contact = linkElement(
+        { label: opening.contactLabel, href: opening.contactHref },
+        "opening-link"
+      );
+
+      status.className = "opening-status";
+      status.textContent = opening.status;
+      title.textContent = opening.title;
+      fit.textContent = opening.fit;
+
+      [
+        [state.lang === "ko" ? "PI" : "PI", opening.pi],
+        [state.lang === "ko" ? "연구실" : "Lab", opening.lab],
+        [state.lang === "ko" ? "연구영역" : "Area", opening.area],
+        [state.lang === "ko" ? "일정" : "Timeline", opening.timeline],
+      ].forEach(([label, value]) => {
+        const term = document.createElement("dt");
+        const description = document.createElement("dd");
+        term.textContent = label;
+        description.textContent = value;
+        meta.append(term, description);
+      });
+
+      article.append(status, title, meta, fit, contact);
+      return article;
+    });
+
+    document.querySelector(".openings-grid").replaceChildren(...openings);
+  }
+
   function renderSimpleGrid(selector, key) {
     const cards = content()[key].map((item) => {
       const article = document.createElement("article");
@@ -236,6 +273,7 @@
     renderResearch();
     renderProcess();
     renderSimpleGrid(".support-grid", "support");
+    renderOpenings();
     renderMentors();
     renderNews();
     renderApplyActions();
