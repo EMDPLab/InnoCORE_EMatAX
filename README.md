@@ -11,7 +11,8 @@ Because the site is static, it can be hosted directly with GitHub Pages, Netlify
 - `app.js`: renders navigation, cards, language switching, and links from `content.js`.
 - `pi.html`, `pi.js`: reusable PI detail page template.
 - `styles.css`: visual system and responsive layout.
-- `flyer_design.md`: standard image-generation spec for PI opening flyers.
+- `flyer_design.md`: standard image-generation spec for PI opening header images.
+- `PI_OPENING_PIPELINE.md`: issue-form-to-webpage publishing workflow for PI openings.
 - `assets/`: copied logos and campaign visuals used by the page.
 
 ## How To Update Content

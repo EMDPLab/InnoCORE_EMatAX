@@ -75,13 +75,11 @@ Avoid: crowded layout, stock-photo feel, illegible text, random icons, extra col
 Save generated header assets under:
 
 ```text
-assets/pi-openings/<pi-slug>-flyer.png
 assets/pi-openings/<pi-slug>-header.png
 ```
 
 Example:
 
 ```text
-assets/pi-openings/dong-hae-ho-flyer.png
 assets/pi-openings/dong-hae-ho-header.png
 ```

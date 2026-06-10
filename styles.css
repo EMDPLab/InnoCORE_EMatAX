@@ -590,12 +590,12 @@ a {
 
 .mentor-table .table-link {
   display: inline-flex;
-  min-width: 92px;
+  min-width: 112px;
   min-height: 34px;
   align-items: center;
   justify-content: center;
   border: 1px solid var(--blue);
-  padding: 0 10px;
+  padding: 0 12px;
   white-space: nowrap;
 }
 
@@ -766,14 +766,14 @@ a {
 
 .mentor-table {
   width: 100%;
-  min-width: 1120px;
+  min-width: 1200px;
   border-collapse: collapse;
   table-layout: fixed;
   font-size: 14px;
 }
 
 .mentor-col-role {
-  width: 10%;
+  width: 9%;
 }
 
 .mentor-col-name {
@@ -785,11 +785,11 @@ a {
 }
 
 .mentor-col-affiliation {
-  width: 16%;
+  width: 15%;
 }
 
 .mentor-col-department {
-  width: 30%;
+  width: 29%;
 }
 
 .mentor-col-website {
@@ -797,7 +797,7 @@ a {
 }
 
 .mentor-col-opening {
-  width: 11%;
+  width: 14%;
 }
 
 .mentor-table th,

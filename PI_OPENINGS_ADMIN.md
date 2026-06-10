@@ -9,7 +9,7 @@ The public webpage renders PI-specific openings from `content.js`.
 Administrators can update the `piOpenings` arrays in Korean and English, then commit and deploy the change.
 
 Each PI detail page is rendered by `pi.html` and `pi.js` from the `mentors` array in `content.js`.
-When a `piOpenings` entry has a matching `id`, that detail page also displays the PI-specific opening details and flyer.
+When a `piOpenings` entry has a matching `id`, that detail page also displays the PI-specific opening details and header image.
 
 Example:
 
@@ -34,6 +34,7 @@ Do not store an edit password in `app.js`, `content.js`, or any other frontend f
 Use a Google Form, Tally form, Airtable form, or GitHub issue template.
 
 This repository includes a GitHub issue template at `.github/ISSUE_TEMPLATE/pi-opening.yml`.
+Use `PI_OPENING_PIPELINE.md` for the full issue-form-to-webpage publishing workflow.
 
 PI submits:
 
