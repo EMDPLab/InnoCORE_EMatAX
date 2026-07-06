@@ -23,7 +23,7 @@
     link.className = className;
     link.href = item.href;
     link.textContent = item.label;
-    if (/^https?:\/\//.test(item.href)) {
+    if (/^https?:\/\//.test(item.href) && !item.sameTab) {
       link.target = "_blank";
       link.rel = "noopener";
     }
@@ -136,6 +136,7 @@
     if (existingColGroup) existingColGroup.remove();
 
     const mentorFields = [
+      { key: "recruiting", col: "recruiting" },
       { key: "area", col: "area" },
       { key: "role", col: "role" },
       { key: "name", col: "name" },
@@ -146,6 +147,7 @@
     ];
     const columns = content().mentorColumns;
     const mentorAreas = content().mentorAreas || {};
+    const defaultRecruitingStatus = content().mentorRecruitingStatus || "";
 
     const colGroup = document.createElement("colgroup");
     mentorFields.forEach((field) => {
@@ -168,7 +170,9 @@
       mentorFields.slice(0, -1).forEach((field, index) => {
         const cell = document.createElement("td");
         const value =
-          field.key === "area" ? mentor.area || mentorAreas[mentor.name] : mentor[field.key];
+          field.key === "area"
+            ? mentor.area || mentorAreas[mentor.name]
+            : mentor[field.key] || (field.key === "recruiting" ? defaultRecruitingStatus : "");
         cell.dataset.label = columns[index] || "";
         cell.textContent = value || "";
         row.append(cell);

@@ -1,11 +1,11 @@
 window.INNOCORE_CONTENT = {
   ko: {
     nav: [
-      { label: "펠로우 채용 공고", href: "#how-apply" },
+      { label: "펠로우 채용 공고", href: "https://www.innocore.or.kr/dgist/notice/sub01", sameTab: true },
       { label: "사업단", href: "#about" },
       { label: "연구영역", href: "#research" },
-      { label: "멘토", href: "#mentors" },
       { label: "Fellow 연구지원", href: "#fellows" },
+      { label: "멘토", href: "#mentors" },
     ],
     headerCta: "펠로우 채용 공고",
     heroEyebrow: "DGIST InnoCORE | 에너지 소재 상용화 AX 연구단",
@@ -71,7 +71,7 @@ window.INNOCORE_CONTENT = {
     relatedLinksTitle: "Related Links",
     relatedLinks: [
       { label: "E-MatAX Research Center", href: "https://www.innocore.or.kr/dgist/dgistLab/drsch_rsch02" },
-      { label: "DGIST InnoCORE notices", href: "https://www.innocore.or.kr/dgist/notice/sub02" },
+      { label: "DGIST InnoCORE notices", href: "https://www.innocore.or.kr/dgist/notice/sub01" },
       { label: "InnoCORE Global Job Fair", href: "https://www.innocore-jobfair.com/" },
     ],
     researchKicker: "Research Portfolio",
@@ -125,7 +125,8 @@ window.INNOCORE_CONTENT = {
     mentorsTitle: "E-MatAX 멘토 그룹",
     mentorsLead:
       "DGIST와 국내 주요 대학의 참여 교수진이 4대 연구축별로 에너지 소재, 공정, AI, 분석, 검증 연구를 함께 이끕니다.",
-    mentorColumns: ["연구축", "역할", "성명", "English Name", "소속", "학과/부서", "Website"],
+    mentorColumns: ["채용상태", "연구축", "역할", "성명", "English Name", "소속", "학과/부서", "Website"],
+    mentorRecruitingStatus: "적극 채용중",
     mentorAreas: {
       "허수미 교수": "소재-공정 AI 플랫폼",
       "장윤희 교수": "소재-공정 AI 플랫폼",
@@ -203,14 +204,14 @@ window.INNOCORE_CONTENT = {
     news: [
       { date: "2026.06", title: "Europe InnoCORE Global AI Postdoctoral Job Fair", href: "https://www.innocore-jobfair.com/" },
       { date: "2026.05", title: "US InnoCORE Global AI Postdoctoral Job Fair", href: "https://www.innocore-jobfair.com/" },
-      { date: "상시", title: "DGIST InnoCORE Notice Board", href: "https://www.innocore.or.kr/dgist/notice/sub02" },
+      { date: "상시", title: "DGIST InnoCORE Notice Board", href: "https://www.innocore.or.kr/dgist/notice/sub01" },
     ],
     applyKicker: "Fellow Recruitment",
     applyTitle: "AX로 실험실에서 양산까지",
     applyLead:
       "E-MatAX와 함께 에너지 소재 상용화 AX를 만들어갈 Research Fellow를 모집합니다. 공식 모집 공고와 문의 채널을 통해 지원 절차를 확인해주세요.",
     applyActions: [
-      { label: "펠로우 채용 공고 바로가기", href: "https://www.innocore.or.kr/dgist/notice/sub02" },
+      { label: "펠로우 채용 공고 바로가기", href: "https://www.innocore.or.kr/dgist/notice/sub01", sameTab: true },
       { label: "문의: innocore@dgist.ac.kr", href: "mailto:innocore@dgist.ac.kr" },
       { label: "E-MatAX 연구단 소개", href: "https://www.innocore.or.kr/dgist/dgistLab/drsch_rsch02" },
     ],
@@ -219,11 +220,11 @@ window.INNOCORE_CONTENT = {
   },
   en: {
     nav: [
-      { label: "Fellow Notice", href: "#how-apply" },
+      { label: "Fellow Notice", href: "https://www.innocore.or.kr/dgist/notice/sub01", sameTab: true },
       { label: "About", href: "#about" },
       { label: "Research", href: "#research" },
-      { label: "Mentors", href: "#mentors" },
       { label: "Fellow Support", href: "#fellows" },
+      { label: "Mentors", href: "#mentors" },
     ],
     headerCta: "Fellow Notice",
     heroEyebrow: "DGIST InnoCORE | E-MatAX Research Center",
@@ -289,7 +290,7 @@ window.INNOCORE_CONTENT = {
     relatedLinksTitle: "Related Links",
     relatedLinks: [
       { label: "E-MatAX Research Center", href: "https://www.innocore.or.kr/dgist/dgistLab/drsch_rsch02" },
-      { label: "DGIST InnoCORE notices", href: "https://www.innocore.or.kr/dgist/notice/sub02" },
+      { label: "DGIST InnoCORE notices", href: "https://www.innocore.or.kr/dgist/notice/sub01" },
       { label: "InnoCORE Global Job Fair", href: "https://www.innocore-jobfair.com/" },
     ],
     researchKicker: "Research Portfolio",
@@ -343,7 +344,8 @@ window.INNOCORE_CONTENT = {
     mentorsTitle: "E-MatAX mentor group",
     mentorsLead:
       "DGIST and partner faculty cover energy materials, processes, AI, analysis, and validation across the four research pillars.",
-    mentorColumns: ["Research Area", "Role", "Name", "English Name", "Affiliation", "Department", "Website"],
+    mentorColumns: ["Hiring", "Research Area", "Role", "Name", "English Name", "Affiliation", "Department", "Website"],
+    mentorRecruitingStatus: "Actively recruiting",
     mentorAreas: {
       "허수미 교수": "Materials-Process AI Platform",
       "장윤희 교수": "Materials-Process AI Platform",
@@ -421,14 +423,14 @@ window.INNOCORE_CONTENT = {
     news: [
       { date: "2026.06", title: "Europe InnoCORE Global AI Postdoctoral Job Fair", href: "https://www.innocore-jobfair.com/" },
       { date: "2026.05", title: "US InnoCORE Global AI Postdoctoral Job Fair", href: "https://www.innocore-jobfair.com/" },
-      { date: "Always", title: "DGIST InnoCORE Notice Board", href: "https://www.innocore.or.kr/dgist/notice/sub02" },
+      { date: "Always", title: "DGIST InnoCORE Notice Board", href: "https://www.innocore.or.kr/dgist/notice/sub01" },
     ],
     applyKicker: "Fellow Recruitment",
     applyTitle: "From lab to production, powered by AX",
     applyLead:
       "E-MatAX is looking for Fellows who want to design AX for energy materials commercialization. Review the official notice and contact channel for application procedures.",
     applyActions: [
-      { label: "Fellow Recruitment Notice", href: "https://www.innocore.or.kr/dgist/notice/sub02" },
+      { label: "Fellow Recruitment Notice", href: "https://www.innocore.or.kr/dgist/notice/sub01", sameTab: true },
       { label: "Contact: innocore@dgist.ac.kr", href: "mailto:innocore@dgist.ac.kr" },
       { label: "Current Center Page", href: "https://www.innocore.or.kr/dgist/dgistLab/drsch_rsch02" },
     ],
