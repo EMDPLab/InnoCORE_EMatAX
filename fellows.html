@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>E-MatAX Fellow Opening</title>
+    <title>E-MatAX Fellows</title>
     <link rel="stylesheet" href="./styles.css?v=20260706-fellows" />
   </head>
   <body>
@@ -19,6 +19,8 @@
       </a>
       <nav class="site-nav" aria-label="주요 메뉴">
         <a class="nav-link" href="https://www.innocore.or.kr/dgist/notice/sub01">펠로우 채용 공고</a>
+        <a class="nav-link" href="./index.html#about">사업단</a>
+        <a class="nav-link" href="./index.html#research">연구영역</a>
         <a class="nav-link" href="./index.html#fellows">Fellow 연구지원</a>
         <a class="nav-link" href="./index.html#mentors">멘토</a>
       </nav>
@@ -31,18 +33,25 @@
       </div>
     </header>
 
-    <main id="main" class="pi-page">
-      <section class="content-band pi-detail-band" aria-labelledby="pi-title">
-        <div class="pi-detail"></div>
+    <main id="main" class="fellow-page">
+      <section class="content-band fellow-directory-band" aria-labelledby="fellow-page-title">
+        <div class="fellow-directory">
+          <div class="fellow-directory-hero">
+            <p class="eyebrow" data-field="fellowPageKicker"></p>
+            <h1 id="fellow-page-title" data-field="fellowPageTitle"></h1>
+            <p data-field="fellowPageLead"></p>
+          </div>
+          <div class="fellow-list"></div>
+        </div>
       </section>
     </main>
 
     <footer class="site-footer">
       <img src="./assets/ematax-logo.png" alt="E-MatAX" />
-      <p>DGIST InnoCORE E-MatAX Research Center</p>
+      <p data-field="footerText">DGIST InnoCORE E-MatAX Research Center</p>
     </footer>
 
     <script src="./content.js?v=20260706-fellows"></script>
-    <script src="./pi.js?v=20260706-fellows"></script>
+    <script src="./fellows.js?v=20260706-fellows"></script>
   </body>
 </html>

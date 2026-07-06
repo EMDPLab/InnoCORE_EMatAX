@@ -113,6 +113,7 @@ a {
 .header-actions,
 .lang-switch,
 .hero-actions,
+.fellow-directory-actions,
 .apply-actions {
   display: flex;
   align-items: center;
@@ -314,6 +315,8 @@ a {
 .process-copy,
 .process-steps,
 .support-grid,
+.fellow-directory-actions,
+.fellow-directory,
 .openings-grid,
 .mentor-table-wrap,
 .news-list,
@@ -415,6 +418,7 @@ a {
 .center-layout,
 .research-grid,
 .support-grid,
+.fellow-list,
 .openings-grid,
 .news-list {
   display: grid;
@@ -441,6 +445,7 @@ a {
 .related-links,
 .research-grid article,
 .support-grid article,
+.fellow-card,
 .openings-grid article,
 .news-item {
   border: 1px solid var(--navy);
@@ -603,6 +608,144 @@ a {
 .table-link:hover,
 .news-item:hover strong {
   text-decoration: underline;
+}
+
+.fellow-directory-actions {
+  justify-content: flex-end;
+  margin-top: 24px;
+}
+
+.fellow-directory {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 28px 24px;
+  min-width: 0;
+}
+
+.fellow-directory-hero {
+  grid-column: 1 / 13;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 18px 24px;
+  align-items: end;
+}
+
+.fellow-directory-hero .eyebrow {
+  grid-column: 1 / 3;
+}
+
+.fellow-directory-hero h1 {
+  grid-column: 3 / 13;
+  margin: 0;
+  color: var(--navy);
+  font-size: clamp(42px, 5vw, 64px);
+  line-height: 1.04;
+  letter-spacing: 0;
+}
+
+.fellow-directory-hero > p:last-child {
+  grid-column: 3 / 11;
+  margin: 0;
+  color: var(--navy);
+  opacity: 0.74;
+  font-size: 18px;
+  line-height: 1.72;
+}
+
+.fellow-list {
+  grid-column: 1 / 13;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.fellow-card {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  min-width: 0;
+}
+
+.fellow-photo {
+  margin: 0;
+  border-bottom: 1px solid var(--navy);
+  background: var(--white);
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+.fellow-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.fellow-card-body {
+  display: grid;
+  gap: 14px;
+  padding: 22px;
+}
+
+.fellow-status {
+  width: max-content;
+  max-width: 100%;
+  border: 1px solid var(--blue);
+  padding: 6px 9px;
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: 900;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.fellow-card h2 {
+  margin: 0;
+  color: var(--navy);
+  font-size: 24px;
+  line-height: 1.2;
+}
+
+.fellow-name-en,
+.fellow-summary {
+  margin: 0;
+  color: var(--navy);
+}
+
+.fellow-name-en {
+  opacity: 0.62;
+  font-weight: 720;
+}
+
+.fellow-meta {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+}
+
+.fellow-meta div {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+.fellow-meta dt,
+.fellow-meta dd {
+  margin: 0;
+}
+
+.fellow-meta dt {
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.fellow-meta dd {
+  color: var(--navy);
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+.fellow-summary {
+  opacity: 0.74;
+  line-height: 1.72;
 }
 
 .research-grid article {
@@ -1096,6 +1239,8 @@ a {
   .process-copy,
   .process-steps,
   .support-grid,
+  .fellow-directory-actions,
+  .fellow-directory,
   .openings-grid,
   .pi-detail,
   .news-list,
@@ -1118,6 +1263,10 @@ a {
   .detail-grid,
   .team-grid,
   .related-links,
+  .fellow-directory-hero,
+  .fellow-directory-hero .eyebrow,
+  .fellow-directory-hero h1,
+  .fellow-directory-hero > p:last-child,
   .apply-band > div:first-child,
   .apply-actions {
     grid-column: 1 / 13;
@@ -1131,9 +1280,14 @@ a {
 
   .research-grid article,
   .support-grid article,
+  .fellow-card,
   .openings-grid article,
   .openings-grid article:only-child {
     grid-column: span 6;
+  }
+
+  .fellow-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .related-links {
@@ -1253,6 +1407,8 @@ a {
   .process-copy,
   .process-steps,
   .support-grid,
+  .fellow-directory-actions,
+  .fellow-directory,
   .openings-grid,
   .pi-detail,
   .mentor-table-wrap,
@@ -1264,9 +1420,33 @@ a {
 
   .research-grid article,
   .support-grid article,
+  .fellow-card,
   .openings-grid article,
   .openings-grid article:only-child {
     grid-column: 1 / -1;
+  }
+
+  .fellow-directory-actions {
+    justify-content: stretch;
+  }
+
+  .fellow-directory-actions .secondary-action {
+    width: 100%;
+  }
+
+  .fellow-directory-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .fellow-directory-hero,
+  .fellow-directory-hero .eyebrow,
+  .fellow-directory-hero h1,
+  .fellow-directory-hero > p:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .fellow-list {
+    grid-template-columns: 1fr;
   }
 
   .openings-grid dl {

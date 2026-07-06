@@ -1,0 +1,9 @@
+<svg width="960" height="720" viewBox="0 0 960 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="960" height="720" fill="#F7FAFF"/>
+  <rect x="72" y="72" width="816" height="576" fill="#FFFFFF" stroke="#071F4E" stroke-width="8"/>
+  <circle cx="480" cy="270" r="102" fill="#DDEBFF" stroke="#071F4E" stroke-width="8"/>
+  <path d="M300 558C326 455 392 408 480 408C568 408 634 455 660 558" fill="#DDEBFF" stroke="#071F4E" stroke-width="8"/>
+  <path d="M264 176H696" stroke="#1769E0" stroke-width="12" stroke-linecap="square"/>
+  <path d="M264 608H696" stroke="#9BEA21" stroke-width="12" stroke-linecap="square"/>
+  <text x="480" y="176" text-anchor="middle" fill="#071F4E" font-family="Arial, sans-serif" font-size="42" font-weight="700">E-MatAX Fellow</text>
+</svg>
