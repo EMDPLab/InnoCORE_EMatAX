@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>E-MatAX Admin</title>
     <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="./styles.css?v=20260706-fellow-admin" />
+    <link rel="stylesheet" href="./styles.css?v=20260706-admin-server" />
   </head>
   <body>
     <a class="skip-link" href="#main">본문으로 바로가기</a>
@@ -34,7 +34,7 @@
           <div class="admin-heading">
             <p class="eyebrow">Admin</p>
             <h1 id="admin-title">콘텐츠 관리</h1>
-            <p>브라우저 저장값은 현재 브라우저에서만 적용됩니다. 배포 반영은 아래 데이터를 `content.js`에 반영한 뒤 커밋해야 합니다.</p>
+            <p>로컬 admin 서버로 열면 버튼으로 `content.js` 반영과 git commit까지 처리할 수 있습니다.</p>
           </div>
 
           <section class="admin-section" aria-labelledby="mentor-admin-title">
@@ -53,9 +53,12 @@
                 <strong data-inactive-count>0</strong>
               </div>
               <button class="admin-button primary" type="button" data-save>멘토 저장</button>
+              <button class="admin-button" type="button" data-apply-mentors>content.js 반영</button>
+              <button class="admin-button primary" type="button" data-commit-mentors>반영 + commit</button>
               <button class="admin-button" type="button" data-download>멘토 JSON</button>
               <button class="admin-button" type="button" data-reset>멘토 초기화</button>
             </div>
+            <div class="admin-status" data-mentor-status role="status"></div>
 
             <div class="admin-table-wrap">
               <table class="admin-table">
@@ -89,10 +92,13 @@
                 <strong data-fellow-count>0</strong>
               </div>
               <button class="admin-button primary" type="button" data-save-fellows>Fellow 저장</button>
+              <button class="admin-button" type="button" data-apply-fellows>content.js 반영</button>
+              <button class="admin-button primary" type="button" data-commit-fellows>반영 + commit</button>
               <button class="admin-button" type="button" data-add-fellow>프로필 추가</button>
               <button class="admin-button" type="button" data-download-fellows>Fellow JSON</button>
               <button class="admin-button" type="button" data-reset-fellows>Fellow 초기화</button>
             </div>
+            <div class="admin-status" data-fellow-status role="status"></div>
 
             <div class="fellow-admin-list"></div>
 
@@ -110,7 +116,7 @@
       <p>DGIST InnoCORE E-MatAX Research Center</p>
     </footer>
 
-    <script src="./content.js?v=20260706-fellow-admin"></script>
-    <script src="./admin.js?v=20260706-fellow-admin"></script>
+    <script src="./content.js?v=20260706-admin-server"></script>
+    <script src="./admin.js?v=20260706-admin-server"></script>
   </body>
 </html>

@@ -103,11 +103,53 @@
     document.querySelector("#mentor-output").value = mentorOutputText();
   }
 
+  function setAdminStatus(selector, message, tone = "pending") {
+    const element = document.querySelector(selector);
+    if (!element) return;
+    element.textContent = message;
+    element.dataset.tone = tone;
+  }
+
+  function directApplyHelp(error) {
+    const detail = error?.message ? ` (${error.message})` : "";
+    return `직접 반영 실패${detail}. 터미널에서 node admin-server.js 실행 후 http://127.0.0.1:8787/admin.html 로 접속해주세요.`;
+  }
+
+  async function postAdminData(path, payload) {
+    const response = await fetch(path, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+    const data = await response.json().catch(() => null);
+
+    if (!response.ok || !data?.ok) {
+      throw new Error(data?.error || `서버 응답 오류 ${response.status}`);
+    }
+
+    return data;
+  }
+
   function saveMentors() {
     localStorage.setItem(MENTOR_STORAGE_KEY, JSON.stringify(fullStatusMap()));
     state.statuses = loadMentorStatuses();
     renderMentorRows();
     updateMentorSummary();
+  }
+
+  async function applyMentorsToContent(commit = false) {
+    setAdminStatus("[data-mentor-status]", commit ? "content.js 반영 및 commit 중..." : "content.js 반영 중...");
+
+    try {
+      saveMentors();
+      const data = await postAdminData("/api/admin/mentors", {
+        mentorRecruitingStatuses: fullStatusMap(),
+        commit,
+      });
+      setAdminStatus("[data-mentor-status]", data.message || "멘토 데이터 반영 완료", "success");
+    } catch (error) {
+      setAdminStatus("[data-mentor-status]", directApplyHelp(error), "error");
+    }
   }
 
   function resetMentors() {
@@ -303,6 +345,21 @@
     updateFellowSummary();
   }
 
+  async function applyFellowsToContent(commit = false) {
+    setAdminStatus("[data-fellow-status]", commit ? "content.js 반영 및 commit 중..." : "content.js 반영 중...");
+
+    try {
+      saveFellows();
+      const data = await postAdminData("/api/admin/fellows", {
+        fellowProfiles: state.fellows,
+        commit,
+      });
+      setAdminStatus("[data-fellow-status]", data.message || "Fellow 데이터 반영 완료", "success");
+    } catch (error) {
+      setAdminStatus("[data-fellow-status]", directApplyHelp(error), "error");
+    }
+  }
+
   function resetFellows() {
     localStorage.removeItem(FELLOW_STORAGE_KEY);
     state.fellows = clone(content.fellowProfiles || []);
@@ -317,6 +374,8 @@
   }
 
   document.querySelector("[data-save]").addEventListener("click", saveMentors);
+  document.querySelector("[data-apply-mentors]").addEventListener("click", () => applyMentorsToContent(false));
+  document.querySelector("[data-commit-mentors]").addEventListener("click", () => applyMentorsToContent(true));
   document.querySelector("[data-reset]").addEventListener("click", resetMentors);
   document.querySelector("[data-download]").addEventListener("click", () => {
     downloadJson("mentor-recruiting-statuses.json", {
@@ -326,6 +385,8 @@
     });
   });
   document.querySelector("[data-save-fellows]").addEventListener("click", saveFellows);
+  document.querySelector("[data-apply-fellows]").addEventListener("click", () => applyFellowsToContent(false));
+  document.querySelector("[data-commit-fellows]").addEventListener("click", () => applyFellowsToContent(true));
   document.querySelector("[data-reset-fellows]").addEventListener("click", resetFellows);
   document.querySelector("[data-add-fellow]").addEventListener("click", addFellow);
   document.querySelector("[data-download-fellows]").addEventListener("click", () => {

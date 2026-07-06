@@ -815,13 +815,14 @@ a {
 
 .admin-toolbar {
   display: grid;
-  grid-template-columns: repeat(2, minmax(150px, 1fr)) repeat(3, auto);
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 12px;
   align-items: stretch;
 }
 
 .admin-stat,
 .admin-button,
+.admin-status,
 .admin-output-panel,
 .admin-table-wrap {
   border: 1px solid var(--navy);
@@ -875,6 +876,36 @@ a {
 
 .admin-button.primary:hover {
   color: var(--lime);
+}
+
+.admin-status {
+  display: block;
+  padding: 14px 16px;
+  color: var(--navy);
+  font-weight: 800;
+  line-height: 1.5;
+}
+
+.admin-status:empty {
+  display: none;
+}
+
+.admin-status[data-tone="success"] {
+  border-color: #0f766e;
+  background: #f0fdfa;
+  color: #115e59;
+}
+
+.admin-status[data-tone="error"] {
+  border-color: #b91c1c;
+  background: #fef2f2;
+  color: #991b1b;
+}
+
+.admin-status[data-tone="pending"] {
+  border-color: var(--blue);
+  background: #f5fbff;
+  color: var(--navy);
 }
 
 .admin-table-wrap {
