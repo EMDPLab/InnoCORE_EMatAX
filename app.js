@@ -135,16 +135,28 @@
     const existingColGroup = table.querySelector("colgroup");
     if (existingColGroup) existingColGroup.remove();
 
+    const mentorFields = [
+      { key: "area", col: "area" },
+      { key: "role", col: "role" },
+      { key: "name", col: "name" },
+      { key: "nameEn", col: "name-en" },
+      { key: "affiliation", col: "affiliation" },
+      { key: "department", col: "department" },
+      { key: "website", col: "website" },
+    ];
+    const columns = content().mentorColumns;
+    const mentorAreas = content().mentorAreas || {};
+
     const colGroup = document.createElement("colgroup");
-    ["role", "name", "name-en", "affiliation", "department", "website"].forEach((name) => {
+    mentorFields.forEach((field) => {
       const col = document.createElement("col");
-      col.className = `mentor-col-${name}`;
+      col.className = `mentor-col-${field.col}`;
       colGroup.append(col);
     });
     table.prepend(colGroup);
 
     const headRow = document.createElement("tr");
-    content().mentorColumns.forEach((label) => {
+    columns.forEach((label) => {
       const th = document.createElement("th");
       th.textContent = label;
       headRow.append(th);
@@ -153,12 +165,16 @@
 
     const rows = content().mentors.map((mentor) => {
       const row = document.createElement("tr");
-      ["role", "name", "nameEn", "affiliation", "department"].forEach((key) => {
+      mentorFields.slice(0, -1).forEach((field, index) => {
         const cell = document.createElement("td");
-        cell.textContent = mentor[key] || "";
+        const value =
+          field.key === "area" ? mentor.area || mentorAreas[mentor.name] : mentor[field.key];
+        cell.dataset.label = columns[index] || "";
+        cell.textContent = value || "";
         row.append(cell);
       });
       const linkCell = document.createElement("td");
+      linkCell.dataset.label = columns[mentorFields.length - 1] || "";
       if (mentor.url) {
         const link = linkElement(
           { label: state.lang === "ko" ? "웹사이트" : "Website", href: mentor.url },

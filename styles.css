@@ -682,34 +682,38 @@ a {
 
 .mentor-table {
   width: 100%;
-  min-width: 960px;
+  min-width: 1120px;
   border-collapse: collapse;
   table-layout: fixed;
   font-size: 14px;
 }
 
+.mentor-col-area {
+  width: 17%;
+}
+
 .mentor-col-role {
-  width: 10%;
+  width: 9%;
 }
 
 .mentor-col-name {
-  width: 11%;
+  width: 10%;
 }
 
 .mentor-col-name-en {
-  width: 14%;
+  width: 12%;
 }
 
 .mentor-col-affiliation {
-  width: 18%;
+  width: 16%;
 }
 
 .mentor-col-department {
-  width: 34%;
+  width: 27%;
 }
 
 .mentor-col-website {
-  width: 13%;
+  width: 9%;
 }
 
 .mentor-table th,
@@ -736,10 +740,15 @@ a {
   opacity: 0.76;
 }
 
-.mentor-table td:nth-child(2),
-.mentor-table td:nth-child(3) {
+.mentor-table td:nth-child(1),
+.mentor-table td:nth-child(3),
+.mentor-table td:nth-child(4) {
   opacity: 1;
   font-weight: 820;
+}
+
+.mentor-table td:nth-child(1) {
+  color: var(--blue);
 }
 
 .news-list {
@@ -1055,9 +1064,21 @@ a {
     padding: 5px 14px;
   }
 
+  .mentor-table td::before {
+    content: attr(data-label);
+    display: block;
+    margin-bottom: 2px;
+    color: var(--blue);
+    font-size: 11px;
+    font-weight: 820;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+
   .mentor-table td:nth-child(1),
-  .mentor-table td:nth-child(4),
-  .mentor-table td:nth-child(5) {
+  .mentor-table td:nth-child(2),
+  .mentor-table td:nth-child(5),
+  .mentor-table td:nth-child(6) {
     font-size: 12px;
   }
 
