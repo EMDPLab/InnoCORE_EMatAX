@@ -748,6 +748,210 @@ a {
   line-height: 1.72;
 }
 
+.admin-shell {
+  grid-column: 2 / 14;
+  display: grid;
+  gap: 24px;
+  min-width: 0;
+}
+
+.admin-heading {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 16px 24px;
+  align-items: end;
+}
+
+.admin-heading .eyebrow {
+  grid-column: 1 / 3;
+}
+
+.admin-heading h1 {
+  grid-column: 3 / 13;
+  margin: 0;
+  color: var(--navy);
+  font-size: clamp(36px, 4.4vw, 58px);
+  line-height: 1.06;
+  letter-spacing: 0;
+}
+
+.admin-heading p:last-child {
+  grid-column: 3 / 11;
+  margin: 0;
+  color: var(--navy);
+  opacity: 0.72;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.admin-toolbar {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(150px, 1fr)) repeat(3, auto);
+  gap: 12px;
+  align-items: stretch;
+}
+
+.admin-stat,
+.admin-button,
+.admin-output-panel,
+.admin-table-wrap {
+  border: 1px solid var(--navy);
+  background: var(--white);
+}
+
+.admin-stat {
+  display: grid;
+  gap: 4px;
+  padding: 16px;
+}
+
+.admin-stat span {
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.admin-stat strong {
+  color: var(--navy);
+  font-size: 32px;
+  line-height: 1;
+}
+
+.admin-button {
+  min-height: 54px;
+  padding: 0 18px;
+  color: var(--navy);
+  font: inherit;
+  font-weight: 850;
+  cursor: pointer;
+}
+
+.admin-button.primary {
+  background: var(--navy);
+  color: var(--white);
+}
+
+.admin-button:hover {
+  color: var(--blue);
+}
+
+.admin-button.primary:hover {
+  color: var(--lime);
+}
+
+.admin-table-wrap {
+  overflow-x: auto;
+}
+
+.admin-table {
+  width: 100%;
+  min-width: 920px;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.admin-table th,
+.admin-table td {
+  border-bottom: 1px solid var(--navy);
+  padding: 14px 16px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.admin-table tr:last-child td {
+  border-bottom: 0;
+}
+
+.admin-table th {
+  background: var(--navy);
+  color: var(--white);
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.admin-table th:nth-child(1) {
+  width: 24%;
+}
+
+.admin-table th:nth-child(2) {
+  width: 26%;
+}
+
+.admin-table th:nth-child(3) {
+  width: 18%;
+}
+
+.admin-table th:nth-child(4) {
+  width: 32%;
+}
+
+.admin-table td strong,
+.admin-table td span {
+  display: block;
+}
+
+.admin-table td strong {
+  color: var(--navy);
+}
+
+.admin-table td span {
+  margin-top: 4px;
+  opacity: 0.62;
+  font-size: 13px;
+}
+
+.admin-radio-group {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.admin-radio-group label {
+  display: flex;
+  min-height: 42px;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--navy);
+  padding: 0 12px;
+  cursor: pointer;
+}
+
+.admin-radio-group input {
+  accent-color: var(--blue);
+}
+
+.admin-radio-group span {
+  margin: 0;
+  color: var(--navy);
+  opacity: 1;
+  font-size: 14px;
+  font-weight: 820;
+}
+
+.admin-output-panel {
+  display: grid;
+  gap: 10px;
+  padding: 18px;
+}
+
+.admin-output-panel label {
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.admin-output-panel textarea {
+  width: 100%;
+  min-height: 280px;
+  resize: vertical;
+  border: 1px solid var(--navy);
+  padding: 14px;
+  color: var(--navy);
+  font: 13px/1.55 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
 .research-grid article {
   grid-column: span 6;
 }
@@ -1241,6 +1445,7 @@ a {
   .support-grid,
   .fellow-directory-actions,
   .fellow-directory,
+  .admin-shell,
   .openings-grid,
   .pi-detail,
   .news-list,
@@ -1267,9 +1472,17 @@ a {
   .fellow-directory-hero .eyebrow,
   .fellow-directory-hero h1,
   .fellow-directory-hero > p:last-child,
+  .admin-heading,
+  .admin-heading .eyebrow,
+  .admin-heading h1,
+  .admin-heading p:last-child,
   .apply-band > div:first-child,
   .apply-actions {
     grid-column: 1 / 13;
+  }
+
+  .admin-toolbar {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .quick-facts,
@@ -1409,6 +1622,7 @@ a {
   .support-grid,
   .fellow-directory-actions,
   .fellow-directory,
+  .admin-shell,
   .openings-grid,
   .pi-detail,
   .mentor-table-wrap,
@@ -1447,6 +1661,25 @@ a {
 
   .fellow-list {
     grid-template-columns: 1fr;
+  }
+
+  .admin-heading {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-heading,
+  .admin-heading .eyebrow,
+  .admin-heading h1,
+  .admin-heading p:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .admin-toolbar {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-table {
+    min-width: 760px;
   }
 
   .openings-grid dl {

@@ -194,6 +194,16 @@ window.INNOCORE_CONTENT = {
       "DGIST와 국내 주요 대학의 참여 교수진이 4대 연구축별로 에너지 소재, 공정, AI, 분석, 검증 연구를 함께 이끕니다.",
     mentorColumns: ["채용상태", "연구축", "역할", "성명", "English Name", "소속", "학과/부서", "Website"],
     mentorRecruitingStatus: "적극 채용중",
+    mentorDefaultRecruitingStatus: "active",
+    mentorRecruitingStatusLabels: {
+      active: "적극 채용중",
+      inactive: "채용중 아님",
+    },
+    mentorRecruitingStatusOptions: [
+      { value: "active", label: "적극 채용중" },
+      { value: "inactive", label: "채용중 아님" },
+    ],
+    mentorRecruitingStatuses: {},
     mentorAreas: {
       "허수미 교수": "소재-공정 AI 플랫폼",
       "장윤희 교수": "소재-공정 AI 플랫폼",
@@ -480,6 +490,16 @@ window.INNOCORE_CONTENT = {
       "DGIST and partner faculty cover energy materials, processes, AI, analysis, and validation across the four research pillars.",
     mentorColumns: ["Hiring", "Research Area", "Role", "Name", "English Name", "Affiliation", "Department", "Website"],
     mentorRecruitingStatus: "Actively recruiting",
+    mentorDefaultRecruitingStatus: "active",
+    mentorRecruitingStatusLabels: {
+      active: "Actively recruiting",
+      inactive: "Not recruiting",
+    },
+    mentorRecruitingStatusOptions: [
+      { value: "active", label: "Actively recruiting" },
+      { value: "inactive", label: "Not recruiting" },
+    ],
+    mentorRecruitingStatuses: {},
     mentorAreas: {
       "허수미 교수": "Materials-Process AI Platform",
       "장윤희 교수": "Materials-Process AI Platform",

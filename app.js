@@ -1,4 +1,6 @@
 (function () {
+  const MENTOR_STATUS_STORAGE_KEY = "innocore-mentor-recruiting-statuses";
+
   const state = {
     lang: localStorage.getItem("innocore-lang") || "ko",
   };
@@ -35,6 +37,15 @@
       link.rel = "noopener";
     }
     return link;
+  }
+
+  function readMentorStatusOverrides() {
+    try {
+      const stored = JSON.parse(localStorage.getItem(MENTOR_STATUS_STORAGE_KEY) || "{}");
+      return stored && typeof stored === "object" ? stored : {};
+    } catch {
+      return {};
+    }
   }
 
   function renderNav() {
@@ -154,6 +165,10 @@
     ];
     const columns = content().mentorColumns;
     const mentorAreas = content().mentorAreas || {};
+    const mentorStatuses = content().mentorRecruitingStatuses || {};
+    const mentorStatusOverrides = readMentorStatusOverrides();
+    const mentorStatusLabels = content().mentorRecruitingStatusLabels || {};
+    const defaultRecruitingStatusCode = content().mentorDefaultRecruitingStatus || "";
     const defaultRecruitingStatus = content().mentorRecruitingStatus || "";
 
     const colGroup = document.createElement("colgroup");
@@ -179,7 +194,16 @@
         const value =
           field.key === "area"
             ? mentor.area || mentorAreas[mentor.name]
-            : mentor[field.key] || (field.key === "recruiting" ? defaultRecruitingStatus : "");
+            : field.key === "recruiting"
+              ? mentorStatusLabels[
+                  mentorStatusOverrides[mentor.name] ||
+                    mentor.recruitingStatus ||
+                    mentorStatuses[mentor.name] ||
+                    defaultRecruitingStatusCode
+                ] ||
+                mentor.recruiting ||
+                defaultRecruitingStatus
+              : mentor[field.key] || "";
         cell.dataset.label = columns[index] || "";
         cell.textContent = value || "";
         row.append(cell);

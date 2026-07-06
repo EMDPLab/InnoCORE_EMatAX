@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>E-MatAX Admin</title>
+    <link rel="stylesheet" href="./styles.css?v=20260706-admin" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">본문으로 바로가기</a>
+
+    <header class="site-header" data-elevated="false">
+      <a class="brand" href="./index.html#top" aria-label="DGIST InnoCORE E-MatAX home">
+        <img src="./assets/ematax-logo.png" alt="" />
+        <span>
+          <strong>DGIST InnoCORE</strong>
+          <em>E-MatAX Research Center</em>
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="관리 메뉴">
+        <a class="nav-link" href="./index.html#mentors">멘토</a>
+        <a class="nav-link" href="./fellows.html">Fellow 소개</a>
+        <a class="nav-link" href="https://www.innocore.or.kr/dgist/notice/sub01">펠로우 채용 공고</a>
+      </nav>
+      <div class="header-actions">
+        <a class="header-cta" href="./index.html">사이트 보기</a>
+      </div>
+    </header>
+
+    <main id="main" class="admin-page">
+      <section class="content-band admin-band" aria-labelledby="admin-title">
+        <div class="admin-shell">
+          <div class="admin-heading">
+            <p class="eyebrow">Admin</p>
+            <h1 id="admin-title">멘토 채용상태 관리</h1>
+            <p>브라우저 저장값은 현재 브라우저에서만 적용됩니다. 배포 반영은 아래 데이터를 `content.js`에 반영한 뒤 커밋해야 합니다.</p>
+          </div>
+
+          <div class="admin-toolbar">
+            <div class="admin-stat">
+              <span>적극 채용중</span>
+              <strong data-active-count>0</strong>
+            </div>
+            <div class="admin-stat">
+              <span>채용중 아님</span>
+              <strong data-inactive-count>0</strong>
+            </div>
+            <button class="admin-button primary" type="button" data-save>브라우저 저장</button>
+            <button class="admin-button" type="button" data-download>JSON 다운로드</button>
+            <button class="admin-button" type="button" data-reset>초기화</button>
+          </div>
+
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>성명</th>
+                  <th>연구축</th>
+                  <th>소속</th>
+                  <th>채용상태</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+
+          <div class="admin-output-panel">
+            <label for="admin-output">content.js 반영용 데이터</label>
+            <textarea id="admin-output" readonly spellcheck="false"></textarea>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <img src="./assets/ematax-logo.png" alt="E-MatAX" />
+      <p>DGIST InnoCORE E-MatAX Research Center</p>
+    </footer>
+
+    <script src="./content.js?v=20260706-admin"></script>
+    <script src="./admin.js?v=20260706-admin"></script>
+  </body>
+</html>
