@@ -191,19 +191,22 @@
       const row = document.createElement("tr");
       mentorFields.slice(0, -1).forEach((field, index) => {
         const cell = document.createElement("td");
-        const value =
-          field.key === "area"
-            ? mentor.area || mentorAreas[mentor.name]
-            : field.key === "recruiting"
-              ? mentorStatusLabels[
-                  mentorStatusOverrides[mentor.name] ||
-                    mentor.recruitingStatus ||
-                    mentorStatuses[mentor.name] ||
-                    defaultRecruitingStatusCode
-                ] ||
-                mentor.recruiting ||
-                defaultRecruitingStatus
-              : mentor[field.key] || "";
+        let value = "";
+        if (field.key === "area") {
+          value = mentor.area || mentorAreas[mentor.name] || "";
+          cell.classList.add("mentor-area-cell");
+        } else if (field.key === "recruiting") {
+          const statusCode =
+            mentorStatusOverrides[mentor.name] ||
+            mentor.recruitingStatus ||
+            mentorStatuses[mentor.name] ||
+            defaultRecruitingStatusCode;
+          value = mentorStatusLabels[statusCode] || mentor.recruiting || defaultRecruitingStatus;
+          cell.classList.add("mentor-recruiting-cell");
+          if (statusCode) cell.dataset.status = statusCode;
+        } else {
+          value = mentor[field.key] || "";
+        }
         cell.dataset.label = columns[index] || "";
         cell.textContent = value || "";
         row.append(cell);

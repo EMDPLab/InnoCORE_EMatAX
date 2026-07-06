@@ -1348,9 +1348,17 @@ a {
   font-weight: 820;
 }
 
-.mentor-table td:nth-child(1),
-.mentor-table td:nth-child(2) {
+.mentor-table td:nth-child(1) {
   color: var(--blue);
+}
+
+.mentor-table td:nth-child(2),
+.mentor-table .mentor-area-cell {
+  color: #111827;
+}
+
+.mentor-table .mentor-recruiting-cell[data-status="inactive"] {
+  color: #6b7280;
 }
 
 .mentor-table td:nth-child(8) .table-link {
