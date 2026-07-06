@@ -4,7 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>E-MatAX Admin</title>
-    <link rel="stylesheet" href="./styles.css?v=20260706-admin" />
+    <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css?v=20260706-fellow-admin" />
   </head>
   <body>
     <a class="skip-link" href="#main">본문으로 바로가기</a>
@@ -32,42 +33,74 @@
         <div class="admin-shell">
           <div class="admin-heading">
             <p class="eyebrow">Admin</p>
-            <h1 id="admin-title">멘토 채용상태 관리</h1>
+            <h1 id="admin-title">콘텐츠 관리</h1>
             <p>브라우저 저장값은 현재 브라우저에서만 적용됩니다. 배포 반영은 아래 데이터를 `content.js`에 반영한 뒤 커밋해야 합니다.</p>
           </div>
 
-          <div class="admin-toolbar">
-            <div class="admin-stat">
-              <span>적극 채용중</span>
-              <strong data-active-count>0</strong>
+          <section class="admin-section" aria-labelledby="mentor-admin-title">
+            <div class="admin-section-heading">
+              <h2 id="mentor-admin-title">멘토 채용상태</h2>
+              <p>멘토별 채용상태를 라디오 버튼으로 관리합니다.</p>
             </div>
-            <div class="admin-stat">
-              <span>채용중 아님</span>
-              <strong data-inactive-count>0</strong>
+
+            <div class="admin-toolbar">
+              <div class="admin-stat">
+                <span>적극 채용중</span>
+                <strong data-active-count>0</strong>
+              </div>
+              <div class="admin-stat">
+                <span>채용중 아님</span>
+                <strong data-inactive-count>0</strong>
+              </div>
+              <button class="admin-button primary" type="button" data-save>멘토 저장</button>
+              <button class="admin-button" type="button" data-download>멘토 JSON</button>
+              <button class="admin-button" type="button" data-reset>멘토 초기화</button>
             </div>
-            <button class="admin-button primary" type="button" data-save>브라우저 저장</button>
-            <button class="admin-button" type="button" data-download>JSON 다운로드</button>
-            <button class="admin-button" type="button" data-reset>초기화</button>
-          </div>
 
-          <div class="admin-table-wrap">
-            <table class="admin-table">
-              <thead>
-                <tr>
-                  <th>성명</th>
-                  <th>연구축</th>
-                  <th>소속</th>
-                  <th>채용상태</th>
-                </tr>
-              </thead>
-              <tbody></tbody>
-            </table>
-          </div>
+            <div class="admin-table-wrap">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>성명</th>
+                    <th>연구축</th>
+                    <th>소속</th>
+                    <th>채용상태</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
 
-          <div class="admin-output-panel">
-            <label for="admin-output">content.js 반영용 데이터</label>
-            <textarea id="admin-output" readonly spellcheck="false"></textarea>
-          </div>
+            <div class="admin-output-panel">
+              <label for="mentor-output">content.js 반영용 멘토 데이터</label>
+              <textarea id="mentor-output" readonly spellcheck="false"></textarea>
+            </div>
+          </section>
+
+          <section class="admin-section" aria-labelledby="fellow-admin-title">
+            <div class="admin-section-heading">
+              <h2 id="fellow-admin-title">Fellow 소개</h2>
+              <p>Fellow 이름, 현재 PI, 연구분야, 소속, 소개문과 사진을 관리합니다. 사진은 업로드 시 브라우저에서 자동 축소해 저장합니다.</p>
+            </div>
+
+            <div class="admin-toolbar fellow-admin-toolbar">
+              <div class="admin-stat">
+                <span>Fellow 프로필</span>
+                <strong data-fellow-count>0</strong>
+              </div>
+              <button class="admin-button primary" type="button" data-save-fellows>Fellow 저장</button>
+              <button class="admin-button" type="button" data-add-fellow>프로필 추가</button>
+              <button class="admin-button" type="button" data-download-fellows>Fellow JSON</button>
+              <button class="admin-button" type="button" data-reset-fellows>Fellow 초기화</button>
+            </div>
+
+            <div class="fellow-admin-list"></div>
+
+            <div class="admin-output-panel">
+              <label for="fellow-output">content.js 반영용 Fellow 데이터</label>
+              <textarea id="fellow-output" readonly spellcheck="false"></textarea>
+            </div>
+          </section>
         </div>
       </section>
     </main>
@@ -77,7 +110,7 @@
       <p>DGIST InnoCORE E-MatAX Research Center</p>
     </footer>
 
-    <script src="./content.js?v=20260706-admin"></script>
-    <script src="./admin.js?v=20260706-admin"></script>
+    <script src="./content.js?v=20260706-fellow-admin"></script>
+    <script src="./admin.js?v=20260706-fellow-admin"></script>
   </body>
 </html>

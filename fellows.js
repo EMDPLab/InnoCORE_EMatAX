@@ -1,9 +1,20 @@
 (function () {
+  const FELLOW_STORAGE_KEY = "innocore-fellow-profiles";
+
   const state = {
     lang: localStorage.getItem("innocore-lang") || "ko",
   };
 
   const content = () => window.INNOCORE_CONTENT[state.lang] || window.INNOCORE_CONTENT.ko;
+
+  function readFellowProfiles() {
+    try {
+      const stored = JSON.parse(localStorage.getItem(FELLOW_STORAGE_KEY) || "null");
+      return Array.isArray(stored) ? stored : content().fellowProfiles || [];
+    } catch {
+      return content().fellowProfiles || [];
+    }
+  }
 
   function linkElement(item, className) {
     const link = document.createElement("a");
@@ -50,7 +61,7 @@
 
   function renderProfiles() {
     const labels = content().fellowProfileLabels || {};
-    const cards = (content().fellowProfiles || []).map((profile) => {
+    const cards = readFellowProfiles().map((profile) => {
       const article = document.createElement("article");
       const photo = document.createElement("figure");
       const image = document.createElement("img");
