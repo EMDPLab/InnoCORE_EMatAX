@@ -5,12 +5,12 @@
 
   const labels = {
     ko: {
-      navApply: "지원",
-      navOpenings: "PI 채용",
+      navApply: "펠로우 채용 공고",
+      navOpenings: "Fellow 연구지원",
       navMentors: "멘토",
-      headerCta: "지원 안내",
+      headerCta: "펠로우 채용 공고",
       back: "멘토 목록으로 돌아가기",
-      status: "채용정보",
+      status: "채용상태",
       statusBody: "현재 이 PI의 개별 채용 공고는 아직 등록되지 않았습니다. 모집상태, 세부 프로젝트, 선호 역량이 확정되면 이 페이지에 표시됩니다.",
       area: "연구영역",
       timeline: "모집 시점",
@@ -21,13 +21,13 @@
       website: "연구실 웹사이트",
       missingTitle: "PI 정보를 찾을 수 없습니다",
       missingBody: "주소의 PI 식별자를 확인하거나 멘토 목록에서 다시 선택해주세요.",
-      openingRequest: "PI 채용 수요 등록 요청",
+      openingRequest: "Fellow 채용 수요 등록 요청",
     },
     en: {
-      navApply: "Apply",
-      navOpenings: "PI Openings",
+      navApply: "Fellow Notice",
+      navOpenings: "Fellow Support",
       navMentors: "Mentors",
-      headerCta: "Apply",
+      headerCta: "Fellow Notice",
       back: "Back to mentor list",
       status: "Opening Status",
       statusBody: "This PI-specific opening has not been registered yet. Hiring status, project details, and preferred expertise will appear here when confirmed.",
@@ -101,8 +101,8 @@
 
   function render() {
     document.documentElement.lang = state.lang;
-    document.querySelector('a[href="./index.html#how-apply"]').textContent = label().navApply;
-    document.querySelector('a[href="./index.html#openings"]').textContent = label().navOpenings;
+    document.querySelector('a[href="https://www.innocore.or.kr/dgist/notice/sub01"]').textContent = label().navApply;
+    document.querySelector('a[href="./index.html#fellows"]').textContent = label().navOpenings;
     document.querySelector('a[href="./index.html#mentors"]').textContent = label().navMentors;
     document.querySelector(".header-cta").textContent = label().headerCta;
 
@@ -131,7 +131,7 @@
       return;
     }
 
-    document.title = `${mentor.nameEn} | E-MatAX PI Opening`;
+    document.title = `${mentor.nameEn} | E-MatAX Fellow Opening`;
 
     const hero = document.createElement("div");
     hero.className = "pi-hero";
@@ -139,7 +139,7 @@
     const title = document.createElement("h1");
     const subtitle = document.createElement("p");
     kicker.className = "eyebrow";
-    kicker.textContent = "PI Opening";
+    kicker.textContent = "Fellow Opening";
     title.id = "pi-title";
     title.textContent = state.lang === "ko" ? mentor.name : mentor.nameEn;
     subtitle.textContent = state.lang === "ko" ? mentor.nameEn : mentor.name;

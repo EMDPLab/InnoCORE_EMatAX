@@ -30,7 +30,7 @@
     link.className = className;
     link.href = item.href;
     link.textContent = item.label;
-    if (/^https?:\/\//.test(item.href)) {
+    if (/^https?:\/\//.test(item.href) && !item.sameTab) {
       link.target = "_blank";
       link.rel = "noopener";
     }
@@ -142,16 +142,30 @@
     const existingColGroup = table.querySelector("colgroup");
     if (existingColGroup) existingColGroup.remove();
 
+    const mentorFields = [
+      { key: "recruiting", col: "recruiting" },
+      { key: "area", col: "area" },
+      { key: "role", col: "role" },
+      { key: "name", col: "name" },
+      { key: "nameEn", col: "name-en" },
+      { key: "affiliation", col: "affiliation" },
+      { key: "department", col: "department" },
+      { key: "website", col: "website" },
+    ];
+    const columns = content().mentorColumns;
+    const mentorAreas = content().mentorAreas || {};
+    const defaultRecruitingStatus = content().mentorRecruitingStatus || "";
+
     const colGroup = document.createElement("colgroup");
-    ["role", "name", "name-en", "affiliation", "department", "website", "opening"].forEach((name) => {
+    mentorFields.forEach((field) => {
       const col = document.createElement("col");
-      col.className = `mentor-col-${name}`;
+      col.className = `mentor-col-${field.col}`;
       colGroup.append(col);
     });
     table.prepend(colGroup);
 
     const headRow = document.createElement("tr");
-    content().mentorColumns.forEach((label) => {
+    columns.forEach((label) => {
       const th = document.createElement("th");
       th.textContent = label;
       headRow.append(th);
@@ -160,12 +174,18 @@
 
     const rows = content().mentors.map((mentor) => {
       const row = document.createElement("tr");
-      ["role", "name", "nameEn", "affiliation", "department"].forEach((key) => {
+      mentorFields.slice(0, -1).forEach((field, index) => {
         const cell = document.createElement("td");
-        cell.textContent = mentor[key] || "";
+        const value =
+          field.key === "area"
+            ? mentor.area || mentorAreas[mentor.name]
+            : mentor[field.key] || (field.key === "recruiting" ? defaultRecruitingStatus : "");
+        cell.dataset.label = columns[index] || "";
+        cell.textContent = value || "";
         row.append(cell);
       });
       const linkCell = document.createElement("td");
+      linkCell.dataset.label = columns[mentorFields.length - 1] || "";
       if (mentor.url) {
         const link = linkElement(
           { label: state.lang === "ko" ? "웹사이트" : "Website", href: mentor.url },
@@ -176,17 +196,6 @@
         linkCell.textContent = "-";
       }
       row.append(linkCell);
-
-      const openingCell = document.createElement("td");
-      const detailLink = linkElement(
-        {
-          label: state.lang === "ko" ? "채용정보" : "Opening",
-          href: `./pi.html?id=${slugify(mentor.nameEn)}`
-        },
-        "table-link"
-      );
-      openingCell.append(detailLink);
-      row.append(openingCell);
       return row;
     });
     document.querySelector(".mentor-table tbody").replaceChildren(...rows);
@@ -302,7 +311,6 @@
     renderResearch();
     renderProcess();
     renderSimpleGrid(".support-grid", "support");
-    renderOpenings();
     renderMentors();
     renderNews();
     renderApplyActions();
