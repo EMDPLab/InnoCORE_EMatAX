@@ -39,11 +39,6 @@
     return Array.isArray(stored) ? stored : clone(content.fellowProfiles || []);
   }
 
-  function imageListFor(item) {
-    if (Array.isArray(item?.images)) return item.images.filter(Boolean);
-    return item?.image ? [item.image] : [];
-  }
-
   function normalizeHref(href) {
     const value = String(href || "").trim();
     if (!value) return "";
@@ -51,6 +46,23 @@
     if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return `mailto:${value}`;
     if (/^(www\.|[a-z0-9.-]+\.[a-z]{2,})([/:?#].*)?$/i.test(value)) return `https://${value}`;
     return value;
+  }
+
+  function normalizeImageEntry(image) {
+    if (typeof image === "string") {
+      return { thumb: image, full: image };
+    }
+    if (image && typeof image === "object") {
+      const full = image.full || image.src || image.url || image.thumb || "";
+      const thumb = image.thumb || full;
+      return full || thumb ? { thumb, full: full || thumb } : null;
+    }
+    return null;
+  }
+
+  function imageListFor(item) {
+    const images = Array.isArray(item?.images) ? item.images : item?.image ? [item.image] : [];
+    return images.map(normalizeImageEntry).filter(Boolean);
   }
 
   function normalizeNewsItem(item = {}) {
@@ -253,7 +265,7 @@
     return label;
   }
 
-  function resizeImage(file) {
+  function resizeImage(file, options = {}) {
     return new Promise((resolve, reject) => {
       if (!file.type.startsWith("image/")) {
         reject(new Error("이미지 파일만 업로드할 수 있습니다."));
@@ -266,8 +278,9 @@
         const image = new Image();
         image.addEventListener("error", () => reject(new Error("이미지를 처리할 수 없습니다.")));
         image.addEventListener("load", () => {
-          const maxWidth = 900;
-          const maxHeight = 900;
+          const maxWidth = options.maxWidth || 900;
+          const maxHeight = options.maxHeight || 900;
+          const quality = options.quality || 0.84;
           const ratio = Math.min(maxWidth / image.width, maxHeight / image.height, 1);
           const width = Math.round(image.width * ratio);
           const height = Math.round(image.height * ratio);
@@ -276,12 +289,20 @@
           canvas.width = width;
           canvas.height = height;
           context.drawImage(image, 0, 0, width, height);
-          resolve(canvas.toDataURL("image/jpeg", 0.84));
+          resolve(canvas.toDataURL("image/jpeg", quality));
         });
         image.src = reader.result;
       });
       reader.readAsDataURL(file);
     });
+  }
+
+  async function createNewsImage(file) {
+    const [thumb, full] = await Promise.all([
+      resizeImage(file, { maxWidth: 520, maxHeight: 520, quality: 0.72 }),
+      resizeImage(file, { maxWidth: 1600, maxHeight: 1600, quality: 0.88 }),
+    ]);
+    return { thumb, full };
   }
 
   function renderFellowEditors() {
@@ -476,7 +497,7 @@
       const image = document.createElement("img");
       const remove = document.createElement("button");
       item.className = "news-image-card";
-      image.src = source;
+      image.src = source.thumb;
       image.alt = "";
       remove.className = "admin-button danger";
       remove.type = "button";
@@ -535,7 +556,7 @@
         const files = Array.from(uploadInput.files || []);
         if (!files.length) return;
         try {
-          const resizedImages = await Promise.all(files.map((file) => resizeImage(file)));
+          const resizedImages = await Promise.all(files.map((file) => createNewsImage(file)));
           state.news[index].images = [...imageListFor(state.news[index]), ...resizedImages];
           renderNewsEditors();
           updateNewsSummary();

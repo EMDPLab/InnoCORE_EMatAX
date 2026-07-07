@@ -271,9 +271,21 @@ function isAllowedHref(href) {
   return href === "" || /^(https?:\/\/|mailto:|#|\.\/|\/)/i.test(href);
 }
 
+function normalizeImageEntry(image) {
+  if (typeof image === "string") {
+    return { thumb: image, full: image };
+  }
+  if (image && typeof image === "object") {
+    const full = image.full || image.src || image.url || image.thumb || "";
+    const thumb = image.thumb || full;
+    return full || thumb ? { thumb, full: full || thumb } : null;
+  }
+  return null;
+}
+
 function imageListFor(item) {
-  if (Array.isArray(item?.images)) return item.images.filter(Boolean);
-  return item?.image ? [item.image] : [];
+  const images = Array.isArray(item?.images) ? item.images : item?.image ? [item.image] : [];
+  return images.map(normalizeImageEntry).filter(Boolean);
 }
 
 function validateNewsItems(rawItems) {
@@ -304,7 +316,7 @@ function validateNewsItems(rawItems) {
     }
 
     cleanItem.images.forEach((image, imageIndex) => {
-      if (!isAllowedImageSource(image)) {
+      if (!isAllowedImageSource(image.thumb) || !isAllowedImageSource(image.full)) {
         throw new Error(`뉴스 ${index + 1}의 ${imageIndex + 1}번째 사진 경로가 올바르지 않습니다.`);
       }
     });

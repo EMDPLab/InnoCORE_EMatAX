@@ -59,9 +59,21 @@
     }
   }
 
+  function normalizeImageEntry(image) {
+    if (typeof image === "string") {
+      return { thumb: image, full: image };
+    }
+    if (image && typeof image === "object") {
+      const full = image.full || image.src || image.url || image.thumb || "";
+      const thumb = image.thumb || full;
+      return full || thumb ? { thumb, full: full || thumb } : null;
+    }
+    return null;
+  }
+
   function imageListFor(item) {
-    if (Array.isArray(item?.images)) return item.images.filter(Boolean);
-    return item?.image ? [item.image] : [];
+    const images = Array.isArray(item?.images) ? item.images : item?.image ? [item.image] : [];
+    return images.map(normalizeImageEntry).filter(Boolean);
   }
 
   function readNewsItems() {
@@ -272,38 +284,63 @@
       if (images.length) {
         let currentIndex = 0;
         const media = document.createElement("figure");
+        const mediaButton = document.createElement("button");
         const image = document.createElement("img");
+        const setImage = (nextIndex) => {
+          const nextImage = images[nextIndex];
+          currentIndex = nextIndex;
+          media.dataset.transitioning = "true";
+          window.setTimeout(() => {
+            image.addEventListener("load", () => {
+              media.dataset.transitioning = "false";
+            }, { once: true });
+            image.src = nextImage.thumb;
+            image.dataset.fullSrc = nextImage.full;
+            window.setTimeout(() => {
+              media.dataset.transitioning = "false";
+            }, 360);
+          }, 120);
+        };
+
         media.className = "news-media";
-        image.src = images[currentIndex];
+        mediaButton.className = "news-media-button";
+        mediaButton.type = "button";
+        mediaButton.setAttribute("aria-label", "사진 크게 보기");
+        image.src = images[currentIndex].thumb;
+        image.dataset.fullSrc = images[currentIndex].full;
         image.alt = item.title || "";
-        media.append(image);
+        image.loading = "lazy";
+        image.decoding = "async";
+        mediaButton.append(image);
+        mediaButton.addEventListener("click", () => {
+          openNewsLightbox(images, currentIndex, item.title || "");
+        });
+        media.append(mediaButton);
 
         if (images.length > 1) {
-          const controls = document.createElement("div");
           const prev = document.createElement("button");
           const next = document.createElement("button");
-          const counter = document.createElement("span");
           const updateImage = (nextIndex) => {
-            currentIndex = (nextIndex + images.length) % images.length;
-            image.src = images[currentIndex];
-            counter.textContent = `${currentIndex + 1}/${images.length}`;
+            setImage((nextIndex + images.length) % images.length);
           };
 
-          controls.className = "news-carousel-controls";
-          prev.className = "news-carousel-button";
-          next.className = "news-carousel-button";
-          counter.className = "news-carousel-counter";
+          prev.className = "news-carousel-arrow prev";
+          next.className = "news-carousel-arrow next";
           prev.type = "button";
           next.type = "button";
           prev.setAttribute("aria-label", "이전 사진");
           next.setAttribute("aria-label", "다음 사진");
           prev.textContent = "‹";
           next.textContent = "›";
-          counter.textContent = `1/${images.length}`;
-          prev.addEventListener("click", () => updateImage(currentIndex - 1));
-          next.addEventListener("click", () => updateImage(currentIndex + 1));
-          controls.append(prev, counter, next);
-          media.append(controls);
+          prev.addEventListener("click", (event) => {
+            event.stopPropagation();
+            updateImage(currentIndex - 1);
+          });
+          next.addEventListener("click", (event) => {
+            event.stopPropagation();
+            updateImage(currentIndex + 1);
+          });
+          media.append(prev, next);
         }
 
         article.append(media);
@@ -316,6 +353,114 @@
     });
     document.querySelector(".news-list").replaceChildren(...items);
   }
+
+  let lightboxImages = [];
+  let lightboxIndex = 0;
+  let lightboxTitle = "";
+
+  function ensureNewsLightbox() {
+    let lightbox = document.querySelector(".news-lightbox");
+    if (lightbox) return lightbox;
+
+    lightbox = document.createElement("div");
+    const panel = document.createElement("div");
+    const image = document.createElement("img");
+    const close = document.createElement("button");
+    const prev = document.createElement("button");
+    const next = document.createElement("button");
+
+    lightbox.className = "news-lightbox";
+    lightbox.dataset.open = "false";
+    lightbox.setAttribute("role", "dialog");
+    lightbox.setAttribute("aria-modal", "true");
+    lightbox.setAttribute("aria-label", "뉴스 사진 크게 보기");
+    panel.className = "news-lightbox-panel";
+    image.className = "news-lightbox-image";
+    image.alt = "";
+
+    close.className = "news-lightbox-close";
+    close.type = "button";
+    close.setAttribute("aria-label", "닫기");
+    close.textContent = "×";
+
+    prev.className = "news-lightbox-arrow prev";
+    next.className = "news-lightbox-arrow next";
+    prev.type = "button";
+    next.type = "button";
+    prev.setAttribute("aria-label", "이전 사진");
+    next.setAttribute("aria-label", "다음 사진");
+    prev.textContent = "‹";
+    next.textContent = "›";
+
+    close.addEventListener("click", closeNewsLightbox);
+    lightbox.addEventListener("click", (event) => {
+      if (event.target === lightbox) closeNewsLightbox();
+    });
+    prev.addEventListener("click", () => updateLightboxImage(lightboxIndex - 1));
+    next.addEventListener("click", () => updateLightboxImage(lightboxIndex + 1));
+
+    panel.append(image, close, prev, next);
+    lightbox.append(panel);
+    document.body.append(lightbox);
+    return lightbox;
+  }
+
+  function updateLightboxImage(nextIndex, immediate = false) {
+    const lightbox = ensureNewsLightbox();
+    const image = lightbox.querySelector(".news-lightbox-image");
+    const prev = lightbox.querySelector(".news-lightbox-arrow.prev");
+    const next = lightbox.querySelector(".news-lightbox-arrow.next");
+    if (!lightboxImages.length) return;
+
+    lightboxIndex = (nextIndex + lightboxImages.length) % lightboxImages.length;
+    const render = () => {
+      image.addEventListener("load", () => {
+        lightbox.dataset.transitioning = "false";
+      }, { once: true });
+      image.src = lightboxImages[lightboxIndex].full;
+      image.alt = lightboxTitle;
+      window.setTimeout(() => {
+        lightbox.dataset.transitioning = "false";
+      }, 360);
+    };
+
+    if (immediate) {
+      lightbox.dataset.transitioning = "false";
+      render();
+    } else {
+      lightbox.dataset.transitioning = "true";
+      window.setTimeout(render, 120);
+    }
+
+    const hasMultipleImages = lightboxImages.length > 1;
+    prev.hidden = !hasMultipleImages;
+    next.hidden = !hasMultipleImages;
+  }
+
+  function openNewsLightbox(images, index, title) {
+    const lightbox = ensureNewsLightbox();
+    lightboxImages = images;
+    lightboxIndex = index;
+    lightboxTitle = title;
+    updateLightboxImage(index, true);
+    lightbox.dataset.open = "true";
+    document.body.dataset.lightboxOpen = "true";
+    lightbox.querySelector(".news-lightbox-close").focus();
+  }
+
+  function closeNewsLightbox() {
+    const lightbox = ensureNewsLightbox();
+    lightbox.dataset.open = "false";
+    document.body.dataset.lightboxOpen = "false";
+  }
+
+  window.addEventListener("keydown", (event) => {
+    const lightbox = document.querySelector(".news-lightbox[data-open='true']");
+    if (!lightbox) return;
+    if (event.key === "Escape") closeNewsLightbox();
+    if (event.key === "ArrowLeft") updateLightboxImage(lightboxIndex - 1);
+    if (event.key === "ArrowRight") updateLightboxImage(lightboxIndex + 1);
+  });
 
   function renderProcess() {
     const steps = content().process.map((label, index) => {
