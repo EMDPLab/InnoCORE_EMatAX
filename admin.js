@@ -54,9 +54,11 @@
   }
 
   function normalizeNewsItem(item = {}) {
+    const description = item.description || item.body || item.summary || "";
     return {
       date: typeof item.date === "string" ? item.date.trim() : "",
       title: typeof item.title === "string" ? item.title.trim() : "",
+      description: typeof description === "string" ? description.trim() : "",
       href: normalizeHref(item.href),
       images: imageListFor(item),
     };
@@ -413,6 +415,7 @@
     return {
       date: "날짜 입력",
       title: "새 뉴스",
+      description: "뉴스 설명을 입력해주세요.",
       href: "",
       images: [],
     };
@@ -426,14 +429,18 @@
     updateNewsSummary();
   }
 
-  function newsFieldControl(index, key, labelText, value) {
+  function newsFieldControl(index, key, labelText, value, multiline = false) {
     const label = document.createElement("label");
     const caption = document.createElement("span");
-    const field = document.createElement("input");
+    const field = multiline ? document.createElement("textarea") : document.createElement("input");
     label.className = "admin-field";
     caption.textContent = labelText;
-    field.type = "text";
     field.value = value || "";
+    if (multiline) {
+      field.rows = 4;
+    } else {
+      field.type = "text";
+    }
     field.addEventListener("input", () => {
       updateNews(index, key, field.value);
       if (key === "title") {
@@ -515,7 +522,8 @@
       fields.append(
         newsFieldControl(index, "date", "날짜", profile.date),
         newsFieldControl(index, "title", "제목", profile.title),
-        newsFieldControl(index, "href", "링크", profile.href)
+        newsFieldControl(index, "href", "링크", profile.href),
+        newsFieldControl(index, "description", "설명", profile.description, true)
       );
 
       actions.className = "news-photo-actions";

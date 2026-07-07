@@ -1522,6 +1522,16 @@ a {
   text-decoration: none;
 }
 
+.news-description {
+  margin: 0;
+  color: var(--navy);
+  opacity: 0.74;
+  font-size: 14px;
+  line-height: 1.64;
+  overflow-wrap: anywhere;
+  white-space: pre-line;
+}
+
 .apply-band {
   grid-template-columns: var(--grid);
   gap: 32px;

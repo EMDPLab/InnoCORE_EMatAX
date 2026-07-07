@@ -260,11 +260,14 @@
       const body = document.createElement("div");
       const date = document.createElement("span");
       const title = item.href ? linkElement(item, "news-link") : document.createElement("strong");
+      const description = document.createElement("p");
 
       article.className = "news-item";
       body.className = "news-item-body";
       date.textContent = item.date;
       title.textContent = item.title;
+      description.className = "news-description";
+      description.textContent = item.description || "";
 
       if (images.length) {
         let currentIndex = 0;
@@ -307,6 +310,7 @@
       }
 
       body.append(date, title);
+      if (item.description) body.append(description);
       article.append(body);
       return article;
     });

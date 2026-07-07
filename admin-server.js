@@ -290,9 +290,11 @@ function validateNewsItems(rawItems) {
       throw new Error(`뉴스 ${index + 1} 형식이 올바르지 않습니다.`);
     }
 
+    const description = item.description || item.body || item.summary || "";
     const cleanItem = {
       date: typeof item.date === "string" ? item.date.trim() : "",
       title: typeof item.title === "string" ? item.title.trim() : "",
+      description: typeof description === "string" ? description.trim() : "",
       href: normalizeHref(item.href),
       images: imageListFor(item),
     };
