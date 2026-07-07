@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>E-MatAX Admin</title>
     <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="./styles.css?v=20260707-mentor-colors" />
+    <link rel="stylesheet" href="./styles.css?v=20260707-news-admin" />
   </head>
   <body>
     <a class="skip-link" href="#main">본문으로 바로가기</a>
@@ -107,6 +107,34 @@
               <textarea id="fellow-output" readonly spellcheck="false"></textarea>
             </div>
           </section>
+
+          <section class="admin-section" aria-labelledby="news-admin-title">
+            <div class="admin-section-heading">
+              <h2 id="news-admin-title">뉴스</h2>
+              <p>뉴스 제목, 날짜, 링크와 사진을 관리합니다. 사진을 여러 장 올리면 홈페이지에서 캐러셀로 표시됩니다.</p>
+            </div>
+
+            <div class="admin-toolbar news-admin-toolbar">
+              <div class="admin-stat">
+                <span>뉴스 항목</span>
+                <strong data-news-count>0</strong>
+              </div>
+              <button class="admin-button primary" type="button" data-save-news>뉴스 저장</button>
+              <button class="admin-button" type="button" data-apply-news>content.js 반영</button>
+              <button class="admin-button primary" type="button" data-commit-news>반영 + commit</button>
+              <button class="admin-button" type="button" data-add-news>뉴스 추가</button>
+              <button class="admin-button" type="button" data-download-news>뉴스 JSON</button>
+              <button class="admin-button" type="button" data-reset-news>뉴스 초기화</button>
+            </div>
+            <div class="admin-status" data-news-status role="status"></div>
+
+            <div class="news-admin-list"></div>
+
+            <div class="admin-output-panel">
+              <label for="news-output">content.js 반영용 뉴스 데이터</label>
+              <textarea id="news-output" readonly spellcheck="false"></textarea>
+            </div>
+          </section>
         </div>
       </section>
     </main>
@@ -116,7 +144,7 @@
       <p>DGIST InnoCORE E-MatAX Research Center</p>
     </footer>
 
-    <script src="./content.js?v=20260707-mentor-colors"></script>
-    <script src="./admin.js?v=20260707-mentor-colors"></script>
+    <script src="./content.js?v=20260707-news-admin"></script>
+    <script src="./admin.js?v=20260707-news-admin"></script>
   </body>
 </html>

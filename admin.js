@@ -1,6 +1,7 @@
 (function () {
   const MENTOR_STORAGE_KEY = "innocore-mentor-recruiting-statuses";
   const FELLOW_STORAGE_KEY = "innocore-fellow-profiles";
+  const NEWS_STORAGE_KEY = "innocore-news-items";
   const content = window.INNOCORE_CONTENT.ko;
   const defaultStatus = content.mentorDefaultRecruitingStatus || "active";
   const options = content.mentorRecruitingStatusOptions || [
@@ -12,6 +13,7 @@
   const state = {
     statuses: loadMentorStatuses(),
     fellows: loadFellows(),
+    news: loadNews(),
   };
 
   function clone(value) {
@@ -35,6 +37,26 @@
   function loadFellows() {
     const stored = loadJson(FELLOW_STORAGE_KEY, null);
     return Array.isArray(stored) ? stored : clone(content.fellowProfiles || []);
+  }
+
+  function imageListFor(item) {
+    if (Array.isArray(item?.images)) return item.images.filter(Boolean);
+    return item?.image ? [item.image] : [];
+  }
+
+  function normalizeNewsItem(item = {}) {
+    return {
+      date: typeof item.date === "string" ? item.date : "",
+      title: typeof item.title === "string" ? item.title : "",
+      href: typeof item.href === "string" ? item.href : "",
+      images: imageListFor(item),
+    };
+  }
+
+  function loadNews() {
+    const stored = loadJson(NEWS_STORAGE_KEY, null);
+    const source = Array.isArray(stored) ? stored : clone(content.news || []);
+    return source.map(normalizeNewsItem);
   }
 
   function statusFor(mentor) {
@@ -373,6 +395,181 @@
     updateFellowSummary();
   }
 
+  function createEmptyNews() {
+    return {
+      date: "날짜 입력",
+      title: "새 뉴스",
+      href: "",
+      images: [],
+    };
+  }
+
+  function updateNews(index, key, value) {
+    state.news[index] = {
+      ...state.news[index],
+      [key]: value,
+    };
+    updateNewsSummary();
+  }
+
+  function newsFieldControl(index, key, labelText, value) {
+    const label = document.createElement("label");
+    const caption = document.createElement("span");
+    const field = document.createElement("input");
+    label.className = "admin-field";
+    caption.textContent = labelText;
+    field.type = "text";
+    field.value = value || "";
+    field.addEventListener("input", () => {
+      updateNews(index, key, field.value);
+      if (key === "title") {
+        const title = field.closest(".news-admin-card")?.querySelector("h3");
+        if (title) title.textContent = field.value || `뉴스 ${index + 1}`;
+      }
+    });
+    label.append(caption, field);
+    return label;
+  }
+
+  function renderNewsImages(profile, index) {
+    const list = document.createElement("div");
+    const images = imageListFor(profile);
+    list.className = "news-image-list";
+
+    if (!images.length) {
+      const empty = document.createElement("p");
+      empty.className = "news-image-empty";
+      empty.textContent = "등록된 사진 없음";
+      list.append(empty);
+      return list;
+    }
+
+    images.forEach((source, imageIndex) => {
+      const item = document.createElement("figure");
+      const image = document.createElement("img");
+      const remove = document.createElement("button");
+      item.className = "news-image-card";
+      image.src = source;
+      image.alt = "";
+      remove.className = "admin-button danger";
+      remove.type = "button";
+      remove.textContent = "사진 삭제";
+      remove.addEventListener("click", () => {
+        state.news[index].images.splice(imageIndex, 1);
+        renderNewsEditors();
+        updateNewsSummary();
+      });
+      item.append(image, remove);
+      list.append(item);
+    });
+
+    return list;
+  }
+
+  function renderNewsEditors() {
+    const editors = state.news.map((profile, index) => {
+      const article = document.createElement("article");
+      const heading = document.createElement("div");
+      const title = document.createElement("h3");
+      const deleteNews = document.createElement("button");
+      const fields = document.createElement("div");
+      const actions = document.createElement("div");
+      const uploadLabel = document.createElement("label");
+      const uploadInput = document.createElement("input");
+      const uploadText = document.createElement("span");
+
+      article.className = "news-admin-card";
+      heading.className = "news-admin-card-heading";
+      title.textContent = profile.title || `뉴스 ${index + 1}`;
+      deleteNews.className = "admin-button danger";
+      deleteNews.type = "button";
+      deleteNews.textContent = "뉴스 삭제";
+      deleteNews.addEventListener("click", () => {
+        state.news.splice(index, 1);
+        renderNewsEditors();
+        updateNewsSummary();
+      });
+      heading.append(title, deleteNews);
+
+      fields.className = "news-admin-fields";
+      fields.append(
+        newsFieldControl(index, "date", "날짜", profile.date),
+        newsFieldControl(index, "title", "제목", profile.title),
+        newsFieldControl(index, "href", "링크", profile.href)
+      );
+
+      actions.className = "news-photo-actions";
+      uploadLabel.className = "admin-button file-button";
+      uploadInput.type = "file";
+      uploadInput.accept = "image/*";
+      uploadInput.multiple = true;
+      uploadInput.addEventListener("change", async () => {
+        const files = Array.from(uploadInput.files || []);
+        if (!files.length) return;
+        try {
+          const resizedImages = await Promise.all(files.map((file) => resizeImage(file)));
+          state.news[index].images = [...imageListFor(state.news[index]), ...resizedImages];
+          renderNewsEditors();
+          updateNewsSummary();
+        } catch (error) {
+          window.alert(error.message);
+        }
+      });
+      uploadText.textContent = "사진 업로드";
+      uploadLabel.append(uploadInput, uploadText);
+      actions.append(uploadLabel);
+
+      article.append(heading, fields, actions, renderNewsImages(profile, index));
+      return article;
+    });
+
+    document.querySelector(".news-admin-list").replaceChildren(...editors);
+  }
+
+  function newsOutputText() {
+    return `news: ${JSON.stringify(state.news, null, 2)},`;
+  }
+
+  function updateNewsSummary() {
+    document.querySelector("[data-news-count]").textContent = String(state.news.length);
+    document.querySelector("#news-output").value = newsOutputText();
+  }
+
+  function saveNews() {
+    localStorage.setItem(NEWS_STORAGE_KEY, JSON.stringify(state.news));
+    state.news = loadNews();
+    renderNewsEditors();
+    updateNewsSummary();
+  }
+
+  async function applyNewsToContent(commit = false) {
+    setAdminStatus("[data-news-status]", commit ? "content.js 반영 및 commit 중..." : "content.js 반영 중...");
+
+    try {
+      saveNews();
+      const data = await postAdminData("/api/admin/news", {
+        news: state.news,
+        commit,
+      });
+      setAdminStatus("[data-news-status]", data.message || "뉴스 데이터 반영 완료", "success");
+    } catch (error) {
+      setAdminStatus("[data-news-status]", directApplyHelp(error), "error");
+    }
+  }
+
+  function resetNews() {
+    localStorage.removeItem(NEWS_STORAGE_KEY);
+    state.news = clone(content.news || []).map(normalizeNewsItem);
+    renderNewsEditors();
+    updateNewsSummary();
+  }
+
+  function addNews() {
+    state.news.push(createEmptyNews());
+    renderNewsEditors();
+    updateNewsSummary();
+  }
+
   document.querySelector("[data-save]").addEventListener("click", saveMentors);
   document.querySelector("[data-apply-mentors]").addEventListener("click", () => applyMentorsToContent(false));
   document.querySelector("[data-commit-mentors]").addEventListener("click", () => applyMentorsToContent(true));
@@ -395,6 +592,17 @@
       fellowProfiles: state.fellows,
     });
   });
+  document.querySelector("[data-save-news]").addEventListener("click", saveNews);
+  document.querySelector("[data-apply-news]").addEventListener("click", () => applyNewsToContent(false));
+  document.querySelector("[data-commit-news]").addEventListener("click", () => applyNewsToContent(true));
+  document.querySelector("[data-reset-news]").addEventListener("click", resetNews);
+  document.querySelector("[data-add-news]").addEventListener("click", addNews);
+  document.querySelector("[data-download-news]").addEventListener("click", () => {
+    downloadJson("news-items.json", {
+      updatedAt: new Date().toISOString(),
+      news: state.news,
+    });
+  });
 
   const header = document.querySelector(".site-header");
   window.addEventListener("scroll", () => {
@@ -405,4 +613,6 @@
   updateMentorSummary();
   renderFellowEditors();
   updateFellowSummary();
+  renderNewsEditors();
+  updateNewsSummary();
 })();

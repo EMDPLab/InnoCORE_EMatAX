@@ -258,6 +258,58 @@ function validateFellowProfiles(rawProfiles) {
   });
 }
 
+function isAllowedHref(href) {
+  return (
+    href === "" ||
+    href.startsWith("#") ||
+    href.startsWith("./") ||
+    href.startsWith("/") ||
+    href.startsWith("https://") ||
+    href.startsWith("http://") ||
+    href.startsWith("mailto:")
+  );
+}
+
+function imageListFor(item) {
+  if (Array.isArray(item?.images)) return item.images.filter(Boolean);
+  return item?.image ? [item.image] : [];
+}
+
+function validateNewsItems(rawItems) {
+  if (!Array.isArray(rawItems)) {
+    throw new Error("뉴스 데이터가 올바르지 않습니다.");
+  }
+
+  if (rawItems.length > 100) {
+    throw new Error("뉴스 항목 수가 너무 많습니다.");
+  }
+
+  return rawItems.map((item, index) => {
+    if (!item || typeof item !== "object" || Array.isArray(item)) {
+      throw new Error(`뉴스 ${index + 1} 형식이 올바르지 않습니다.`);
+    }
+
+    const cleanItem = {
+      date: typeof item.date === "string" ? item.date : "",
+      title: typeof item.title === "string" ? item.title : "",
+      href: typeof item.href === "string" ? item.href : "",
+      images: imageListFor(item),
+    };
+
+    if (!isAllowedHref(cleanItem.href)) {
+      throw new Error(`뉴스 ${index + 1} 링크가 올바르지 않습니다.`);
+    }
+
+    cleanItem.images.forEach((image, imageIndex) => {
+      if (!isAllowedImageSource(image)) {
+        throw new Error(`뉴스 ${index + 1}의 ${imageIndex + 1}번째 사진 경로가 올바르지 않습니다.`);
+      }
+    });
+
+    return cleanItem;
+  });
+}
+
 async function writeContent(nextSource) {
   const tmpFile = `${contentFile}.tmp-${process.pid}`;
   await fs.writeFile(tmpFile, nextSource, "utf8");
@@ -316,6 +368,15 @@ async function updateFellows(payload) {
   return finishUpdate(source, nextSource, Boolean(payload.commit), "chore(content): update fellow profiles");
 }
 
+async function updateNews(payload) {
+  const source = await fs.readFile(contentFile, "utf8");
+  loadContent(source);
+  const news = validateNewsItems(payload.news);
+  let nextSource = replaceNthProperty(source, "news", 0, news);
+  nextSource = replaceNthProperty(nextSource, "news", 1, news);
+  return finishUpdate(source, nextSource, Boolean(payload.commit), "chore(content): update news items");
+}
+
 function staticPathFor(pathname) {
   const decodedPath = decodeURIComponent(pathname === "/" ? "/index.html" : pathname);
   const normalized = path.normalize(decodedPath).replace(/^(\.\.[/\\])+/, "");
@@ -359,10 +420,12 @@ async function handleApi(request, response, pathname) {
   }
 
   const payload = await readJson(request);
-  const result =
-    pathname === "/api/admin/mentors"
-      ? await updateMentors(payload)
-      : await updateFellows(payload);
+  const handlers = {
+    "/api/admin/mentors": updateMentors,
+    "/api/admin/fellows": updateFellows,
+    "/api/admin/news": updateNews,
+  };
+  const result = await handlers[pathname](payload);
   sendJson(response, 200, { ok: true, ...result });
 }
 
@@ -370,7 +433,7 @@ const server = http.createServer(async (request, response) => {
   try {
     const { pathname } = new URL(request.url, `http://${host}:${port}`);
 
-    if (pathname === "/api/admin/mentors" || pathname === "/api/admin/fellows") {
+    if (pathname === "/api/admin/mentors" || pathname === "/api/admin/fellows" || pathname === "/api/admin/news") {
       await handleApi(request, response, pathname);
       return;
     }

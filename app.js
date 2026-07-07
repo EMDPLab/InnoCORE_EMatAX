@@ -1,5 +1,6 @@
 (function () {
   const MENTOR_STATUS_STORAGE_KEY = "innocore-mentor-recruiting-statuses";
+  const NEWS_STORAGE_KEY = "innocore-news-items";
 
   const state = {
     lang: localStorage.getItem("innocore-lang") || "ko",
@@ -45,6 +46,20 @@
       return stored && typeof stored === "object" ? stored : {};
     } catch {
       return {};
+    }
+  }
+
+  function imageListFor(item) {
+    if (Array.isArray(item?.images)) return item.images.filter(Boolean);
+    return item?.image ? [item.image] : [];
+  }
+
+  function readNewsItems() {
+    try {
+      const stored = JSON.parse(localStorage.getItem(NEWS_STORAGE_KEY) || "null");
+      return Array.isArray(stored) ? stored : content().news;
+    } catch {
+      return content().news;
     }
   }
 
@@ -229,14 +244,61 @@
   }
 
   function renderNews() {
-    const items = content().news.map((item) => {
-      const link = linkElement(item, "news-item");
+    const items = readNewsItems().map((item) => {
+      const article = document.createElement("article");
+      const images = imageListFor(item);
+      const body = document.createElement("div");
       const date = document.createElement("span");
-      const title = document.createElement("strong");
+      const title = item.href ? linkElement(item, "news-link") : document.createElement("strong");
+
+      article.className = "news-item";
+      body.className = "news-item-body";
       date.textContent = item.date;
       title.textContent = item.title;
-      link.replaceChildren(date, title);
-      return link;
+
+      if (images.length) {
+        let currentIndex = 0;
+        const media = document.createElement("figure");
+        const image = document.createElement("img");
+        media.className = "news-media";
+        image.src = images[currentIndex];
+        image.alt = item.title || "";
+        media.append(image);
+
+        if (images.length > 1) {
+          const controls = document.createElement("div");
+          const prev = document.createElement("button");
+          const next = document.createElement("button");
+          const counter = document.createElement("span");
+          const updateImage = (nextIndex) => {
+            currentIndex = (nextIndex + images.length) % images.length;
+            image.src = images[currentIndex];
+            counter.textContent = `${currentIndex + 1}/${images.length}`;
+          };
+
+          controls.className = "news-carousel-controls";
+          prev.className = "news-carousel-button";
+          next.className = "news-carousel-button";
+          counter.className = "news-carousel-counter";
+          prev.type = "button";
+          next.type = "button";
+          prev.setAttribute("aria-label", "이전 사진");
+          next.setAttribute("aria-label", "다음 사진");
+          prev.textContent = "‹";
+          next.textContent = "›";
+          counter.textContent = `1/${images.length}`;
+          prev.addEventListener("click", () => updateImage(currentIndex - 1));
+          next.addEventListener("click", () => updateImage(currentIndex + 1));
+          controls.append(prev, counter, next);
+          media.append(controls);
+        }
+
+        article.append(media);
+      }
+
+      body.append(date, title);
+      article.append(body);
+      return article;
     });
     document.querySelector(".news-list").replaceChildren(...items);
   }
