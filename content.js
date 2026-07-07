@@ -203,7 +203,7 @@ window.INNOCORE_CONTENT = {
     mentorRecruitingStatuses: {
       "허수미 교수": "inactive",
       "고서진 교수": "inactive",
-      "김승현 교수": "active",
+      "김승현 교수": "inactive",
       "김영규 교수": "active",
       "김운혁 교수": "active",
       "김진수 교수": "active",
@@ -530,7 +530,7 @@ window.INNOCORE_CONTENT = {
     mentorRecruitingStatuses: {
       "허수미 교수": "inactive",
       "고서진 교수": "inactive",
-      "김승현 교수": "active",
+      "김승현 교수": "inactive",
       "김영규 교수": "active",
       "김운혁 교수": "active",
       "김진수 교수": "active",
