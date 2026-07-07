@@ -44,11 +44,20 @@
     return item?.image ? [item.image] : [];
   }
 
+  function normalizeHref(href) {
+    const value = String(href || "").trim();
+    if (!value) return "";
+    if (/^(https?:\/\/|mailto:|#|\.\/|\/)/i.test(value)) return value;
+    if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return `mailto:${value}`;
+    if (/^(www\.|[a-z0-9.-]+\.[a-z]{2,})([/:?#].*)?$/i.test(value)) return `https://${value}`;
+    return value;
+  }
+
   function normalizeNewsItem(item = {}) {
     return {
-      date: typeof item.date === "string" ? item.date : "",
-      title: typeof item.title === "string" ? item.title : "",
-      href: typeof item.href === "string" ? item.href : "",
+      date: typeof item.date === "string" ? item.date.trim() : "",
+      title: typeof item.title === "string" ? item.title.trim() : "",
+      href: normalizeHref(item.href),
       images: imageListFor(item),
     };
   }
@@ -133,6 +142,9 @@
   }
 
   function directApplyHelp(error) {
+    if (error?.serverReachable) {
+      return `직접 반영 실패: ${error.message}`;
+    }
     const detail = error?.message ? ` (${error.message})` : "";
     return `직접 반영 실패${detail}. 터미널에서 node admin-server.js 실행 후 http://127.0.0.1:8787/admin.html 로 접속해주세요.`;
   }
@@ -146,7 +158,9 @@
     const data = await response.json().catch(() => null);
 
     if (!response.ok || !data?.ok) {
-      throw new Error(data?.error || `서버 응답 오류 ${response.status}`);
+      const error = new Error(data?.error || `서버 응답 오류 ${response.status}`);
+      error.serverReachable = true;
+      throw error;
     }
 
     return data;
@@ -427,6 +441,12 @@
         if (title) title.textContent = field.value || `뉴스 ${index + 1}`;
       }
     });
+    if (key === "href") {
+      field.addEventListener("blur", () => {
+        field.value = normalizeHref(field.value);
+        updateNews(index, key, field.value);
+      });
+    }
     label.append(caption, field);
     return label;
   }
@@ -536,6 +556,7 @@
   }
 
   function saveNews() {
+    state.news = state.news.map(normalizeNewsItem);
     localStorage.setItem(NEWS_STORAGE_KEY, JSON.stringify(state.news));
     state.news = loadNews();
     renderNewsEditors();

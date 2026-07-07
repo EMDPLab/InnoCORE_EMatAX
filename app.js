@@ -28,12 +28,22 @@
     });
   }
 
+  function normalizeHref(href) {
+    const value = String(href || "").trim();
+    if (!value) return "";
+    if (/^(https?:\/\/|mailto:|#|\.\/|\/)/i.test(value)) return value;
+    if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return `mailto:${value}`;
+    if (/^(www\.|[a-z0-9.-]+\.[a-z]{2,})([/:?#].*)?$/i.test(value)) return `https://${value}`;
+    return value;
+  }
+
   function linkElement(item, className) {
+    const href = normalizeHref(item.href);
     const link = document.createElement("a");
     link.className = className;
-    link.href = item.href;
+    link.href = href;
     link.textContent = item.label;
-    if (/^https?:\/\//.test(item.href) && !item.sameTab) {
+    if (/^https?:\/\//.test(href) && !item.sameTab) {
       link.target = "_blank";
       link.rel = "noopener";
     }

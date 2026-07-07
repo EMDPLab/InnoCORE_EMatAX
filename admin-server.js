@@ -258,16 +258,17 @@ function validateFellowProfiles(rawProfiles) {
   });
 }
 
+function normalizeHref(href) {
+  const value = String(href || "").trim();
+  if (!value) return "";
+  if (/^(https?:\/\/|mailto:|#|\.\/|\/)/i.test(value)) return value;
+  if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return `mailto:${value}`;
+  if (/^(www\.|[a-z0-9.-]+\.[a-z]{2,})([/:?#].*)?$/i.test(value)) return `https://${value}`;
+  return value;
+}
+
 function isAllowedHref(href) {
-  return (
-    href === "" ||
-    href.startsWith("#") ||
-    href.startsWith("./") ||
-    href.startsWith("/") ||
-    href.startsWith("https://") ||
-    href.startsWith("http://") ||
-    href.startsWith("mailto:")
-  );
+  return href === "" || /^(https?:\/\/|mailto:|#|\.\/|\/)/i.test(href);
 }
 
 function imageListFor(item) {
@@ -290,14 +291,14 @@ function validateNewsItems(rawItems) {
     }
 
     const cleanItem = {
-      date: typeof item.date === "string" ? item.date : "",
-      title: typeof item.title === "string" ? item.title : "",
-      href: typeof item.href === "string" ? item.href : "",
+      date: typeof item.date === "string" ? item.date.trim() : "",
+      title: typeof item.title === "string" ? item.title.trim() : "",
+      href: normalizeHref(item.href),
       images: imageListFor(item),
     };
 
     if (!isAllowedHref(cleanItem.href)) {
-      throw new Error(`뉴스 ${index + 1} 링크가 올바르지 않습니다.`);
+      throw new Error(`뉴스 ${index + 1} 링크가 올바르지 않습니다. https:// 주소, www 주소, 이메일, 내부 경로만 사용할 수 있습니다.`);
     }
 
     cleanItem.images.forEach((image, imageIndex) => {
