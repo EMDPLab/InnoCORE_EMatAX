@@ -718,6 +718,10 @@ a {
   font-weight: 720;
 }
 
+.fellow-name-en:empty {
+  display: none;
+}
+
 .fellow-meta {
   display: grid;
   gap: 10px;
