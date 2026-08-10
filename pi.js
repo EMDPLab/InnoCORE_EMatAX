@@ -7,6 +7,7 @@
     ko: {
       navApply: "펠로우 채용 공고",
       navOpenings: "Fellow 연구지원",
+      navDirectory: "Fellow 소개",
       navMentors: "멘토",
       headerCta: "펠로우 채용 공고",
       back: "멘토 목록으로 돌아가기",
@@ -26,6 +27,7 @@
     en: {
       navApply: "Fellow Notice",
       navOpenings: "Fellow Support",
+      navDirectory: "Fellow Directory",
       navMentors: "Mentors",
       headerCta: "Fellow Notice",
       back: "Back to mentor list",
@@ -103,6 +105,7 @@
     document.documentElement.lang = state.lang;
     document.querySelector('a[href="https://www.innocore.or.kr/dgist/notice/sub01"]').textContent = label().navApply;
     document.querySelector('a[href="./index.html#fellows"]').textContent = label().navOpenings;
+    document.querySelector('a[href="./fellows.html"]').textContent = label().navDirectory;
     document.querySelector('a[href="./index.html#mentors"]').textContent = label().navMentors;
     document.querySelector(".header-cta").textContent = label().headerCta;
 

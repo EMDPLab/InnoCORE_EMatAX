@@ -42,8 +42,13 @@
 
   function renderNav() {
     const navItems = content().nav.map((item) => ({ ...item, href: pageHref(item.href) }));
+    const navLinks = navItems.map((item) => {
+      const link = linkElement(item, "nav-link");
+      if (item.href === "./fellows.html") link.setAttribute("aria-current", "page");
+      return link;
+    });
     document.querySelector(".site-nav").replaceChildren(
-      ...navItems.map((item) => linkElement(item, "nav-link"))
+      ...navLinks
     );
     const headerCta = document.querySelector(".header-cta");
     headerCta.textContent = content().headerCta;
