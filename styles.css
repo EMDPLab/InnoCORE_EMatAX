@@ -1627,6 +1627,10 @@ a {
   transform: translateY(-50%);
 }
 
+.news-lightbox-arrow[hidden] {
+  display: none;
+}
+
 .news-lightbox-arrow.prev {
   left: 10px;
 }
