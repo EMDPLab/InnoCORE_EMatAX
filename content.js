@@ -533,8 +533,8 @@ window.INNOCORE_CONTENT = {
     news: [
       {
         "date": "2026.07.20",
-        "title": "E-MatAX Luncheon Seminar | 이태훈 교수",
-        "description": "이태훈 DGIST 에너지공학과 교수가 ‘Machine-Learned Interatomic Potentials: From Structure Space to Reactivity in Energy Materials’를 주제로 런천 세미나를 진행했습니다. 머신러닝 원자간 포텐셜을 활용해 에너지 소재의 구조·결함·표면과 반응성을 양자역학 수준의 정확도와 현실적인 계산 규모로 모사하는 연구를 소개했습니다.",
+        "title": "E-MatAX Luncheon Seminar | 이태훈 교수·E-MatAX Fellow",
+        "description": "이태훈 DGIST 에너지공학과 교수와 E-MatAX Postdoctoral Fellow가 함께 ‘Machine-Learned Interatomic Potentials: From Structure Space to Reactivity in Energy Materials’를 주제로 런천 세미나를 진행했습니다. 머신러닝 원자간 포텐셜을 활용해 에너지 소재의 구조·결함·표면과 반응성을 양자역학 수준의 정확도와 현실적인 계산 규모로 모사하는 연구를 소개하고 관련 연구를 공유했습니다.",
         "href": "",
         "images": [
           {
@@ -1131,8 +1131,8 @@ window.INNOCORE_CONTENT = {
     news: [
       {
         "date": "2026.07.20",
-        "title": "E-MatAX Luncheon Seminar | 이태훈 교수",
-        "description": "이태훈 DGIST 에너지공학과 교수가 ‘Machine-Learned Interatomic Potentials: From Structure Space to Reactivity in Energy Materials’를 주제로 런천 세미나를 진행했습니다. 머신러닝 원자간 포텐셜을 활용해 에너지 소재의 구조·결함·표면과 반응성을 양자역학 수준의 정확도와 현실적인 계산 규모로 모사하는 연구를 소개했습니다.",
+        "title": "E-MatAX Luncheon Seminar | 이태훈 교수·E-MatAX Fellow",
+        "description": "이태훈 DGIST 에너지공학과 교수와 E-MatAX Postdoctoral Fellow가 함께 ‘Machine-Learned Interatomic Potentials: From Structure Space to Reactivity in Energy Materials’를 주제로 런천 세미나를 진행했습니다. 머신러닝 원자간 포텐셜을 활용해 에너지 소재의 구조·결함·표면과 반응성을 양자역학 수준의 정확도와 현실적인 계산 규모로 모사하는 연구를 소개하고 관련 연구를 공유했습니다.",
         "href": "",
         "images": [
           {
