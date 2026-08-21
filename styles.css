@@ -1458,6 +1458,7 @@ a {
 
 .news-item {
   display: grid;
+  align-content: start;
   gap: 0;
   overflow: hidden;
   padding: 0;
@@ -1466,6 +1467,7 @@ a {
 
 .news-item-body {
   display: grid;
+  align-content: start;
   gap: 10px;
   padding: 24px;
 }
