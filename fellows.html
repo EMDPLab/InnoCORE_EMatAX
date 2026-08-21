@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>E-MatAX Fellows</title>
+    <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css?v=20260810-news-files-v1" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">본문으로 바로가기</a>
+
+    <header class="site-header" data-elevated="false">
+      <a class="brand" href="./index.html#top" aria-label="DGIST InnoCORE E-MatAX home">
+        <img src="./assets/ematax-logo.png" alt="" />
+        <span>
+          <strong>DGIST InnoCORE</strong>
+          <em>E-MatAX Research Center</em>
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="주요 메뉴">
+        <a class="nav-link" href="https://www.innocore.or.kr/dgist/notice/sub01">펠로우 채용 공고</a>
+        <a class="nav-link" href="./index.html#about">사업단</a>
+        <a class="nav-link" href="./index.html#research">연구영역</a>
+        <a class="nav-link" href="./index.html#fellows">Fellow 연구지원</a>
+        <a class="nav-link" href="./fellows.html" aria-current="page">Fellow 소개</a>
+        <a class="nav-link" href="./index.html#mentors">멘토</a>
+      </nav>
+      <div class="header-actions">
+        <div class="lang-switch" role="group" aria-label="Language">
+          <button type="button" data-lang="ko" aria-pressed="true">KR</button>
+          <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+        <a class="header-cta" href="https://www.innocore.or.kr/dgist/notice/sub01">펠로우 채용 공고</a>
+      </div>
+    </header>
+
+    <main id="main" class="fellow-page">
+      <section class="content-band fellow-directory-band" aria-labelledby="fellow-page-title">
+        <div class="fellow-directory">
+          <div class="fellow-directory-hero">
+            <p class="eyebrow" data-field="fellowPageKicker"></p>
+            <h1 id="fellow-page-title" data-field="fellowPageTitle"></h1>
+            <p data-field="fellowPageLead"></p>
+          </div>
+          <div class="fellow-list"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <img src="./assets/ematax-logo.png" alt="E-MatAX" />
+      <p data-field="footerText">DGIST InnoCORE E-MatAX Research Center</p>
+    </footer>
+
+    <script src="./content.js?v=20260810-news-files-v1"></script>
+    <script src="./fellows.js?v=20260810-news-files-v1"></script>
+  </body>
+</html>

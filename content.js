@@ -5,6 +5,7 @@ window.INNOCORE_CONTENT = {
       { label: "사업단", href: "#about" },
       { label: "연구영역", href: "#research" },
       { label: "Fellow 연구지원", href: "#fellows" },
+      { label: "Fellow 소개", href: "./fellows.html" },
       { label: "멘토", href: "#mentors" },
     ],
     headerCta: "펠로우 채용 공고",
@@ -115,11 +116,295 @@ window.INNOCORE_CONTENT = {
     fellowsTitle: "Fellow 주도 연구, 사업단 지원",
     fellowsLead:
       "교수 보조형 포닥이 아닌, Fellow 주도형 연구 체계",
+    fellowDirectoryCta: "Fellow 소개 보기",
     support: [
       { title: "듀얼 멘토링", body: "도메인 멘토와 AI 멘토가 함께 연구 방향을 설계하고 AX 역량을 강화합니다." },
       { title: "연구 인프라", body: "DGIST의 분석, 제작, 컴퓨팅, 파일럿 연계 인프라를 연구 목적에 맞게 활용합니다." },
       { title: "산학연 Co-Lab", body: "파트너 대학, 연구기관, 산업 파트너와 함께 실증과 기술이전 가능성을 높입니다." },
       { title: "정주 지원", body: "비자, 온보딩, 생활 정착 지원으로 글로벌 연구자가 빠르게 연구에 집중할 수 있게 돕습니다." },
+    ],
+    fellowPageKicker: "Fellow Directory",
+    fellowPageTitle: "E-MatAX Fellows",
+    fellowPageLead:
+      "E-MatAX Fellow의 소속, 현재 PI, 연구분야, 연구 소개를 한곳에서 볼 수 있는 소개 페이지입니다.",
+    fellowProfileLabels: {
+      currentPi: "현재 PI",
+      researchArea: "연구 분야",
+      affiliation: "소속",
+      status: "상태",
+    },
+    fellowProfiles: [
+      {
+        "name": "안지훈",
+        "nameEn": "Jihun Ahn",
+        "status": "InnoCORE Research Fellow",
+        "currentPi": "허수미 교수 (DGIST)",
+        "researchArea": "소재-공정 AI 플랫폼",
+        "affiliation": "DGIST InnoCORE E-MatAX 연구단",
+        "summary": "고분자 시스템의 자기조립을 계산과학으로 해석하고, 딥러닝 기반 물성 예측·역설계와 EUV 리소그래피용 고분자 설계를 연구합니다.",
+        "image": "./assets/fellow-placeholder.svg"
+      },
+      {
+        "name": "Taylor Derrick Allan",
+        "nameEn": "Derrick Allan Taylor",
+        "status": "InnoCORE Research Fellow",
+        "currentPi": "이종수 교수 (DGIST)",
+        "researchArea": "에너지 생산 소재",
+        "affiliation": "DGIST InnoCORE E-MatAX 연구단",
+        "summary": "가시광·적외선 양자점의 콜로이드 합성, 리간드·결함 제어와 친환경 용액 공정을 통해 에너지·광전자 소자를 위한 반도체 나노결정을 개발합니다.",
+        "image": "./assets/fellow-placeholder.svg"
+      },
+      {
+        "name": "Wang Wenxin",
+        "nameEn": "Wenxin Wang",
+        "status": "InnoCORE Research Fellow",
+        "currentPi": "이종민 교수 (DGIST)",
+        "researchArea": "에너지 전환 소재",
+        "affiliation": "DGIST InnoCORE E-MatAX 연구단",
+        "summary": "메탈렌과 메조다공성 금속 촉매를 설계해 수전해, 전기화학적 암모니아 합성, 선택적 수소화와 폐플라스틱 업사이클링을 연구합니다.",
+        "image": "./assets/fellow-placeholder.svg"
+      },
+      {
+        "name": "Vo Pham Hoang Huy",
+        "nameEn": "Vo Pham Hoang Huy",
+        "status": "InnoCORE Research Fellow",
+        "currentPi": "김대환 책임연구원 (DGIST)",
+        "researchArea": "에너지 생산 소재",
+        "affiliation": "DGIST InnoCORE E-MatAX 연구단",
+        "summary": "Sb2Se3 및 페로브스카이트 박막 태양전지의 소재·소자 구조를 개발하고, 대면적 제조와 AI 기반 공정 최적화를 연구합니다.",
+        "image": "./assets/fellow-placeholder.svg"
+      },
+      {
+        "name": "유정훈",
+        "nameEn": "Jeong-Hoon Yu",
+        "status": "InnoCORE Research Fellow",
+        "currentPi": "김순현 책임연구원 (DGIST)",
+        "researchArea": "에너지 전환 소재",
+        "affiliation": "DGIST InnoCORE E-MatAX 연구단",
+        "summary": "리튬-황 전지용 황 호스트·기능성 분리막·촉매와 다공성 탄소 소재를 설계하고, 전극 및 셀 수준의 전기화학 성능을 분석합니다.",
+        "image": "./assets/fellow-placeholder.svg"
+      },
+      {
+        "name": "이운학",
+        "nameEn": "Un-Hak Lee",
+        "status": "InnoCORE Research Fellow",
+        "currentPi": "고서진 교수 (DGIST)",
+        "researchArea": "에너지 생산 소재",
+        "affiliation": "DGIST InnoCORE E-MatAX 연구단",
+        "summary": "초저밴드갭 유기 반도체와 공액 고분자를 합성해 단파적외선 유기 광검출기 및 투명·반투명 태양전지 소재를 개발합니다.",
+        "image": "./assets/fellow-placeholder.svg"
+      },
+      {
+        "name": "Li Shi",
+        "nameEn": "Shi Li",
+        "status": "InnoCORE Research Fellow",
+        "currentPi": "양지웅 교수 (DGIST)",
+        "researchArea": "에너지 생산 소재",
+        "affiliation": "DGIST InnoCORE E-MatAX 연구단",
+        "summary": "양자점 광전자소자를 중심으로 유연·웨어러블 광검출기와 결함 제어형 광전기화학 수소생산 소재를 연구합니다.",
+        "image": "./assets/fellow-placeholder.svg"
+      },
+      {
+        "name": "송현석",
+        "nameEn": "Hyunseok Song",
+        "status": "InnoCORE Research Fellow",
+        "currentPi": "송현철 교수 (고려대학교)",
+        "researchArea": "에너지 생산 소재",
+        "affiliation": "DGIST InnoCORE E-MatAX 연구단",
+        "summary": "강유전·다강체 박막과 인공 상경계를 설계해 에너지 하베스팅·저장 소자, 자가발전 센서와 IoT 응용을 연구합니다.",
+        "image": "./assets/fellow-placeholder.svg"
+      },
+      {
+        "name": "Zhao Pin",
+        "nameEn": "Pin Zhao",
+        "status": "InnoCORE Research Fellow",
+        "currentPi": "이주혁 교수 (DGIST)",
+        "researchArea": "에너지 생산 소재",
+        "affiliation": "DGIST InnoCORE E-MatAX 연구단",
+        "summary": "2차원 압전 소재와 탄소나노튜브 헤테로구조의 전기·광전자 특성을 제어해 센서, 광검출기와 에너지 하베스팅 소자를 개발합니다.",
+        "image": "./assets/fellow-placeholder.svg"
+      },
+      {
+        "name": "조완수",
+        "nameEn": "Wansu Cho",
+        "status": "InnoCORE Research Fellow",
+        "currentPi": "박치영 교수 (DGIST)",
+        "researchArea": "에너지 전환 소재",
+        "affiliation": "DGIST InnoCORE E-MatAX 연구단",
+        "summary": "다공성 고분자와 COF-탄소 나노하이브리드를 설계해 광촉매 수소생산, 수처리 및 오염물 흡착 소재를 연구합니다.",
+        "image": "./assets/fellow-placeholder.svg"
+      },
+      {
+        "name": "이다슬",
+        "nameEn": "Daseul Lee",
+        "status": "InnoCORE Research Fellow",
+        "currentPi": "김한슬 교수 (충북대학교)",
+        "researchArea": "소재-공정 AI 플랫폼",
+        "affiliation": "DGIST InnoCORE E-MatAX 연구단",
+        "summary": "무연·키랄 페로브스카이트와 금속-유기 구조체를 합성하고, 가스센서·광검출기·발광소자·메모리 소자 응용을 연구합니다.",
+        "image": "./assets/fellow-placeholder.svg"
+      },
+      {
+        "name": "Muralidharan Vageesh",
+        "nameEn": "Vageesh M",
+        "status": "InnoCORE Research Fellow",
+        "currentPi": "남기태 교수 (서울대학교)",
+        "researchArea": "에너지 전환 소재",
+        "affiliation": "DGIST InnoCORE E-MatAX 연구단",
+        "summary": "나노·단일원자 촉매와 전기촉매를 이용해 지속가능한 유기합성, 탈수소화·수소화 및 C-H 활성화 반응을 연구합니다.",
+        "image": "./assets/fellow-placeholder.svg"
+      },
+      {
+        "name": "김수환",
+        "nameEn": "Suhwan Kim",
+        "status": "InnoCORE Research Fellow",
+        "currentPi": "이용민 교수 (연세대학교)",
+        "researchArea": "소재-공정 AI 플랫폼",
+        "affiliation": "DGIST InnoCORE E-MatAX 연구단",
+        "summary": "충전식 전지의 디지털 트윈과 동적 시뮬레이션을 구축해 전극·분리막의 구조 변형, 계면 진화와 고장 메커니즘을 분석합니다.",
+        "image": "./assets/fellow-placeholder.svg"
+      },
+      {
+        "name": "김홍수",
+        "nameEn": "Hong Soo Kim",
+        "status": "InnoCORE Research Fellow",
+        "currentPi": "인수일 교수 (DGIST)",
+        "researchArea": "에너지 저장 소재",
+        "affiliation": "DGIST InnoCORE E-MatAX 연구단",
+        "summary": "광촉매 CO2 전환과 인공광합성, 베타볼타익 전지 및 마이크로·나노 전기화학 바이오소자를 연구합니다.",
+        "image": "./assets/fellow-placeholder.svg"
+      },
+      {
+        "name": "엄세원",
+        "nameEn": "Sewon Eom",
+        "status": "InnoCORE Research Fellow",
+        "currentPi": "이호춘 교수 (DGIST)",
+        "researchArea": "에너지 저장 소재",
+        "affiliation": "DGIST InnoCORE E-MatAX 연구단",
+        "summary": "리튬·나트륨 금속, 무음극 및 리튬-황 전지용 전해질을 설계하고 분광·이미징 기반 계면 열화와 셀 고장을 분석합니다.",
+        "image": "./assets/fellow-placeholder.svg"
+      },
+      {
+        "name": "Héctor Allan Pérez-Ramírez",
+        "nameEn": "Héctor Allan Pérez-Ramírez",
+        "status": "InnoCORE Research Fellow",
+        "currentPi": "허수미 교수 (DGIST)",
+        "researchArea": "소재-공정 AI 플랫폼",
+        "affiliation": "DGIST InnoCORE E-MatAX 연구단",
+        "summary": "분자동역학을 활용해 열응답성 고분자, 블록공중합체 자기조립과 저유전 고분자의 구조·수송 특성을 연구합니다.",
+        "image": "./assets/fellow-placeholder.svg"
+      },
+      {
+        "name": "Manoj Kumar Maurya",
+        "nameEn": "Manoj Kumar Maurya",
+        "status": "InnoCORE Research Fellow",
+        "currentPi": "허수미 교수 (DGIST)",
+        "researchArea": "소재-공정 AI 플랫폼",
+        "affiliation": "DGIST InnoCORE E-MatAX 연구단",
+        "summary": "분자동역학과 머신러닝으로 연성물질의 상분리와 고분자 네트워크의 기계·열 특성을 계산하고 소재 거동을 예측합니다.",
+        "image": "./assets/fellow-placeholder.svg"
+      },
+      {
+        "name": "변아송",
+        "nameEn": "Asong Byun",
+        "status": "InnoCORE Research Fellow",
+        "currentPi": "김승현 교수 (DGIST)",
+        "researchArea": "에너지 전환 소재",
+        "affiliation": "DGIST InnoCORE E-MatAX 연구단",
+        "summary": "금속-유기 구조체와 비정질 다공성·중공 소재를 설계해 선택적 흡착과 촉매 반응을 연구합니다.",
+        "image": "./assets/fellow-placeholder.svg"
+      },
+      {
+        "name": "박영진",
+        "nameEn": "",
+        "status": "InnoCORE Research Fellow",
+        "currentPi": "박인철 교수 (DGIST)",
+        "researchArea": "소재-공정 AI 플랫폼",
+        "affiliation": "DGIST InnoCORE E-MatAX 연구단",
+        "summary": "NCM·LFP 양극과 파일럿 셀 제조공정을 개발하고, 2차원 소재 합성·전기촉매 경험을 바탕으로 배터리 공정의 AI 품질진단을 연구합니다.",
+        "image": "./assets/fellow-placeholder.svg"
+      },
+      {
+        "name": "Sangram Keshari Mohanty",
+        "nameEn": "Sangram Keshari Mohanty",
+        "status": "InnoCORE Research Fellow",
+        "currentPi": "홍승태 교수 (DGIST)",
+        "researchArea": "에너지 저장 소재",
+        "affiliation": "DGIST InnoCORE E-MatAX 연구단",
+        "summary": "리튬·나트륨 전지용 고성능 양극 소재를 합성하고, operando XRD와 EQCM을 이용해 전극 구조와 계면 반응을 분석합니다.",
+        "image": "./assets/fellow-placeholder.svg"
+      },
+      {
+        "name": "마현종",
+        "nameEn": "Hyeonjong Ma",
+        "status": "InnoCORE Research Fellow",
+        "currentPi": "양지웅 교수 (DGIST)",
+        "researchArea": "에너지 생산 소재",
+        "affiliation": "DGIST InnoCORE E-MatAX 연구단",
+        "summary": "in situ TEM과 첨단 분광·구조 분석으로 반도체 나노결정의 구조 진화와 열화 메커니즘을 규명하고 안정성 설계를 연구합니다.",
+        "image": "./assets/fellow-placeholder.svg"
+      },
+      {
+        "name": "Srinivasu Vinjamuri",
+        "nameEn": "Srinivasu Vinjamuri",
+        "status": "InnoCORE Research Fellow",
+        "currentPi": "김승현 교수 (DGIST)",
+        "researchArea": "에너지 전환 소재",
+        "affiliation": "DGIST InnoCORE E-MatAX 연구단",
+        "summary": "광레독스 촉매와 고리 변형 에너지를 활용한 원격 C-H 기능화 및 고부가 유기분자의 다단계 합성법을 연구합니다.",
+        "image": "./assets/fellow-placeholder.svg"
+      },
+      {
+        "name": "강욱중",
+        "nameEn": "Uk Jung Kang",
+        "status": "InnoCORE Research Fellow",
+        "currentPi": "허수미 교수 (DGIST)",
+        "researchArea": "소재-공정 AI 플랫폼",
+        "affiliation": "DGIST InnoCORE E-MatAX 연구단",
+        "summary": "DFT, 머신러닝 원자간 포텐셜과 분자동역학을 결합해 에너지 소재와 전기촉매의 전자구조·원자 수준 거동을 계산합니다.",
+        "image": "./assets/fellow-placeholder.svg"
+      },
+      {
+        "name": "한상훈",
+        "nameEn": "Sanghun Han",
+        "status": "InnoCORE Research Fellow",
+        "currentPi": "최종민 교수 (DGIST)",
+        "researchArea": "에너지 생산 소재",
+        "affiliation": "DGIST InnoCORE E-MatAX 연구단",
+        "summary": "페로브스카이트 양자점의 표면 리간드와 고체 안정성을 제어해 고효율 광전소자, 광촉매 및 대면적 양자점 잉크 공정을 연구합니다.",
+        "image": "./assets/fellow-placeholder.svg"
+      },
+      {
+        "name": "Jingcheng Wu",
+        "nameEn": "Jingcheng Wu",
+        "status": "InnoCORE Research Fellow",
+        "currentPi": "최창혁 교수 (POSTECH)",
+        "researchArea": "에너지 전환 소재",
+        "affiliation": "DGIST InnoCORE E-MatAX 연구단",
+        "summary": "바이오매스 플랫폼 분자의 전기화학 전환과 환원 반응을 결합한 paired electrolysis를 설계해 고부가 화학물질 생산을 연구합니다.",
+        "image": "./assets/fellow-placeholder.svg"
+      }
+    ],
+    openingsKicker: "Fellow Recruitment",
+    openingsTitle: "펠로우 채용 공고",
+    openingsLead:
+      "공식 연구단 공고로 담기 어려운 연구실별 모집상태, 세부 주제, 선호 역량을 한곳에서 확인합니다.",
+    piOpenings: [
+      {
+        id: "dong-hae-ho",
+        status: "적극 모집 중",
+        title: "액체금속 복합소재 연구 Fellow 모집",
+        pi: "호동해 교수",
+        lab: "EMDP Lab",
+        area: "액체금속 복합소재 연구",
+        fit:
+          "액체금속 기반 composite 연구, 기계적 분석, 전기·열전도도 분석을 수행할 수 있는 연구자를 찾습니다. 관련 학위, 연구 열정, 세밀한 관찰력, 자유로운 연구 분위기에 맞는 태도를 중요하게 봅니다.",
+        timeline: "2027년 여름",
+        contactLabel: "문의: hodh123@gmail.com",
+        contactHref: "mailto:hodh123@gmail.com",
+        heroImage: "./assets/pi-openings/dong-hae-ho-header.png",
+        flyer: "./assets/pi-openings/dong-hae-ho-flyer.png",
+      },
     ],
     mentorsKicker: "Mentor List",
     mentorsTitle: "E-MatAX 멘토 그룹",
@@ -127,6 +412,50 @@ window.INNOCORE_CONTENT = {
       "DGIST와 국내 주요 대학의 참여 교수진이 4대 연구축별로 에너지 소재, 공정, AI, 분석, 검증 연구를 함께 이끕니다.",
     mentorColumns: ["채용상태", "연구축", "역할", "성명", "English Name", "소속", "학과/부서", "Website"],
     mentorRecruitingStatus: "적극 채용중",
+    mentorDefaultRecruitingStatus: "active",
+    mentorRecruitingStatusLabels: {
+      active: "적극 채용중",
+      inactive: "채용중 아님",
+    },
+    mentorRecruitingStatusOptions: [
+      { value: "active", label: "적극 채용중" },
+      { value: "inactive", label: "채용중 아님" },
+    ],
+    mentorRecruitingStatuses: {
+      "허수미 교수": "active",
+      "고서진 교수": "active",
+      "김승현 교수": "active",
+      "김영규 교수": "active",
+      "김운혁 교수": "active",
+      "김진수 교수": "active",
+      "김찬연 교수": "active",
+      "박인철 교수": "active",
+      "박치영 교수": "active",
+      "상가라쥬 샨무감 교수": "active",
+      "양지웅 교수": "active",
+      "이윤구 교수": "active",
+      "이종민 교수": "active",
+      "이종수 교수": "active",
+      "이주혁 교수": "active",
+      "이호춘 교수": "active",
+      "인수일 교수": "active",
+      "장윤희 교수": "active",
+      "최승호 교수": "active",
+      "최종민 교수": "active",
+      "호동해 교수": "active",
+      "홍승태 교수": "active",
+      "강준희 교수": "active",
+      "김대환 책임연구원": "active",
+      "김순현 책임연구원": "active",
+      "김한슬 교수": "active",
+      "남기태 교수": "active",
+      "박해선 교수": "active",
+      "송현철 교수": "active",
+      "이용민 교수": "active",
+      "임종우 교수": "active",
+      "임종철 교수": "active",
+      "최창혁 교수": "active"
+    },
     mentorAreas: {
       "허수미 교수": "소재-공정 AI 플랫폼",
       "장윤희 교수": "소재-공정 AI 플랫폼",
@@ -200,11 +529,61 @@ window.INNOCORE_CONTENT = {
     newsKicker: "Recent News",
     newsTitle: "공고 및 행사 소식",
     newsLead:
-      "Research Fellow 채용 공고와 글로벌 Job Fair 일정을 확인할 수 있습니다.",
+      "Research Fellow 모집 공고, 글로벌 Job Fair 및 E-MatAX 연구 행사 소식을 확인할 수 있습니다.",
     news: [
-      { date: "2026.06", title: "Europe InnoCORE Global AI Postdoctoral Job Fair", href: "https://www.innocore-jobfair.com/" },
-      { date: "2026.05", title: "US InnoCORE Global AI Postdoctoral Job Fair", href: "https://www.innocore-jobfair.com/" },
-      { date: "상시", title: "DGIST InnoCORE Notice Board", href: "https://www.innocore.or.kr/dgist/notice/sub01" },
+      {
+        "date": "2026.07.20",
+        "title": "E-MatAX Luncheon Seminar | 이태훈 교수·E-MatAX Fellow",
+        "description": "DGIST 이태훈 교수님과 E-MatAX Postdoctoral Fellow가 함께 런천 세미나를 진행했습니다. 시뮬레이션과 AI 계산과의 징검다리 역할을 할 수 있는 다양한 방법론에 대해 알아보는 자리였습니다.",
+        "href": "",
+        "images": [
+          {
+            "thumb": "./assets/news/2026-07-20-luncheon-seminar-thumb.jpg",
+            "full": "./assets/news/2026-07-20-luncheon-seminar.jpg"
+          }
+        ]
+      },
+      {
+        "date": "2026.07.06",
+        "title": "E-MatAX Luncheon Seminar | 김영규 교수·E-MatAX Fellow",
+        "description": "DGIST 김영규 교수님과 Fellow 박사와 함께 Luncheon 세미나를 진행하였습니다. 실험과 AI 를 이을 수 있는 다양한 방법론에 대한 심도깊은 세미나였습니다",
+        "href": "",
+        "images": [
+          {
+            "thumb": "./assets/news/2026-07-06-luncheon-opening-thumb.jpg",
+            "full": "./assets/news/2026-07-06-luncheon-opening.jpg"
+          },
+          {
+            "thumb": "./assets/news/2026-07-06-luncheon-kim-younggyu-thumb.jpg",
+            "full": "./assets/news/2026-07-06-luncheon-kim-younggyu.jpg"
+          },
+          {
+            "thumb": "./assets/news/2026-07-06-luncheon-audience-thumb.jpg",
+            "full": "./assets/news/2026-07-06-luncheon-audience.jpg"
+          }
+        ]
+      },
+      {
+        "date": "2026.06",
+        "title": "Europe InnoCORE Global AI Postdoctoral Job Fair",
+        "description": "",
+        "href": "https://www.innocore-jobfair.com/",
+        "images": []
+      },
+      {
+        "date": "2026.05",
+        "title": "US InnoCORE Global AI Postdoctoral Job Fair",
+        "description": "",
+        "href": "https://www.innocore-jobfair.com/",
+        "images": []
+      },
+      {
+        "date": "상시",
+        "title": "DGIST InnoCORE Notice Board",
+        "description": "",
+        "href": "https://www.innocore.or.kr/dgist/notice/sub01",
+        "images": []
+      }
     ],
     applyKicker: "Fellow Recruitment",
     applyTitle: "AX로 실험실에서 양산까지",
@@ -224,6 +603,7 @@ window.INNOCORE_CONTENT = {
       { label: "About", href: "#about" },
       { label: "Research", href: "#research" },
       { label: "Fellow Support", href: "#fellows" },
+      { label: "Fellow Directory", href: "./fellows.html" },
       { label: "Mentors", href: "#mentors" },
     ],
     headerCta: "Fellow Notice",
@@ -334,11 +714,295 @@ window.INNOCORE_CONTENT = {
     fellowsTitle: "Independent Fellows, structured support",
     fellowsLead:
       "This is a Fellow-led research model, not a standard assistant postdoc track.",
+    fellowDirectoryCta: "View Fellows",
     support: [
       { title: "Dual Mentoring", body: "Domain and AI mentors help Fellows strengthen both energy materials expertise and AX capability." },
       { title: "Infrastructure Access", body: "Fellows use DGIST characterization, fabrication, computing, and pilot-linked infrastructure for research goals." },
       { title: "Industry Co-Lab", body: "Partner universities, research institutes, and industry partners increase the chance of demonstration and transfer." },
       { title: "Settlement Support", body: "Visa, onboarding, and relocation support help global researchers focus on research quickly." },
+    ],
+    fellowPageKicker: "Fellow Directory",
+    fellowPageTitle: "E-MatAX Fellows",
+    fellowPageLead:
+      "A directory page for introducing each E-MatAX Fellow's affiliation, current PI, research area, and research summary.",
+    fellowProfileLabels: {
+      currentPi: "Current PI",
+      researchArea: "Research Area",
+      affiliation: "Affiliation",
+      status: "Status",
+    },
+    fellowProfiles: [
+      {
+        "name": "안지훈",
+        "nameEn": "Jihun Ahn",
+        "status": "InnoCORE Research Fellow",
+        "currentPi": "허수미 교수 (DGIST)",
+        "researchArea": "소재-공정 AI 플랫폼",
+        "affiliation": "DGIST InnoCORE E-MatAX 연구단",
+        "summary": "고분자 시스템의 자기조립을 계산과학으로 해석하고, 딥러닝 기반 물성 예측·역설계와 EUV 리소그래피용 고분자 설계를 연구합니다.",
+        "image": "./assets/fellow-placeholder.svg"
+      },
+      {
+        "name": "Taylor Derrick Allan",
+        "nameEn": "Derrick Allan Taylor",
+        "status": "InnoCORE Research Fellow",
+        "currentPi": "이종수 교수 (DGIST)",
+        "researchArea": "에너지 생산 소재",
+        "affiliation": "DGIST InnoCORE E-MatAX 연구단",
+        "summary": "가시광·적외선 양자점의 콜로이드 합성, 리간드·결함 제어와 친환경 용액 공정을 통해 에너지·광전자 소자를 위한 반도체 나노결정을 개발합니다.",
+        "image": "./assets/fellow-placeholder.svg"
+      },
+      {
+        "name": "Wang Wenxin",
+        "nameEn": "Wenxin Wang",
+        "status": "InnoCORE Research Fellow",
+        "currentPi": "이종민 교수 (DGIST)",
+        "researchArea": "에너지 전환 소재",
+        "affiliation": "DGIST InnoCORE E-MatAX 연구단",
+        "summary": "메탈렌과 메조다공성 금속 촉매를 설계해 수전해, 전기화학적 암모니아 합성, 선택적 수소화와 폐플라스틱 업사이클링을 연구합니다.",
+        "image": "./assets/fellow-placeholder.svg"
+      },
+      {
+        "name": "Vo Pham Hoang Huy",
+        "nameEn": "Vo Pham Hoang Huy",
+        "status": "InnoCORE Research Fellow",
+        "currentPi": "김대환 책임연구원 (DGIST)",
+        "researchArea": "에너지 생산 소재",
+        "affiliation": "DGIST InnoCORE E-MatAX 연구단",
+        "summary": "Sb2Se3 및 페로브스카이트 박막 태양전지의 소재·소자 구조를 개발하고, 대면적 제조와 AI 기반 공정 최적화를 연구합니다.",
+        "image": "./assets/fellow-placeholder.svg"
+      },
+      {
+        "name": "유정훈",
+        "nameEn": "Jeong-Hoon Yu",
+        "status": "InnoCORE Research Fellow",
+        "currentPi": "김순현 책임연구원 (DGIST)",
+        "researchArea": "에너지 전환 소재",
+        "affiliation": "DGIST InnoCORE E-MatAX 연구단",
+        "summary": "리튬-황 전지용 황 호스트·기능성 분리막·촉매와 다공성 탄소 소재를 설계하고, 전극 및 셀 수준의 전기화학 성능을 분석합니다.",
+        "image": "./assets/fellow-placeholder.svg"
+      },
+      {
+        "name": "이운학",
+        "nameEn": "Un-Hak Lee",
+        "status": "InnoCORE Research Fellow",
+        "currentPi": "고서진 교수 (DGIST)",
+        "researchArea": "에너지 생산 소재",
+        "affiliation": "DGIST InnoCORE E-MatAX 연구단",
+        "summary": "초저밴드갭 유기 반도체와 공액 고분자를 합성해 단파적외선 유기 광검출기 및 투명·반투명 태양전지 소재를 개발합니다.",
+        "image": "./assets/fellow-placeholder.svg"
+      },
+      {
+        "name": "Li Shi",
+        "nameEn": "Shi Li",
+        "status": "InnoCORE Research Fellow",
+        "currentPi": "양지웅 교수 (DGIST)",
+        "researchArea": "에너지 생산 소재",
+        "affiliation": "DGIST InnoCORE E-MatAX 연구단",
+        "summary": "양자점 광전자소자를 중심으로 유연·웨어러블 광검출기와 결함 제어형 광전기화학 수소생산 소재를 연구합니다.",
+        "image": "./assets/fellow-placeholder.svg"
+      },
+      {
+        "name": "송현석",
+        "nameEn": "Hyunseok Song",
+        "status": "InnoCORE Research Fellow",
+        "currentPi": "송현철 교수 (고려대학교)",
+        "researchArea": "에너지 생산 소재",
+        "affiliation": "DGIST InnoCORE E-MatAX 연구단",
+        "summary": "강유전·다강체 박막과 인공 상경계를 설계해 에너지 하베스팅·저장 소자, 자가발전 센서와 IoT 응용을 연구합니다.",
+        "image": "./assets/fellow-placeholder.svg"
+      },
+      {
+        "name": "Zhao Pin",
+        "nameEn": "Pin Zhao",
+        "status": "InnoCORE Research Fellow",
+        "currentPi": "이주혁 교수 (DGIST)",
+        "researchArea": "에너지 생산 소재",
+        "affiliation": "DGIST InnoCORE E-MatAX 연구단",
+        "summary": "2차원 압전 소재와 탄소나노튜브 헤테로구조의 전기·광전자 특성을 제어해 센서, 광검출기와 에너지 하베스팅 소자를 개발합니다.",
+        "image": "./assets/fellow-placeholder.svg"
+      },
+      {
+        "name": "조완수",
+        "nameEn": "Wansu Cho",
+        "status": "InnoCORE Research Fellow",
+        "currentPi": "박치영 교수 (DGIST)",
+        "researchArea": "에너지 전환 소재",
+        "affiliation": "DGIST InnoCORE E-MatAX 연구단",
+        "summary": "다공성 고분자와 COF-탄소 나노하이브리드를 설계해 광촉매 수소생산, 수처리 및 오염물 흡착 소재를 연구합니다.",
+        "image": "./assets/fellow-placeholder.svg"
+      },
+      {
+        "name": "이다슬",
+        "nameEn": "Daseul Lee",
+        "status": "InnoCORE Research Fellow",
+        "currentPi": "김한슬 교수 (충북대학교)",
+        "researchArea": "소재-공정 AI 플랫폼",
+        "affiliation": "DGIST InnoCORE E-MatAX 연구단",
+        "summary": "무연·키랄 페로브스카이트와 금속-유기 구조체를 합성하고, 가스센서·광검출기·발광소자·메모리 소자 응용을 연구합니다.",
+        "image": "./assets/fellow-placeholder.svg"
+      },
+      {
+        "name": "Muralidharan Vageesh",
+        "nameEn": "Vageesh M",
+        "status": "InnoCORE Research Fellow",
+        "currentPi": "남기태 교수 (서울대학교)",
+        "researchArea": "에너지 전환 소재",
+        "affiliation": "DGIST InnoCORE E-MatAX 연구단",
+        "summary": "나노·단일원자 촉매와 전기촉매를 이용해 지속가능한 유기합성, 탈수소화·수소화 및 C-H 활성화 반응을 연구합니다.",
+        "image": "./assets/fellow-placeholder.svg"
+      },
+      {
+        "name": "김수환",
+        "nameEn": "Suhwan Kim",
+        "status": "InnoCORE Research Fellow",
+        "currentPi": "이용민 교수 (연세대학교)",
+        "researchArea": "소재-공정 AI 플랫폼",
+        "affiliation": "DGIST InnoCORE E-MatAX 연구단",
+        "summary": "충전식 전지의 디지털 트윈과 동적 시뮬레이션을 구축해 전극·분리막의 구조 변형, 계면 진화와 고장 메커니즘을 분석합니다.",
+        "image": "./assets/fellow-placeholder.svg"
+      },
+      {
+        "name": "김홍수",
+        "nameEn": "Hong Soo Kim",
+        "status": "InnoCORE Research Fellow",
+        "currentPi": "인수일 교수 (DGIST)",
+        "researchArea": "에너지 저장 소재",
+        "affiliation": "DGIST InnoCORE E-MatAX 연구단",
+        "summary": "광촉매 CO2 전환과 인공광합성, 베타볼타익 전지 및 마이크로·나노 전기화학 바이오소자를 연구합니다.",
+        "image": "./assets/fellow-placeholder.svg"
+      },
+      {
+        "name": "엄세원",
+        "nameEn": "Sewon Eom",
+        "status": "InnoCORE Research Fellow",
+        "currentPi": "이호춘 교수 (DGIST)",
+        "researchArea": "에너지 저장 소재",
+        "affiliation": "DGIST InnoCORE E-MatAX 연구단",
+        "summary": "리튬·나트륨 금속, 무음극 및 리튬-황 전지용 전해질을 설계하고 분광·이미징 기반 계면 열화와 셀 고장을 분석합니다.",
+        "image": "./assets/fellow-placeholder.svg"
+      },
+      {
+        "name": "Héctor Allan Pérez-Ramírez",
+        "nameEn": "Héctor Allan Pérez-Ramírez",
+        "status": "InnoCORE Research Fellow",
+        "currentPi": "허수미 교수 (DGIST)",
+        "researchArea": "소재-공정 AI 플랫폼",
+        "affiliation": "DGIST InnoCORE E-MatAX 연구단",
+        "summary": "분자동역학을 활용해 열응답성 고분자, 블록공중합체 자기조립과 저유전 고분자의 구조·수송 특성을 연구합니다.",
+        "image": "./assets/fellow-placeholder.svg"
+      },
+      {
+        "name": "Manoj Kumar Maurya",
+        "nameEn": "Manoj Kumar Maurya",
+        "status": "InnoCORE Research Fellow",
+        "currentPi": "허수미 교수 (DGIST)",
+        "researchArea": "소재-공정 AI 플랫폼",
+        "affiliation": "DGIST InnoCORE E-MatAX 연구단",
+        "summary": "분자동역학과 머신러닝으로 연성물질의 상분리와 고분자 네트워크의 기계·열 특성을 계산하고 소재 거동을 예측합니다.",
+        "image": "./assets/fellow-placeholder.svg"
+      },
+      {
+        "name": "변아송",
+        "nameEn": "Asong Byun",
+        "status": "InnoCORE Research Fellow",
+        "currentPi": "김승현 교수 (DGIST)",
+        "researchArea": "에너지 전환 소재",
+        "affiliation": "DGIST InnoCORE E-MatAX 연구단",
+        "summary": "금속-유기 구조체와 비정질 다공성·중공 소재를 설계해 선택적 흡착과 촉매 반응을 연구합니다.",
+        "image": "./assets/fellow-placeholder.svg"
+      },
+      {
+        "name": "박영진",
+        "nameEn": "",
+        "status": "InnoCORE Research Fellow",
+        "currentPi": "박인철 교수 (DGIST)",
+        "researchArea": "소재-공정 AI 플랫폼",
+        "affiliation": "DGIST InnoCORE E-MatAX 연구단",
+        "summary": "NCM·LFP 양극과 파일럿 셀 제조공정을 개발하고, 2차원 소재 합성·전기촉매 경험을 바탕으로 배터리 공정의 AI 품질진단을 연구합니다.",
+        "image": "./assets/fellow-placeholder.svg"
+      },
+      {
+        "name": "Sangram Keshari Mohanty",
+        "nameEn": "Sangram Keshari Mohanty",
+        "status": "InnoCORE Research Fellow",
+        "currentPi": "홍승태 교수 (DGIST)",
+        "researchArea": "에너지 저장 소재",
+        "affiliation": "DGIST InnoCORE E-MatAX 연구단",
+        "summary": "리튬·나트륨 전지용 고성능 양극 소재를 합성하고, operando XRD와 EQCM을 이용해 전극 구조와 계면 반응을 분석합니다.",
+        "image": "./assets/fellow-placeholder.svg"
+      },
+      {
+        "name": "마현종",
+        "nameEn": "Hyeonjong Ma",
+        "status": "InnoCORE Research Fellow",
+        "currentPi": "양지웅 교수 (DGIST)",
+        "researchArea": "에너지 생산 소재",
+        "affiliation": "DGIST InnoCORE E-MatAX 연구단",
+        "summary": "in situ TEM과 첨단 분광·구조 분석으로 반도체 나노결정의 구조 진화와 열화 메커니즘을 규명하고 안정성 설계를 연구합니다.",
+        "image": "./assets/fellow-placeholder.svg"
+      },
+      {
+        "name": "Srinivasu Vinjamuri",
+        "nameEn": "Srinivasu Vinjamuri",
+        "status": "InnoCORE Research Fellow",
+        "currentPi": "김승현 교수 (DGIST)",
+        "researchArea": "에너지 전환 소재",
+        "affiliation": "DGIST InnoCORE E-MatAX 연구단",
+        "summary": "광레독스 촉매와 고리 변형 에너지를 활용한 원격 C-H 기능화 및 고부가 유기분자의 다단계 합성법을 연구합니다.",
+        "image": "./assets/fellow-placeholder.svg"
+      },
+      {
+        "name": "강욱중",
+        "nameEn": "Uk Jung Kang",
+        "status": "InnoCORE Research Fellow",
+        "currentPi": "허수미 교수 (DGIST)",
+        "researchArea": "소재-공정 AI 플랫폼",
+        "affiliation": "DGIST InnoCORE E-MatAX 연구단",
+        "summary": "DFT, 머신러닝 원자간 포텐셜과 분자동역학을 결합해 에너지 소재와 전기촉매의 전자구조·원자 수준 거동을 계산합니다.",
+        "image": "./assets/fellow-placeholder.svg"
+      },
+      {
+        "name": "한상훈",
+        "nameEn": "Sanghun Han",
+        "status": "InnoCORE Research Fellow",
+        "currentPi": "최종민 교수 (DGIST)",
+        "researchArea": "에너지 생산 소재",
+        "affiliation": "DGIST InnoCORE E-MatAX 연구단",
+        "summary": "페로브스카이트 양자점의 표면 리간드와 고체 안정성을 제어해 고효율 광전소자, 광촉매 및 대면적 양자점 잉크 공정을 연구합니다.",
+        "image": "./assets/fellow-placeholder.svg"
+      },
+      {
+        "name": "Jingcheng Wu",
+        "nameEn": "Jingcheng Wu",
+        "status": "InnoCORE Research Fellow",
+        "currentPi": "최창혁 교수 (POSTECH)",
+        "researchArea": "에너지 전환 소재",
+        "affiliation": "DGIST InnoCORE E-MatAX 연구단",
+        "summary": "바이오매스 플랫폼 분자의 전기화학 전환과 환원 반응을 결합한 paired electrolysis를 설계해 고부가 화학물질 생산을 연구합니다.",
+        "image": "./assets/fellow-placeholder.svg"
+      }
+    ],
+    openingsKicker: "Fellow Recruitment",
+    openingsTitle: "Fellow recruitment notice",
+    openingsLead:
+      "Applicants can check lab-level hiring status, project fit, preferred expertise, and contact routes beyond the center-wide notice.",
+    piOpenings: [
+      {
+        id: "dong-hae-ho",
+        status: "Actively recruiting",
+        title: "Postdoctoral Fellow for Liquid Metal Composite Research",
+        pi: "Dong Hae Ho",
+        lab: "EMDP Lab",
+        area: "Liquid metal composite research",
+        fit:
+          "Seeking a researcher who can work on liquid-metal-based composites, mechanical analysis, and electrical and thermal conductivity characterization. Relevant degree, research passion, careful observation, and comfort with a free research atmosphere are preferred.",
+        timeline: "Summer 2027",
+        contactLabel: "Contact: hodh123@gmail.com",
+        contactHref: "mailto:hodh123@gmail.com",
+        heroImage: "./assets/pi-openings/dong-hae-ho-header.png",
+        flyer: "./assets/pi-openings/dong-hae-ho-flyer.png",
+      },
     ],
     mentorsKicker: "Mentor List",
     mentorsTitle: "E-MatAX mentor group",
@@ -346,6 +1010,50 @@ window.INNOCORE_CONTENT = {
       "DGIST and partner faculty cover energy materials, processes, AI, analysis, and validation across the four research pillars.",
     mentorColumns: ["Hiring", "Research Area", "Role", "Name", "English Name", "Affiliation", "Department", "Website"],
     mentorRecruitingStatus: "Actively recruiting",
+    mentorDefaultRecruitingStatus: "active",
+    mentorRecruitingStatusLabels: {
+      active: "Actively recruiting",
+      inactive: "Not recruiting",
+    },
+    mentorRecruitingStatusOptions: [
+      { value: "active", label: "Actively recruiting" },
+      { value: "inactive", label: "Not recruiting" },
+    ],
+    mentorRecruitingStatuses: {
+      "허수미 교수": "active",
+      "고서진 교수": "active",
+      "김승현 교수": "active",
+      "김영규 교수": "active",
+      "김운혁 교수": "active",
+      "김진수 교수": "active",
+      "김찬연 교수": "active",
+      "박인철 교수": "active",
+      "박치영 교수": "active",
+      "상가라쥬 샨무감 교수": "active",
+      "양지웅 교수": "active",
+      "이윤구 교수": "active",
+      "이종민 교수": "active",
+      "이종수 교수": "active",
+      "이주혁 교수": "active",
+      "이호춘 교수": "active",
+      "인수일 교수": "active",
+      "장윤희 교수": "active",
+      "최승호 교수": "active",
+      "최종민 교수": "active",
+      "호동해 교수": "active",
+      "홍승태 교수": "active",
+      "강준희 교수": "active",
+      "김대환 책임연구원": "active",
+      "김순현 책임연구원": "active",
+      "김한슬 교수": "active",
+      "남기태 교수": "active",
+      "박해선 교수": "active",
+      "송현철 교수": "active",
+      "이용민 교수": "active",
+      "임종우 교수": "active",
+      "임종철 교수": "active",
+      "최창혁 교수": "active"
+    },
     mentorAreas: {
       "허수미 교수": "Materials-Process AI Platform",
       "장윤희 교수": "Materials-Process AI Platform",
@@ -421,9 +1129,59 @@ window.INNOCORE_CONTENT = {
     newsLead:
       "Follow official recruitment notices, global job fair schedules, and E-MatAX program announcements.",
     news: [
-      { date: "2026.06", title: "Europe InnoCORE Global AI Postdoctoral Job Fair", href: "https://www.innocore-jobfair.com/" },
-      { date: "2026.05", title: "US InnoCORE Global AI Postdoctoral Job Fair", href: "https://www.innocore-jobfair.com/" },
-      { date: "Always", title: "DGIST InnoCORE Notice Board", href: "https://www.innocore.or.kr/dgist/notice/sub01" },
+      {
+        "date": "2026.07.20",
+        "title": "E-MatAX Luncheon Seminar | 이태훈 교수·E-MatAX Fellow",
+        "description": "DGIST 이태훈 교수님과 E-MatAX Postdoctoral Fellow가 함께 런천 세미나를 진행했습니다. 시뮬레이션과 AI 계산과의 징검다리 역할을 할 수 있는 다양한 방법론에 대해 알아보는 자리였습니다.",
+        "href": "",
+        "images": [
+          {
+            "thumb": "./assets/news/2026-07-20-luncheon-seminar-thumb.jpg",
+            "full": "./assets/news/2026-07-20-luncheon-seminar.jpg"
+          }
+        ]
+      },
+      {
+        "date": "2026.07.06",
+        "title": "E-MatAX Luncheon Seminar | 김영규 교수·E-MatAX Fellow",
+        "description": "DGIST 김영규 교수님과 Fellow 박사와 함께 Luncheon 세미나를 진행하였습니다. 실험과 AI 를 이을 수 있는 다양한 방법론에 대한 심도깊은 세미나였습니다",
+        "href": "",
+        "images": [
+          {
+            "thumb": "./assets/news/2026-07-06-luncheon-opening-thumb.jpg",
+            "full": "./assets/news/2026-07-06-luncheon-opening.jpg"
+          },
+          {
+            "thumb": "./assets/news/2026-07-06-luncheon-kim-younggyu-thumb.jpg",
+            "full": "./assets/news/2026-07-06-luncheon-kim-younggyu.jpg"
+          },
+          {
+            "thumb": "./assets/news/2026-07-06-luncheon-audience-thumb.jpg",
+            "full": "./assets/news/2026-07-06-luncheon-audience.jpg"
+          }
+        ]
+      },
+      {
+        "date": "2026.06",
+        "title": "Europe InnoCORE Global AI Postdoctoral Job Fair",
+        "description": "",
+        "href": "https://www.innocore-jobfair.com/",
+        "images": []
+      },
+      {
+        "date": "2026.05",
+        "title": "US InnoCORE Global AI Postdoctoral Job Fair",
+        "description": "",
+        "href": "https://www.innocore-jobfair.com/",
+        "images": []
+      },
+      {
+        "date": "상시",
+        "title": "DGIST InnoCORE Notice Board",
+        "description": "",
+        "href": "https://www.innocore.or.kr/dgist/notice/sub01",
+        "images": []
+      }
     ],
     applyKicker: "Fellow Recruitment",
     applyTitle: "From lab to production, powered by AX",
