@@ -271,8 +271,14 @@
       const images = imageListFor(item);
       const body = document.createElement("div");
       const date = document.createElement("span");
-      const title = item.href ? linkElement(item, "news-link") : document.createElement("strong");
+      const sourceAtEnd = Boolean(item.href && item.description);
+      const title = item.href && !sourceAtEnd
+        ? linkElement(item, "news-link")
+        : document.createElement("strong");
       const description = document.createElement("p");
+      const source = sourceAtEnd
+        ? linkElement({ label: item.href, href: item.href }, "news-source-link")
+        : null;
 
       article.className = "news-item";
       body.className = "news-item-body";
@@ -348,6 +354,7 @@
 
       body.append(date, title);
       if (item.description) body.append(description);
+      if (source) body.append(source);
       article.append(body);
       return article;
     });

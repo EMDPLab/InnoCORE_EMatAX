@@ -532,6 +532,18 @@ window.INNOCORE_CONTENT = {
       "Research Fellow 모집 공고, 글로벌 Job Fair 및 E-MatAX 연구 행사 소식을 확인할 수 있습니다.",
     news: [
       {
+        "date": "2026.08.20",
+        "title": "“AI 에너지 소재 상용화 주도” DGIST, ‘E-MatAX 연구단’ 본격 출범",
+        "description": "DGIST가 8월 18~19일 ‘2026 InnoCORE Kick-off’를 열고 E-MatAX 연구단을 공식 출범했습니다. 국내 8개 대학과 29개 이상 기업·출연연이 소재·공정 AI 플랫폼과 에너지 생산·전환·저장 연구를 연결해, 소재 설계부터 실증·상용화까지의 개발 주기를 단축합니다.",
+        "href": "https://v.daum.net/v/20260820090713460",
+        "images": [
+          {
+            "thumb": "./assets/news/2026-08-18-ematax-kickoff-group-thumb.jpg",
+            "full": "./assets/news/2026-08-18-ematax-kickoff-group.jpg"
+          }
+        ]
+      },
+      {
         "date": "2026.07.20",
         "title": "E-MatAX Luncheon Seminar | 이태훈 교수·E-MatAX Fellow",
         "description": "DGIST 이태훈 교수님과 E-MatAX Postdoctoral Fellow가 함께 런천 세미나를 진행했습니다. 시뮬레이션과 AI 계산과의 징검다리 역할을 할 수 있는 다양한 방법론에 대해 알아보는 자리였습니다.",
@@ -1129,6 +1141,18 @@ window.INNOCORE_CONTENT = {
     newsLead:
       "Follow official recruitment notices, global job fair schedules, and E-MatAX program announcements.",
     news: [
+      {
+        "date": "2026.08.20",
+        "title": "DGIST launches E-MatAX to accelerate AI-driven energy materials commercialization",
+        "description": "DGIST officially launched E-MatAX during the 2026 InnoCORE Kick-off on August 18-19. Eight Korean universities and more than 29 industry and research partners will connect a materials-process AI platform with energy production, conversion, and storage research to shorten the path from materials design to demonstration and commercialization.",
+        "href": "https://v.daum.net/v/20260820090713460",
+        "images": [
+          {
+            "thumb": "./assets/news/2026-08-18-ematax-kickoff-group-thumb.jpg",
+            "full": "./assets/news/2026-08-18-ematax-kickoff-group.jpg"
+          }
+        ]
+      },
       {
         "date": "2026.07.20",
         "title": "E-MatAX Luncheon Seminar | 이태훈 교수·E-MatAX Fellow",

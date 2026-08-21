@@ -1555,6 +1555,22 @@ a {
   white-space: pre-line;
 }
 
+.news-source-link {
+  justify-self: start;
+  margin-top: 4px;
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: 820;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.news-source-link:hover {
+  color: var(--navy);
+}
+
 .news-lightbox {
   position: fixed;
   inset: 0;
