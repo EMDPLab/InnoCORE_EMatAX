@@ -1,9 +1,8 @@
 (function () {
   const MENTOR_STATUS_STORAGE_KEY = "innocore-mentor-recruiting-statuses";
-  const NEWS_STORAGE_KEY = "innocore-news-items";
 
   const state = {
-    lang: localStorage.getItem("innocore-lang") || "ko",
+    lang: localStorage.getItem("innocore-lang") === "en" ? "en" : "ko",
   };
 
   const content = () => window.INNOCORE_CONTENT[state.lang] || window.INNOCORE_CONTENT.ko;
@@ -21,7 +20,8 @@
   }
 
   function populateFields() {
-    document.documentElement.lang = state.lang;
+    window.INNOCORE_I18N.apply(state.lang);
+    document.title = window.INNOCORE_I18N.labels[state.lang].pageTitle;
     document.querySelectorAll("[data-field]").forEach((element) => {
       const key = element.getAttribute("data-field");
       element.textContent = content()[key] || "";
@@ -77,12 +77,8 @@
   }
 
   function readNewsItems() {
-    try {
-      const stored = JSON.parse(localStorage.getItem(NEWS_STORAGE_KEY) || "null");
-      return Array.isArray(stored) ? stored : content().news;
-    } catch {
-      return content().news;
-    }
+    // Public pages use the published translation, never a single-language draft.
+    return content().news;
   }
 
   function renderNav() {
@@ -190,7 +186,7 @@
     const existingColGroup = table.querySelector("colgroup");
     if (existingColGroup) existingColGroup.remove();
 
-    const mentorFields = [
+    const allMentorFields = [
       { key: "recruiting", col: "recruiting" },
       { key: "area", col: "area" },
       { key: "role", col: "role" },
@@ -200,7 +196,8 @@
       { key: "department", col: "department" },
       { key: "website", col: "website" },
     ];
-    const columns = content().mentorColumns;
+    const mentorFields = allMentorFields.filter((field) => state.lang === "ko" || field.key !== "name");
+    const columns = content().mentorColumns.filter((_, index) => state.lang === "ko" || index !== 3);
     const mentorAreas = content().mentorAreas || {};
     const mentorStatuses = content().mentorRecruitingStatuses || {};
     const mentorStatusOverrides = readMentorStatusOverrides();
@@ -311,7 +308,7 @@
         media.className = "news-media";
         mediaButton.className = "news-media-button";
         mediaButton.type = "button";
-        mediaButton.setAttribute("aria-label", "사진 크게 보기");
+        mediaButton.setAttribute("aria-label", window.INNOCORE_I18N.labels[state.lang].enlargePhoto);
         image.src = images[currentIndex].thumb;
         image.dataset.fullSrc = images[currentIndex].full;
         image.alt = item.title || "";
@@ -334,8 +331,8 @@
           next.className = "news-carousel-arrow next";
           prev.type = "button";
           next.type = "button";
-          prev.setAttribute("aria-label", "이전 사진");
-          next.setAttribute("aria-label", "다음 사진");
+          prev.setAttribute("aria-label", window.INNOCORE_I18N.labels[state.lang].previousPhoto);
+          next.setAttribute("aria-label", window.INNOCORE_I18N.labels[state.lang].nextPhoto);
           prev.textContent = "‹";
           next.textContent = "›";
           prev.addEventListener("click", (event) => {
@@ -380,22 +377,22 @@
     lightbox.dataset.open = "false";
     lightbox.setAttribute("role", "dialog");
     lightbox.setAttribute("aria-modal", "true");
-    lightbox.setAttribute("aria-label", "뉴스 사진 크게 보기");
+    lightbox.setAttribute("aria-label", window.INNOCORE_I18N.labels[state.lang].newsPhotos);
     panel.className = "news-lightbox-panel";
     image.className = "news-lightbox-image";
     image.alt = "";
 
     close.className = "news-lightbox-close";
     close.type = "button";
-    close.setAttribute("aria-label", "닫기");
+    close.setAttribute("aria-label", window.INNOCORE_I18N.labels[state.lang].close);
     close.textContent = "×";
 
     prev.className = "news-lightbox-arrow prev";
     next.className = "news-lightbox-arrow next";
     prev.type = "button";
     next.type = "button";
-    prev.setAttribute("aria-label", "이전 사진");
-    next.setAttribute("aria-label", "다음 사진");
+    prev.setAttribute("aria-label", window.INNOCORE_I18N.labels[state.lang].previousPhoto);
+    next.setAttribute("aria-label", window.INNOCORE_I18N.labels[state.lang].nextPhoto);
     prev.textContent = "‹";
     next.textContent = "›";
 
@@ -567,6 +564,11 @@
     renderProcess();
     renderSimpleGrid(".support-grid", "support");
     renderMentors();
+    const oldLightbox = document.querySelector(".news-lightbox");
+    if (oldLightbox) {
+      oldLightbox.remove();
+      document.body.dataset.lightboxOpen = "false";
+    }
     renderNews();
     renderApplyActions();
     setText(".header-cta", content().headerCta);

@@ -378,18 +378,20 @@ async function updateFellows(payload) {
   const source = await fs.readFile(contentFile, "utf8");
   loadContent(source);
   const profiles = validateFellowProfiles(payload.fellowProfiles);
-  let nextSource = replaceNthProperty(source, "fellowProfiles", 0, profiles);
-  nextSource = replaceNthProperty(nextSource, "fellowProfiles", 1, profiles);
-  return finishUpdate(source, nextSource, Boolean(payload.commit), "chore(content): update fellow profiles");
+  const nextSource = replaceNthProperty(source, "fellowProfiles", 0, profiles);
+  const result = await finishUpdate(source, nextSource, Boolean(payload.commit), "chore(content): update fellow profiles");
+  result.message += " 국문만 반영하며 기존 영문은 유지합니다. 배포 전 영문 번역도 갱신해주세요.";
+  return result;
 }
 
 async function updateNews(payload) {
   const source = await fs.readFile(contentFile, "utf8");
   loadContent(source);
   const news = validateNewsItems(payload.news);
-  let nextSource = replaceNthProperty(source, "news", 0, news);
-  nextSource = replaceNthProperty(nextSource, "news", 1, news);
-  return finishUpdate(source, nextSource, Boolean(payload.commit), "chore(content): update news items");
+  const nextSource = replaceNthProperty(source, "news", 0, news);
+  const result = await finishUpdate(source, nextSource, Boolean(payload.commit), "chore(content): update news items");
+  result.message += " 국문만 반영하며 기존 영문은 유지합니다. 배포 전 영문 번역도 갱신해주세요.";
+  return result;
 }
 
 function staticPathFor(pathname) {
@@ -461,5 +463,5 @@ const server = http.createServer(async (request, response) => {
 });
 
 server.listen(port, host, () => {
-  console.log(`Admin server: http://${host}:${port}/admin.html`);
+  console.log(`Admin server: http://${host}:${server.address().port}/admin.html`);
 });

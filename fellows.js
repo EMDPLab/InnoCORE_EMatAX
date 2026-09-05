@@ -1,19 +1,12 @@
 (function () {
-  const FELLOW_STORAGE_KEY = "innocore-fellow-profiles";
-
   const state = {
-    lang: localStorage.getItem("innocore-lang") || "ko",
+    lang: localStorage.getItem("innocore-lang") === "en" ? "en" : "ko",
   };
 
   const content = () => window.INNOCORE_CONTENT[state.lang] || window.INNOCORE_CONTENT.ko;
 
   function readFellowProfiles() {
-    try {
-      const stored = JSON.parse(localStorage.getItem(FELLOW_STORAGE_KEY) || "null");
-      return Array.isArray(stored) ? stored : content().fellowProfiles || [];
-    } catch {
-      return content().fellowProfiles || [];
-    }
+    return content().fellowProfiles || [];
   }
 
   function linkElement(item, className) {
@@ -33,7 +26,6 @@
   }
 
   function populateFields() {
-    document.documentElement.lang = state.lang;
     document.querySelectorAll("[data-field]").forEach((element) => {
       const key = element.getAttribute("data-field");
       element.textContent = content()[key] || "";
@@ -89,6 +81,10 @@
       title.textContent = profile.name || "";
       nameEn.className = "fellow-name-en";
       nameEn.textContent = profile.nameEn || "";
+      nameEn.hidden =
+        state.lang === "en" ||
+        !nameEn.textContent ||
+        nameEn.textContent.trim() === title.textContent.trim();
       meta.className = "fellow-meta";
       meta.append(
         metaItem(labels.currentPi || "Current PI", profile.currentPi),
@@ -113,6 +109,8 @@
   }
 
   function render() {
+    document.documentElement.lang = state.lang;
+    window.INNOCORE_I18N.apply(state.lang);
     populateFields();
     renderNav();
     renderProfiles();

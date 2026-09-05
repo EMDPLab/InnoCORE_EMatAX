@@ -2020,6 +2020,13 @@ body[data-lightbox-open="true"] {
   object-fit: contain;
 }
 
+.pi-visual-header figcaption {
+  padding: 16px 20px;
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
 .secondary-action.dark {
   border-color: var(--navy);
   color: var(--navy);

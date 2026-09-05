@@ -1,6 +1,6 @@
 (function () {
   const state = {
-    lang: localStorage.getItem("innocore-lang") || "ko",
+    lang: localStorage.getItem("innocore-lang") === "en" ? "en" : "ko",
   };
 
   const labels = {
@@ -23,6 +23,9 @@
       missingTitle: "PI 정보를 찾을 수 없습니다",
       missingBody: "주소의 PI 식별자를 확인하거나 멘토 목록에서 다시 선택해주세요.",
       openingRequest: "Fellow 채용 수요 등록 요청",
+      kicker: "Fellow 모집 안내",
+      titleSuffix: "E-MatAX Fellow 모집 안내",
+      visualAltSuffix: "연구 안내 이미지",
     },
     en: {
       navApply: "Fellow Notice",
@@ -43,6 +46,9 @@
       missingTitle: "PI not found",
       missingBody: "Check the PI identifier in the URL or choose again from the mentor list.",
       openingRequest: "Submit PI opening update",
+      kicker: "Fellow Opening",
+      titleSuffix: "E-MatAX Fellow Opening",
+      visualAltSuffix: "visual header",
     },
   };
 
@@ -103,6 +109,7 @@
 
   function render() {
     document.documentElement.lang = state.lang;
+    window.INNOCORE_I18N.apply(state.lang);
     document.querySelector('a[href="https://www.innocore.or.kr/dgist/notice/sub01"]').textContent = label().navApply;
     document.querySelector('a[href="./index.html#fellows"]').textContent = label().navOpenings;
     document.querySelector('a[href="./fellows.html"]').textContent = label().navDirectory;
@@ -117,6 +124,11 @@
     const id = currentId();
     const mentor = findMentor(id);
     const openingData = findOpening(id);
+    document.title = mentor
+      ? `${mentor.nameEn || mentor.name} | ${label().titleSuffix}`
+      : id
+        ? `${id} | ${label().missingTitle}`
+        : label().missingTitle;
     root.replaceChildren();
 
     const back = linkElement(label().back, "./index.html#mentors", "related-link");
@@ -134,25 +146,18 @@
       return;
     }
 
-    document.title = `${mentor.nameEn} | E-MatAX Fellow Opening`;
-
     const hero = document.createElement("div");
     hero.className = "pi-hero";
     const kicker = document.createElement("p");
     const title = document.createElement("h1");
     const subtitle = document.createElement("p");
     kicker.className = "eyebrow";
-    kicker.textContent = "Fellow Opening";
+    kicker.textContent = label().kicker;
     title.id = "pi-title";
-    title.textContent = state.lang === "ko" ? mentor.name : mentor.nameEn;
-    subtitle.textContent = state.lang === "ko" ? mentor.nameEn : mentor.name;
-    if (openingData?.heroImage) {
-      title.className = "visually-hidden";
-      hero.classList.add("has-visual-header");
-      hero.append(back, title);
-    } else {
-      hero.append(back, kicker, title, subtitle);
-    }
+    title.textContent = state.lang === "ko" ? mentor.name : mentor.nameEn || mentor.name;
+    subtitle.textContent = state.lang === "ko" ? mentor.nameEn || "" : "";
+    subtitle.hidden = state.lang === "en" || !subtitle.textContent || subtitle.textContent === title.textContent;
+    hero.append(back, kicker, title, subtitle);
 
     let visualHeader = null;
     if (openingData?.heroImage) {
@@ -160,8 +165,13 @@
       const visual = document.createElement("img");
       visualHeader.className = "pi-visual-header";
       visual.src = openingData.heroImage;
-      visual.alt = `${openingData.pi} ${openingData.lab} ${openingData.area} visual header`;
+      visual.alt = `${openingData.pi} ${openingData.lab} ${openingData.area} ${label().visualAltSuffix}`;
       visualHeader.append(visual);
+      if (openingData.heroCaption) {
+        const caption = document.createElement("figcaption");
+        caption.textContent = openingData.heroCaption;
+        visualHeader.append(caption);
+      }
     }
 
     const meta = document.createElement("div");
@@ -170,7 +180,7 @@
       renderMeta(label().affiliation, mentor.affiliation),
       renderMeta(label().department, mentor.department),
       renderMeta(label().lab, mentor.url ? mentor.url.replace(/^https?:\/\//, "") : "-"),
-      renderMeta(label().contact, "innocore@dgist.ac.kr")
+      renderMeta(label().contact, "e-matax@dgist.ac.kr")
     );
 
     const opening = document.createElement("article");

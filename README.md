@@ -35,6 +35,22 @@ Common updates:
 
 Keep the same key names in both languages so the language switch continues to work.
 
+Translate the content in both language catalogs, including every Fellow profile
+and news entry. Public pages render the selected published catalog; browser-local
+Fellow/news drafts from the admin tool do not override public translations.
+Shared header, footer, and photo-control labels are in `site-i18n.js`.
+The local admin's profile/news saves update Korean only and preserve English;
+update the matching English entries in `content.js` before publishing.
+
+Check the translation regression tests before publishing:
+
+```bash
+node --test tests/*.test.cjs
+```
+
+Also verify KR → EN → KR in the browser on the home, Fellow, and PI pages,
+including page navigation, the photo viewer, and the Contact footer.
+
 ## Preview
 
 Open `index.html` in a browser. No build step is required.
