@@ -1,0 +1,11 @@
+const fs=require('node:fs');const path=require('node:path');
+const output=process.argv[2];if(!output)throw new Error('Usage: node data-portal/build.cjs /absolute/private/output-directory');
+fs.mkdirSync(output,{recursive:true});const read=name=>fs.readFileSync(path.join(__dirname,name),'utf8');
+const schema=read('schema.js');const backend=read('Code.gs');
+fs.writeFileSync(path.join(output,'Code.gs'),backend+'\n'+schema);
+let html=read('portal.html');
+html=html.replace(/<link\b[^>]*href=["'](?:\.\/)?portal\.css[^"']*["'][^>]*>/,'<style>\n'+read('portal.css')+'\n</style>');
+for(const name of ['schema.js','portal.js','admin-panel.js'])html=html.replace(new RegExp('<script\\b[^>]*src=["\\\'](?:\\./)?'+name.replace('.','\\.')+'[^"\\\']*["\\\'][^>]*>\\s*</script>'),()=>'<script>\n'+read(name).replace(/<\/script/gi,'<\\/script')+'\n</script>');
+if(/(?:src|href)=["'](?:\.\/)?(?:schema\.js|portal\.(?:js|css))/.test(html))throw new Error('Portal asset was not inlined');
+if(!html.includes('ownerManagement'))html=html.replace('</body>','<script>\n'+read('admin-panel.js')+'\n</script></body>');
+fs.writeFileSync(path.join(output,'Portal.html'),html);console.log('Prepared Code.gs and Portal.html in '+output);

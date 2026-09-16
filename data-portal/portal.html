@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#071f4e">
+  <meta name="description" content="E-MatAX 연구데이터 입력 창구">
+  <title>E-MatAX 연구데이터 입력</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="portal.css">
+</head>
+<body>
+  <div class="app-shell" id="appShell">
+    <header class="topbar">
+      <a class="brand" href="https://ematax.io/" target="_top" aria-label="E-MatAX 홈">
+        <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span class="brand-copy">
+          <strong>E-MatAX</strong>
+          <small>InnoCORE · Research data intake</small>
+        </span>
+      </a>
+      <div class="topbar-actions">
+        <span class="connection-dot is-off" id="connectionDot" aria-hidden="true"></span>
+        <span class="connection-label" id="connectionLabel" data-i18n="previewMode">미리보기 모드</span>
+        <button class="language-toggle" id="languageToggle" type="button" aria-label="English로 전환">EN</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="welcome" id="welcomeView" aria-labelledby="welcomeTitle">
+        <div class="welcome-copy">
+          <p class="eyebrow" data-i18n="eyebrow">연구 기록을 오래 쓰이는 데이터로</p>
+          <h1 id="welcomeTitle" data-i18n="welcomeTitle">실험의 맥락까지 남기는<br><em>가벼운 입력 창구</em></h1>
+          <p class="welcome-lede" data-i18n="welcomeLede">E‑MatAX의 데이터 단위를 따라 기록을 나누고, 상위 ID를 선택해 연결하세요. 저장 전에는 필수 열과 참조 관계를 확인합니다.</p>
+          <div class="flow-rail" aria-label="데이터 흐름">
+            <div class="flow-step is-current"><span>01</span><b data-i18n="flowDataset">데이터셋</b><small data-i18n="flowDatasetNote">공개 범위와 맥락</small></div>
+            <i aria-hidden="true"></i>
+            <div class="flow-step"><span>02</span><b data-i18n="flowBatch">배치</b><small data-i18n="flowBatchNote">조제·공정 단위</small></div>
+            <i aria-hidden="true"></i>
+            <div class="flow-step"><span>03</span><b data-i18n="flowSpecimen">시료</b><small data-i18n="flowSpecimenNote">실험 대상</small></div>
+            <i aria-hidden="true"></i>
+            <div class="flow-step"><span>04</span><b data-i18n="flowMeasurement">측정</b><small data-i18n="flowMeasurementNote">분석·성능</small></div>
+          </div>
+        </div>
+
+        <div class="auth-card" aria-labelledby="authTitle">
+          <div class="card-kicker"><span class="signal-icon" aria-hidden="true">↗</span><span data-i18n="secureWorkspace">초대형 연구 워크스페이스</span></div>
+          <h2 id="authTitle" data-i18n="authTitle">연구단에 연결하기</h2>
+          <p class="muted" data-i18n="authDescription">관리자가 발급한 입력 코드를 사용합니다. 관리자 Google 계정은 코드를 비워 연결할 수 있습니다.</p>
+
+          <form id="connectForm" novalidate>
+            <label class="field-label" for="inviteToken"><span data-i18n="inviteCode">연구자 입력 코드</span><span class="optional-tag" data-i18n="optional">선택</span></label>
+            <div class="input-with-icon">
+              <span aria-hidden="true">⌁</span>
+              <input id="inviteToken" name="token" type="password" autocomplete="off" spellcheck="false" data-i18n-placeholder="invitePlaceholder" placeholder="관리자가 전달한 코드" aria-describedby="inviteHelp">
+              <button class="reveal-button" type="button" id="revealToken" aria-label="코드 표시">보기</button>
+            </div>
+            <p class="field-help" id="inviteHelp" data-i18n="inviteHelp">관리자 Google 계정은 코드를 비워 연결할 수 있습니다.</p>
+
+            <div class="form-divider"></div>
+            <div class="two-fields">
+              <div>
+                <label class="field-label" for="contributorName"><span data-i18n="contributorName">입력자 이름</span><span class="required-mark">*</span></label>
+                <input id="contributorName" name="name" type="text" autocomplete="name" required data-i18n-placeholder="namePlaceholder" placeholder="이름을 입력하세요">
+              </div>
+              <div>
+                <label class="field-label" for="contributorEmail"><span data-i18n="contributorEmail">입력자 이메일</span><span class="required-mark">*</span></label>
+                <input id="contributorEmail" name="email" type="email" autocomplete="email" required data-i18n-placeholder="emailPlaceholder" placeholder="name@institution.ac.kr">
+              </div>
+            </div>
+            <label class="consent-line" for="selfReported">
+              <input id="selfReported" type="checkbox" required>
+              <span class="custom-check" aria-hidden="true"></span>
+              <span data-i18n="selfReported">이 이름과 이메일은 입력자가 직접 제공했습니다.</span>
+            </label>
+            <button class="primary-button full-width" id="connectButton" type="submit"><span data-i18n="connect">연결하고 시작하기</span><span aria-hidden="true">→</span></button>
+            <button class="preview-button" id="previewButton" type="button" data-i18n="openPreview">표 양식 미리보기</button>
+            <p class="form-status" id="connectStatus" role="status" aria-live="polite"></p>
+          </form>
+          <div class="preview-notice" id="previewNotice">
+            <span class="notice-icon" aria-hidden="true">◌</span>
+            <span data-i18n="previewNotice">현재 정적 미리보기입니다. 실제 연결은 Google Apps Script에 게시된 페이지에서 사용할 수 있습니다.</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="workspace" id="workspaceView" hidden aria-label="연구 데이터 입력 워크스페이스">
+        <div class="workspace-head">
+          <div>
+            <p class="eyebrow" data-i18n="workspaceEyebrow">내 연구 워크스페이스</p>
+            <h1><span data-i18n="workspaceTitle">데이터를 차곡차곡 쌓아 보세요</span><span class="group-badge" id="groupBadge">—</span></h1>
+            <p class="workspace-lede" data-i18n="workspaceLede">각 행은 하나의 관측 단위입니다. 상위 기록을 먼저 만들면 이후 입력에서 선택할 수 있습니다.</p>
+          </div>
+          <div class="workspace-actions">
+            <button class="quiet-button" id="downloadDraftButton" type="button"><span aria-hidden="true">↓</span><span data-i18n="downloadDraft">초안 내려받기</span></button>
+            <button class="quiet-button" id="loadDraftButton" type="button"><span aria-hidden="true">↑</span><span data-i18n="loadDraft">초안 불러오기</span></button>
+            <input id="draftFileInput" type="file" accept="application/json,.json" hidden>
+            <button class="logout-button" id="logoutButton" type="button" data-i18n="exit">나가기</button>
+          </div>
+        </div>
+
+        <div class="workspace-statusbar">
+          <div class="connected-person"><span class="person-avatar" id="personAvatar">—</span><span><b id="connectedName">—</b><small id="connectedEmail">—</small></span></div>
+          <div class="statusbar-meta"><span class="live-pill"><i></i><span data-i18n="connected">연결됨</span></span><span class="schema-version" id="schemaVersionLabel">Schema —</span></div>
+        </div>
+
+        <div class="workspace-grid">
+          <aside class="table-sidebar" aria-label="데이터 종류">
+            <div class="sidebar-heading"><div><p class="eyebrow" data-i18n="tableNavigator">TABLE NAVIGATOR</p><h2 data-i18n="tableNavigatorTitle">기록 종류</h2></div><span class="sidebar-count" id="tableCount">8</span></div>
+            <p class="sidebar-instruction" data-i18n="tableNavigatorHelp">한 종류씩 입력하고 저장합니다. 필요한 상위 기록은 먼저 만들어 주세요.</p>
+            <nav id="tableNav" class="table-nav"></nav>
+            <div class="sidebar-callout"><span aria-hidden="true">✦</span><p><b data-i18n="tipTitle">좋은 기록의 기준</b><br><span data-i18n="tipBody">나중에 다른 사람이 같은 실험을 이해할 수 있도록 조건과 단위를 함께 남겨 주세요.</span></p></div>
+          </aside>
+
+          <section class="data-panel" aria-labelledby="tableTitle">
+            <div class="data-panel-head">
+              <div class="table-title-block"><div class="table-icon" id="tableIcon" aria-hidden="true">◈</div><div><p class="eyebrow" id="tableEyebrow">DATASET</p><h2 id="tableTitle">데이터셋</h2><p id="tableMeaning" class="table-meaning">하나의 연구 데이터 묶음과 공개 정책</p></div></div>
+              <div class="table-head-actions"><span class="row-count" id="rowCount">0 rows</span><button class="outline-button" id="toggleOptionalButton" type="button"><span aria-hidden="true">＋</span><span data-i18n="showOptional">권장 열 보기</span></button></div>
+            </div>
+
+            <div class="dataset-context" id="datasetContext">
+              <div class="context-copy"><span class="context-icon" aria-hidden="true">↳</span><div><b data-i18n="datasetContextTitle">현재 데이터셋</b><small data-i18n="datasetContextHelp">이 표에 입력하는 행에 공통으로 적용할 상위 데이터셋을 선택하세요.</small></div></div>
+              <div class="context-control"><label for="datasetSelect" class="sr-only" data-i18n="datasetSelectLabel">데이터셋 선택</label><select id="datasetSelect"><option value="" data-i18n="noDatasetSelected">선택하지 않음</option></select><button type="button" id="createDatasetButton" class="context-create"><span aria-hidden="true">＋</span><span data-i18n="createDataset">새 데이터셋 만들기</span></button></div>
+            </div>
+
+            <div class="reference-strip" id="referenceStrip" hidden></div>
+            <div class="grid-help-row">
+              <p><span class="help-bullet" aria-hidden="true">i</span><span data-i18n="gridHelp">셀을 클릭해 입력하세요. Excel에서 복사한 표는 선택한 셀부터 붙여넣을 수 있습니다.</span></p>
+              <p class="missing-guide"><span data-i18n="missingGuideLabel">결측 표기</span><button type="button" class="missing-token na" data-i18n="missingNA">N/A 해당 없음</button><button type="button" class="missing-token dash" data-i18n="missingDash">- 미측정</button><button type="button" class="missing-token blank" data-i18n="missingBlank">공백 미입력</button></p>
+            </div>
+
+            <div class="grid-wrap" id="gridWrap">
+              <div class="empty-schema" id="emptySchema" hidden><span aria-hidden="true">⌁</span><h3 data-i18n="schemaMissingTitle">양식을 불러오는 중입니다</h3><p data-i18n="schemaMissingBody">이 페이지는 정해진 스키마가 연결되면 입력 표를 표시합니다.</p></div>
+              <table class="data-grid" id="dataGrid">
+                <thead id="gridHead"></thead>
+                <tbody id="gridBody"></tbody>
+              </table>
+            </div>
+            <div class="grid-footer"><button class="add-row-button" id="addRowButton" type="button"><span aria-hidden="true">＋</span><span data-i18n="addRow">행 추가</span></button><span class="paste-note" data-i18n="pasteNote">여러 행을 붙여넣으면 필요한 만큼 행이 늘어납니다.</span></div>
+
+            <div class="save-area">
+              <div><p class="save-explain" id="saveExplain" data-i18n="saveExplain">필수 열을 채우면 저장할 수 있습니다.</p><p class="save-status" id="saveStatus" role="status" aria-live="polite"></p></div>
+              <div class="save-actions"><button type="button" class="secondary-button" id="validateButton" data-i18n="validate">입력 확인</button><button type="button" class="primary-button" id="saveButton"><span data-i18n="save">Google Sheets에 저장</span><span aria-hidden="true">→</span></button></div>
+            </div>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <footer class="page-footer"><span>© E-MatAX · InnoCORE</span><span data-i18n="footerPrivacy">입력자 이름과 이메일은 저장 기록의 출처로 함께 기록됩니다.</span></footer>
+  </div>
+  <div class="toast-region" id="toastRegion" aria-live="polite" aria-atomic="true"></div>
+  <div class="modal-backdrop" id="confirmModal" hidden><div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="confirmTitle"><button class="modal-close" id="confirmClose" type="button" aria-label="닫기">×</button><span class="modal-icon" aria-hidden="true">↗</span><h2 id="confirmTitle" data-i18n="confirmTitle">저장할 준비가 되었나요?</h2><p id="confirmText" data-i18n="confirmText">입력한 행을 Google Sheets에 보냅니다. 저장 후 서버가 돌려준 ID를 확인한 뒤 해당 행을 초안에서 지웁니다.</p><div class="modal-actions"><button class="secondary-button" id="confirmCancel" type="button" data-i18n="cancel">취소</button><button class="primary-button" id="confirmSubmit" type="button"><span data-i18n="confirmSave">저장하기</span><span aria-hidden="true">→</span></button></div></div></div>
+  <script src="schema.js"></script>
+  <script src="portal.js"></script>
+</body>
+</html>
