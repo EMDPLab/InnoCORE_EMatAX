@@ -10,6 +10,8 @@ Because the site is static, it can be hosted directly with GitHub Pages, Netlify
 - `content.js`: editable Korean and English page content.
 - `app.js`: renders navigation, cards, language switching, and links from `content.js`.
 - `pi.html`, `pi.js`: reusable PI detail page template.
+- `boards.html`, `boards.js`, `boards.css`: notices, seminars and recruitment lists, search and shareable posts.
+- `BOARDS_ADMIN.md`: board editing, review, publishing and rollback instructions.
 - `styles.css`: visual system and responsive layout.
 - `flyer_design.md`: standard image-generation spec for PI opening header images.
 - `PI_OPENING_PIPELINE.md`: issue-form-to-webpage publishing workflow for PI openings.
@@ -63,9 +65,19 @@ python3 -m http.server 8080
 
 Then open `http://localhost:8080`.
 
+To preview exactly the public deployment files, run `node scripts/build-site.cjs`
+and serve `dist/` instead.
+
 ## Deployment
 
-For GitHub Pages, publish from the repository root on the `main` branch. The root `index.html` is the entry page.
+Pushing to `main` runs the existing GitHub Pages workflow. It validates the
+catalogs and builds an explicit public-file list into `dist/`, then deploys that
+directory. `index.html` is the entry page. Local admin code, operational documents,
+tests and Apps Script server sources are excluded from the Pages artifact.
+
+For notices, seminars and recruitment, edit matching entries in `ko.news` and
+`en.news`, including a stable `id`, `category` and source `sortDate`. See
+`BOARDS_ADMIN.md`. Draft saves and local file changes are not a public deployment.
 
 ## PI Opening Management
 

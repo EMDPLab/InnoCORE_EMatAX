@@ -269,9 +269,7 @@
       const body = document.createElement("div");
       const date = document.createElement("span");
       const sourceAtEnd = Boolean(item.href && item.description);
-      const title = item.href && !sourceAtEnd
-        ? linkElement(item, "news-link")
-        : document.createElement("strong");
+      const title = linkElement({ label: item.title, href: `./boards.html?id=${encodeURIComponent(item.id)}`, sameTab: true }, "news-link");
       const description = document.createElement("p");
       const source = sourceAtEnd
         ? linkElement({ label: item.href, href: item.href }, "news-source-link")

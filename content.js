@@ -1,7 +1,7 @@
 window.INNOCORE_CONTENT = {
   ko: {
     nav: [
-      { label: "펠로우 채용 공고", href: "https://www.innocore.or.kr/dgist/notice/sub01", sameTab: true },
+      { label: "공지·세미나·채용", href: "./boards.html", sameTab: true },
       { label: "사업단", href: "#about" },
       { label: "연구영역", href: "#research" },
       { label: "Fellow 연구지원", href: "#fellows" },
@@ -537,6 +537,9 @@ window.INNOCORE_CONTENT = {
       "Research Fellow 모집 공고, 글로벌 채용 박람회 및 E-MatAX 연구 행사 소식을 확인할 수 있습니다.",
     news: [
       {
+        "id": "ematax-kickoff-2026",
+        "category": "notice",
+        "sortDate": "2026-08-20",
         "date": "2026.08.20",
         "title": "“AI 에너지 소재 상용화 주도” DGIST, ‘E-MatAX 연구단’ 본격 출범",
         "description": "DGIST가 8월 18~19일 ‘2026 InnoCORE Kick-off’를 열고 E-MatAX 연구단을 공식 출범했습니다. 국내 8개 대학과 29개 이상 기업·출연연이 소재·공정 AI 플랫폼과 에너지 생산·전환·저장 연구를 연결해, 소재 설계부터 실증·상용화까지의 개발 주기를 단축합니다.",
@@ -549,6 +552,10 @@ window.INNOCORE_CONTENT = {
         ]
       },
       {
+        "id": "luncheon-taehoon-lee-20260720",
+        "category": "seminar",
+        "archived": true,
+        "sortDate": "2026-07-20",
         "date": "2026.07.20",
         "title": "E-MatAX 오찬 세미나 | 이태훈 교수·E-MatAX Fellow",
         "description": "DGIST 이태훈 교수님과 E-MatAX 박사후연구원이 함께 오찬 세미나를 진행했습니다. 시뮬레이션과 AI 계산을 연결하는 다양한 방법론을 살펴보는 자리였습니다.",
@@ -561,6 +568,10 @@ window.INNOCORE_CONTENT = {
         ]
       },
       {
+        "id": "luncheon-younggyu-kim-20260706",
+        "category": "seminar",
+        "archived": true,
+        "sortDate": "2026-07-06",
         "date": "2026.07.06",
         "title": "E-MatAX 오찬 세미나 | 김영규 교수·E-MatAX Fellow",
         "description": "DGIST 김영규 교수님과 E-MatAX 박사후연구원이 함께 오찬 세미나를 진행했습니다. 실험과 AI를 연결하는 다양한 방법론을 깊이 있게 살펴보는 자리였습니다.",
@@ -581,6 +592,10 @@ window.INNOCORE_CONTENT = {
         ]
       },
       {
+        "id": "europe-jobfair-202606",
+        "category": "recruitment",
+        "archived": true,
+        "sortDate": "2026-06",
         "date": "2026.06",
         "title": "유럽 InnoCORE 글로벌 AI 박사후연구원 채용 박람회",
         "description": "",
@@ -588,6 +603,10 @@ window.INNOCORE_CONTENT = {
         "images": []
       },
       {
+        "id": "us-jobfair-202605",
+        "category": "recruitment",
+        "archived": true,
+        "sortDate": "2026-05",
         "date": "2026.05",
         "title": "미국 InnoCORE 글로벌 AI 박사후연구원 채용 박람회",
         "description": "",
@@ -595,6 +614,9 @@ window.INNOCORE_CONTENT = {
         "images": []
       },
       {
+        "id": "dgist-innocore-official-notices",
+        "category": "notice",
+        "sortDate": "",
         "date": "상시",
         "title": "DGIST InnoCORE 공지 게시판",
         "description": "",
@@ -616,7 +638,7 @@ window.INNOCORE_CONTENT = {
   },
   en: {
     nav: [
-      { label: "Fellow Notice", href: "https://www.innocore.or.kr/dgist/notice/sub01", sameTab: true },
+      { label: "News & notices", href: "./boards.html", sameTab: true },
       { label: "About", href: "#about" },
       { label: "Research", href: "#research" },
       { label: "Fellow Support", href: "#fellows" },
@@ -1152,6 +1174,9 @@ window.INNOCORE_CONTENT = {
       "Follow official recruitment notices, global job fair schedules, and E-MatAX program announcements.",
     news: [
       {
+        "id": "ematax-kickoff-2026",
+        "category": "notice",
+        "sortDate": "2026-08-20",
         "date": "2026.08.20",
         "title": "DGIST launches E-MatAX to accelerate AI-driven energy materials commercialization",
         "description": "DGIST officially launched E-MatAX during the 2026 InnoCORE Kick-off on August 18-19. Eight Korean universities and more than 29 industry and research partners will connect a materials-process AI platform with energy production, conversion, and storage research to shorten the path from materials design to demonstration and commercialization.",
@@ -1164,6 +1189,10 @@ window.INNOCORE_CONTENT = {
         ]
       },
       {
+        "id": "luncheon-taehoon-lee-20260720",
+        "category": "seminar",
+        "archived": true,
+        "sortDate": "2026-07-20",
         "date": "2026.07.20",
         "title": "E-MatAX Luncheon Seminar | Prof. Taehoon Lee · E-MatAX Fellow",
         "description": "Prof. Taehoon Lee of DGIST and an E-MatAX Postdoctoral Fellow joined a luncheon seminar on methods that can bridge simulation and AI computation.",
@@ -1176,6 +1205,10 @@ window.INNOCORE_CONTENT = {
         ]
       },
       {
+        "id": "luncheon-younggyu-kim-20260706",
+        "category": "seminar",
+        "archived": true,
+        "sortDate": "2026-07-06",
         "date": "2026.07.06",
         "title": "E-MatAX Luncheon Seminar | Prof. Younggyu Kim · E-MatAX Fellow",
         "description": "Prof. Younggyu Kim of DGIST and an E-MatAX Fellow held a luncheon seminar exploring methods for connecting experiments and AI.",
@@ -1196,6 +1229,10 @@ window.INNOCORE_CONTENT = {
         ]
       },
       {
+        "id": "europe-jobfair-202606",
+        "category": "recruitment",
+        "archived": true,
+        "sortDate": "2026-06",
         "date": "2026.06",
         "title": "Europe InnoCORE Global AI Postdoctoral Job Fair",
         "description": "",
@@ -1203,6 +1240,10 @@ window.INNOCORE_CONTENT = {
         "images": []
       },
       {
+        "id": "us-jobfair-202605",
+        "category": "recruitment",
+        "archived": true,
+        "sortDate": "2026-05",
         "date": "2026.05",
         "title": "US InnoCORE Global AI Postdoctoral Job Fair",
         "description": "",
@@ -1210,6 +1251,9 @@ window.INNOCORE_CONTENT = {
         "images": []
       },
       {
+        "id": "dgist-innocore-official-notices",
+        "category": "notice",
+        "sortDate": "",
         "date": "Ongoing",
         "title": "DGIST InnoCORE Notice Board",
         "description": "",

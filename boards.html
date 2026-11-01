@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="DGIST InnoCORE E-MatAX 연구단의 공지사항, 세미나 기록과 채용 안내입니다." />
+    <title>공지·세미나·채용 | E-MatAX</title>
+    <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css?v=20261101-boards" />
+    <link rel="stylesheet" href="./boards.css?v=20261101-boards" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">본문으로 바로가기</a>
+    <header class="site-header">
+      <a class="brand" href="./index.html" aria-label="DGIST InnoCORE E-MatAX 홈">
+        <img src="./assets/ematax-logo.png" alt="" />
+        <span><strong>DGIST InnoCORE</strong><em>E-MatAX 연구단</em></span>
+      </a>
+      <nav class="site-nav" aria-label="주요 메뉴"></nav>
+      <div class="header-actions">
+        <div class="lang-switch" role="group" aria-label="언어 선택">
+          <button type="button" data-lang="ko" aria-pressed="true">KR</button>
+          <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+        <a class="header-cta" href="https://www.innocore.or.kr/dgist/notice/sub01">펠로우 채용 공고</a>
+      </div>
+    </header>
+    <main id="main" class="boards-page">
+      <div class="boards-heading">
+        <p class="eyebrow">E-MATAX · NEWS &amp; NOTICES</p>
+        <h1 data-board-copy="title">공지·세미나·채용</h1>
+        <p data-board-copy="lead">연구단의 공지사항, 세미나와 채용 소식을 확인하세요.</p>
+      </div>
+      <nav class="board-categories" aria-label="게시판 분류"></nav>
+      <aside class="board-official" hidden>
+        <p data-board-copy="officialNote"></p>
+        <a href="https://www.innocore.or.kr/dgist/notice/sub01" data-board-copy="officialLink"></a>
+      </aside>
+      <section class="board-index" aria-label="게시글 목록">
+        <form class="board-search" role="search">
+          <label><span data-board-copy="searchLabel">게시글 검색</span><input type="search" name="q" maxlength="200" /></label>
+          <label><span data-board-copy="yearLabel">연도</span><select name="year"></select></label>
+          <button type="submit" data-board-copy="search">검색</button>
+          <a class="board-reset" href="./boards.html" data-board-copy="reset">초기화</a>
+        </form>
+        <p class="board-results" role="status" aria-live="polite"></p>
+        <div class="board-list"></div>
+      </section>
+      <article class="board-detail" hidden aria-labelledby="post-title"></article>
+      <noscript>게시글 목록에는 JavaScript가 필요합니다. 공지·채용은 <a href="https://www.innocore.or.kr/dgist/notice/sub01">DGIST InnoCORE 공식 게시판</a>에서도 확인할 수 있습니다.</noscript>
+    </main>
+    <footer class="site-footer" id="contact">
+      <div class="footer-identity"><img src="./assets/ematax-logo.png" alt="E-MatAX" /><p data-i18n="footerText">DGIST InnoCORE 에너지 소재 상용화 AX 연구단</p></div>
+      <address class="footer-contact">
+        <strong data-i18n="contactTitle">문의</strong>
+        <span data-i18n="organization">에너지 소재 상용화 AX (E-MatAX) 연구단 · 대구경북과학기술원</span>
+        <a href="mailto:e-matax@dgist.ac.kr">e-matax@dgist.ac.kr</a>
+        <a href="tel:+82537857833" data-i18n="telephone">전화: +82-53-785-7833</a>
+        <span data-i18n="address">(42988) 대구광역시 달성군 현풍읍 테크노중앙대로 333</span>
+      </address>
+    </footer>
+    <script src="./site-i18n.js?v=20261101-boards"></script>
+    <script src="./content.js?v=20261101-boards"></script>
+    <script src="./boards.js?v=20261101-boards"></script>
+  </body>
+</html>

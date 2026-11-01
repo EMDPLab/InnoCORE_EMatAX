@@ -304,12 +304,23 @@ function validateNewsItems(rawItems) {
 
     const description = item.description || item.body || item.summary || "";
     const cleanItem = {
+      id: typeof item.id === "string" ? item.id.trim() : "",
+      category: item.category,
+      archived: item.archived === true,
+      sortDate: typeof item.sortDate === "string" ? item.sortDate.trim() : "",
       date: typeof item.date === "string" ? item.date.trim() : "",
       title: typeof item.title === "string" ? item.title.trim() : "",
       description: typeof description === "string" ? description.trim() : "",
       href: normalizeHref(item.href),
       images: imageListFor(item),
     };
+
+    if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(cleanItem.id) || !["notice", "seminar", "recruitment"].includes(cleanItem.category)) {
+      throw new Error(`뉴스 ${index + 1}의 게시글 ID 또는 게시판 분류를 확인해주세요. 이전 초안은 최신 content.js 기준으로 다시 불러와주세요.`);
+    }
+    if (cleanItem.sortDate && !/^\d{4}-(0[1-9]|1[0-2])(?:-(0[1-9]|[12]\d|3[01]))?$/.test(cleanItem.sortDate)) {
+      throw new Error(`뉴스 ${index + 1}의 정렬 날짜는 YYYY-MM-DD 또는 YYYY-MM 형식이어야 합니다.`);
+    }
 
     if (!isAllowedHref(cleanItem.href)) {
       throw new Error(`뉴스 ${index + 1} 링크가 올바르지 않습니다. https:// 주소, www 주소, 이메일, 내부 경로만 사용할 수 있습니다.`);

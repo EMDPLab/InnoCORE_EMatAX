@@ -54,5 +54,9 @@ test("Saving Korean profiles and news preserves the English catalog", { timeout:
   const saved = load(await fs.readFile(file, "utf8"));
   assert.equal(saved.ko.fellowProfiles[0].summary, profiles[0].summary);
   assert.equal(saved.ko.news[0].description, news[0].description);
+  assert.equal(saved.ko.news[0].id, news[0].id);
+  assert.equal(saved.ko.news[0].category, news[0].category);
+  assert.equal(saved.ko.news[0].sortDate, news[0].sortDate);
+  assert.equal(saved.ko.news[1].archived, news[1].archived);
   assert.deepEqual(saved.en, original.en);
 });

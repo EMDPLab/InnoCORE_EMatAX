@@ -68,6 +68,10 @@
   function normalizeNewsItem(item = {}) {
     const description = item.description || item.body || item.summary || "";
     return {
+      id: item.id || "",
+      category: item.category || "notice",
+      archived: item.archived === true,
+      sortDate: item.sortDate || "",
       date: typeof item.date === "string" ? item.date.trim() : "",
       title: typeof item.title === "string" ? item.title.trim() : "",
       description: typeof description === "string" ? description.trim() : "",
@@ -434,6 +438,10 @@
 
   function createEmptyNews() {
     return {
+      id: `post-${Date.now()}`,
+      category: "notice",
+      archived: false,
+      sortDate: new Date().toISOString().slice(0, 10),
       date: "날짜 입력",
       title: "새 뉴스",
       description: "뉴스 설명을 입력해주세요.",
@@ -540,7 +548,29 @@
       heading.append(title, deleteNews);
 
       fields.className = "news-admin-fields";
+      const categoryLabel = document.createElement("label");
+      categoryLabel.className = "admin-field";
+      const caption = document.createElement("span");
+      caption.textContent = "게시판 분류";
+      const category = document.createElement("select");
+      for (const [value, label] of [["notice", "공지사항"], ["seminar", "세미나"], ["recruitment", "채용"]]) {
+        category.add(new Option(label, value));
+      }
+      category.value = profile.category;
+      category.addEventListener("change", () => updateNews(index, "category", category.value));
+      categoryLabel.append(caption, category);
+      const archivedLabel = document.createElement("label");
+      archivedLabel.className = "admin-field";
+      const archived = document.createElement("input");
+      archived.type = "checkbox";
+      archived.checked = profile.archived === true;
+      archived.addEventListener("change", () => updateNews(index, "archived", archived.checked));
+      archivedLabel.append(document.createTextNode("종료된 행사 기록"), archived);
       fields.append(
+        newsFieldControl(index, "id", "게시글 ID (영문 소문자·숫자·하이픈, 게시 후 유지)", profile.id),
+        categoryLabel,
+        archivedLabel,
+        newsFieldControl(index, "sortDate", "정렬 날짜 (YYYY-MM-DD 또는 YYYY-MM, 상시 안내는 공란)", profile.sortDate),
         newsFieldControl(index, "date", "날짜", profile.date),
         newsFieldControl(index, "title", "제목", profile.title),
         newsFieldControl(index, "href", "링크", profile.href),

@@ -1,0 +1,48 @@
+.boards-page { max-width: 1120px; margin: 0 auto; padding: 64px 32px 96px; }
+.boards-heading { margin-bottom: 36px; }
+.boards-heading h1 { margin: 14px 0 18px; font-size: clamp(32px, 4vw, 54px); line-height: 1.2; letter-spacing: -.04em; }
+.boards-heading > p:last-child { max-width: 680px; line-height: 1.7; }
+.board-categories { display: flex; flex-wrap: wrap; gap: 8px; border-bottom: 1px solid var(--line); padding-bottom: 20px; margin-bottom: 28px; }
+.board-categories a, .board-search button { padding: 12px 20px; border: 1px solid var(--line-strong); border-radius: 4px; text-decoration: none; font-weight: 650; }
+.board-categories a[aria-current="page"], .board-search button { background: var(--navy); color: var(--white); }
+.board-categories a:hover { border-color: var(--blue); }
+.board-official { padding: 22px 24px; background: rgba(23, 105, 224, .05); margin: 0 0 28px; border: 1px solid var(--line); }
+.board-official p { margin: 0 0 14px; line-height: 1.7; }
+.board-official a { font-weight: 700; }
+.board-search { display: flex; flex-wrap: wrap; align-items: end; gap: 12px; }
+.board-search label { display: grid; gap: 8px; font-size: 14px; font-weight: 650; }
+.board-search label:first-child { flex: 1; min-width: 180px; }
+.board-search input, .board-search select, .board-share input { min-height: 46px; padding: 10px 12px; border: 1px solid var(--line-strong); border-radius: 4px; background: var(--white); color: var(--navy); font: inherit; max-width: 100%; }
+.board-search select { min-width: 120px; }
+.board-search button { min-height: 46px; cursor: pointer; font: inherit; }
+.board-reset { padding: 14px 4px; font-size: 14px; }
+.board-results { margin: 26px 0 16px; font-size: 14px; }
+.board-list { border-top: 2px solid var(--navy); }
+.board-row { padding: 26px 0; border-bottom: 1px solid var(--line); }
+.board-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; font-size: 13px; line-height: 1.5; }
+.board-category { color: var(--blue); font-weight: 750; }
+.board-record { padding: 3px 8px; background: rgba(7, 31, 78, .05); border-radius: 3px; }
+.board-row h2 { margin: 12px 0 0; font-size: 21px; line-height: 1.5; }
+.board-row h2 a { text-decoration: none; }
+.board-row h2 a:hover { color: var(--blue); text-decoration: underline; }
+.board-summary { margin: 10px 0 0; line-height: 1.7; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.board-empty { padding: 48px 0; line-height: 1.7; }
+.board-back, .board-source { display: inline-block; padding: 12px 0; font-weight: 650; }
+.board-detail { border-top: 2px solid var(--navy); padding-top: 16px; }
+.board-detail .board-meta { margin-top: 24px; }
+.board-detail h2 { margin: 18px 0 28px; font-size: clamp(26px, 3vw, 38px); line-height: 1.4; letter-spacing: -.025em; }
+.board-body { white-space: pre-line; line-height: 1.9; margin: 0 0 20px; }
+.board-gallery { display: grid; gap: 20px; margin: 28px 0; }
+.board-gallery img { display: block; width: 100%; height: auto; }
+.board-share { border-top: 1px solid var(--line); margin-top: 32px; padding-top: 24px; }
+.board-share label { display: grid; gap: 8px; font-size: 14px; }
+.board-share input { width: 100%; font-size: 13px; }
+.boards-page a:focus-visible, .boards-page button:focus-visible, .boards-page input:focus-visible, .boards-page select:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+.boards-page [hidden] { display: none; }
+@media (max-width: 720px) {
+  .boards-page { padding: 36px 20px 64px; }
+  .board-categories { gap: 6px; }
+  .board-categories a { padding: 12px 14px; font-size: 14px; }
+  .board-search label:first-child { flex-basis: 100%; }
+  .board-row h2 { font-size: 19px; }
+}

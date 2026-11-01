@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>DGIST InnoCORE E-MatAX 사업단</title>
     <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="./styles.css?v=20260905-i18n-v2" />
+    <link rel="stylesheet" href="./styles.css?v=20261101-boards" />
     <link rel="stylesheet" href="./data-portal/entry.css?v=20260916-data" />
   </head>
   <body>
@@ -66,6 +66,12 @@
           <h2 id="news-title" data-field="newsTitle"></h2>
           <span data-field="newsLead"></span>
         </div>
+        <nav class="board-shortcuts" aria-label="게시판" data-i18n-board-nav>
+          <a href="./boards.html?category=notice" data-i18n="noticeBoard">공지사항</a>
+          <a href="./boards.html?category=seminar" data-i18n="seminarBoard">세미나</a>
+          <a href="./boards.html?category=recruitment" data-i18n="recruitmentBoard">채용</a>
+          <a href="./boards.html" data-i18n="allBoards">전체 게시글 보기 →</a>
+        </nav>
         <div class="news-list"></div>
       </section>
 
@@ -172,8 +178,8 @@
       </address>
     </footer>
 
-    <script src="./site-i18n.js?v=20260905-i18n-v2"></script>
-    <script src="./content.js?v=20260916-data"></script>
-    <script src="./app.js?v=20260905-i18n-v2"></script>
+    <script src="./site-i18n.js?v=20261101-boards"></script>
+    <script src="./content.js?v=20261101-boards"></script>
+    <script src="./app.js?v=20261101-boards"></script>
   </body>
 </html>

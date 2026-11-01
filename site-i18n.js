@@ -1,6 +1,11 @@
 (function () {
   const labels = {
     ko: {
+      boards: "공지·세미나·채용",
+      noticeBoard: "공지사항",
+      seminarBoard: "세미나",
+      recruitmentBoard: "채용",
+      allBoards: "전체 게시글 보기 →",
       skip: "본문으로 바로가기",
       navigation: "주요 메뉴",
       language: "언어 선택",
@@ -21,6 +26,11 @@
       close: "닫기",
     },
     en: {
+      boards: "News & notices",
+      noticeBoard: "Notices",
+      seminarBoard: "Seminars",
+      recruitmentBoard: "Recruitment",
+      allBoards: "View all posts →",
       skip: "Skip to main content",
       navigation: "Main navigation",
       language: "Select language",
@@ -53,6 +63,8 @@
     document.querySelector(".brand em").textContent = text.brandSubtitle;
     document.querySelector(".site-nav").setAttribute("aria-label", text.navigation);
     document.querySelector(".lang-switch").setAttribute("aria-label", text.language);
+    const boards = document.querySelector("[data-i18n-board-nav]");
+    if (boards) boards.setAttribute("aria-label", text.boards);
     const facts = document.querySelector(".quick-facts");
     if (facts) facts.setAttribute("aria-label", text.facts);
     const visual = document.querySelector('.media-panel img');
