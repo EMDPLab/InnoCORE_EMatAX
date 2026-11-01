@@ -11,8 +11,8 @@
       navMentors: "멘토",
       headerCta: "펠로우 채용 공고",
       back: "멘토 목록으로 돌아가기",
-      status: "채용상태",
-      statusBody: "현재 이 PI의 개별 채용 공고는 아직 등록되지 않았습니다. 모집상태, 세부 프로젝트, 선호 역량이 확정되면 이 페이지에 표시됩니다.",
+      openingTitle: "PI별 모집 안내",
+      openingBody: "현재 이 PI의 개별 채용 공고는 아직 등록되지 않았습니다. 세부 프로젝트와 선호 역량이 확정되면 이 페이지에 표시됩니다.",
       area: "연구영역",
       timeline: "모집 시점",
       affiliation: "소속",
@@ -34,8 +34,8 @@
       navMentors: "Mentors",
       headerCta: "Fellow Notice",
       back: "Back to mentor list",
-      status: "Opening Status",
-      statusBody: "This PI-specific opening has not been registered yet. Hiring status, project details, and preferred expertise will appear here when confirmed.",
+      openingTitle: "PI opening information",
+      openingBody: "This PI-specific opening has not been registered yet. Project details and preferred expertise will appear here when confirmed.",
       area: "Research Area",
       timeline: "Timeline",
       affiliation: "Affiliation",
@@ -185,15 +185,12 @@
 
     const opening = document.createElement("article");
     opening.className = "pi-opening-panel";
-    const status = document.createElement("span");
     const openingTitle = document.createElement("h2");
     const openingBody = document.createElement("p");
     const openingMeta = document.createElement("div");
     const actions = document.createElement("div");
-    status.className = "opening-status";
-    status.textContent = openingData ? openingData.status : state.lang === "ko" ? "등록 예정" : "Coming soon";
-    openingTitle.textContent = openingData ? openingData.title : label().status;
-    openingBody.textContent = openingData ? openingData.fit : label().statusBody;
+    openingTitle.textContent = openingData ? openingData.title : label().openingTitle;
+    openingBody.textContent = openingData ? openingData.fit : label().openingBody;
     openingMeta.className = "pi-opening-meta";
     if (openingData) {
       openingMeta.append(
@@ -218,7 +215,7 @@
         )
       );
     }
-    opening.append(status, openingTitle, openingBody);
+    opening.append(openingTitle, openingBody);
     if (openingData) opening.append(openingMeta);
     opening.append(actions);
 

@@ -1,6 +1,4 @@
 (function () {
-  const MENTOR_STATUS_STORAGE_KEY = "innocore-mentor-recruiting-statuses";
-
   const state = {
     lang: localStorage.getItem("innocore-lang") === "en" ? "en" : "ko",
   };
@@ -48,15 +46,6 @@
       link.rel = "noopener";
     }
     return link;
-  }
-
-  function readMentorStatusOverrides() {
-    try {
-      const stored = JSON.parse(localStorage.getItem(MENTOR_STATUS_STORAGE_KEY) || "{}");
-      return stored && typeof stored === "object" ? stored : {};
-    } catch {
-      return {};
-    }
   }
 
   function normalizeImageEntry(image) {
@@ -187,7 +176,6 @@
     if (existingColGroup) existingColGroup.remove();
 
     const allMentorFields = [
-      { key: "recruiting", col: "recruiting" },
       { key: "area", col: "area" },
       { key: "role", col: "role" },
       { key: "name", col: "name" },
@@ -197,13 +185,8 @@
       { key: "website", col: "website" },
     ];
     const mentorFields = allMentorFields.filter((field) => state.lang === "ko" || field.key !== "name");
-    const columns = content().mentorColumns.filter((_, index) => state.lang === "ko" || index !== 3);
+    const columns = content().mentorColumns.filter((_, index) => state.lang === "ko" || index !== 2);
     const mentorAreas = content().mentorAreas || {};
-    const mentorStatuses = content().mentorRecruitingStatuses || {};
-    const mentorStatusOverrides = readMentorStatusOverrides();
-    const mentorStatusLabels = content().mentorRecruitingStatusLabels || {};
-    const defaultRecruitingStatusCode = content().mentorDefaultRecruitingStatus || "";
-    const defaultRecruitingStatus = content().mentorRecruitingStatus || "";
 
     const colGroup = document.createElement("colgroup");
     mentorFields.forEach((field) => {
@@ -229,23 +212,16 @@
         if (field.key === "area") {
           value = mentor.area || mentorAreas[mentor.name] || "";
           cell.classList.add("mentor-area-cell");
-        } else if (field.key === "recruiting") {
-          const statusCode =
-            mentorStatusOverrides[mentor.name] ||
-            mentor.recruitingStatus ||
-            mentorStatuses[mentor.name] ||
-            defaultRecruitingStatusCode;
-          value = mentorStatusLabels[statusCode] || mentor.recruiting || defaultRecruitingStatus;
-          cell.classList.add("mentor-recruiting-cell");
-          if (statusCode) cell.dataset.status = statusCode;
         } else {
           value = mentor[field.key] || "";
         }
+        cell.classList.add(`mentor-${field.col}-cell`);
         cell.dataset.label = columns[index] || "";
         cell.textContent = value || "";
         row.append(cell);
       });
       const linkCell = document.createElement("td");
+      linkCell.className = "mentor-website-cell";
       linkCell.dataset.label = columns[mentorFields.length - 1] || "";
       if (mentor.url) {
         const link = linkElement(
@@ -480,7 +456,6 @@
   function renderOpenings() {
     const openings = content().piOpenings.map((opening) => {
       const article = document.createElement("article");
-      const status = document.createElement("span");
       const title = document.createElement("h3");
       const meta = document.createElement("dl");
       const fit = document.createElement("p");
@@ -497,8 +472,6 @@
         "opening-link"
       );
 
-      status.className = "opening-status";
-      status.textContent = opening.status;
       title.textContent = opening.title;
       fit.textContent = opening.fit;
 
@@ -518,7 +491,7 @@
       actions.className = "opening-actions";
       actions.append(contact, detail);
 
-      article.append(status, title, meta, fit, actions);
+      article.append(title, meta, fit, actions);
       return article;
     });
 

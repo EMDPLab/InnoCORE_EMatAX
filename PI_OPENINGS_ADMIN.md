@@ -40,7 +40,6 @@ PI submits:
 
 - PI name
 - Lab name
-- Hiring status
 - Research area
 - Detailed project fit
 - Preferred applicant background
@@ -75,11 +74,7 @@ This is the most flexible option, but it requires backend setup and security rul
 
 ## Public Display Policy
 
-Each PI opening should clearly show whether the lab is:
-
-- Actively recruiting
-- Reviewing candidates
-- Planning future recruitment
-- Not currently recruiting
-
-Avoid showing stale openings. Every card should include a last-updated date or update cycle before public launch.
+Mentor directories and PI pages do not display a blanket hiring-status label.
+Keep the project description, timeline, contact and official notice link accurate.
+An actual recruitment announcement belongs in the recruitment board; do not infer
+current hiring from a mentor's presence in the directory.

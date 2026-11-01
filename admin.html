@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>E-MatAX Admin</title>
     <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="./styles.css?v=20261101-boards" />
+    <link rel="stylesheet" href="./styles.css?v=20261102-mentor" />
   </head>
   <body>
     <a class="skip-link" href="#main">본문으로 바로가기</a>
@@ -37,49 +37,6 @@
             <p>로컬 admin 서버로 열면 버튼으로 `content.js` 반영과 git commit까지 처리할 수 있습니다.</p>
             <p>Fellow·뉴스 저장은 국문만 갱신하고 기존 영문을 보존합니다. 배포 전 content.js의 영문 번역도 함께 갱신해주세요. 브라우저 임시 저장은 공개 페이지에 반영되지 않습니다.</p>
           </div>
-
-          <section class="admin-section" aria-labelledby="mentor-admin-title">
-            <div class="admin-section-heading">
-              <h2 id="mentor-admin-title">멘토 채용상태</h2>
-              <p>멘토별 채용상태를 라디오 버튼으로 관리합니다.</p>
-            </div>
-
-            <div class="admin-toolbar">
-              <div class="admin-stat">
-                <span>적극 채용중</span>
-                <strong data-active-count>0</strong>
-              </div>
-              <div class="admin-stat">
-                <span>채용중 아님</span>
-                <strong data-inactive-count>0</strong>
-              </div>
-              <button class="admin-button primary" type="button" data-save>멘토 저장</button>
-              <button class="admin-button" type="button" data-apply-mentors>content.js 반영</button>
-              <button class="admin-button primary" type="button" data-commit-mentors>반영 + commit</button>
-              <button class="admin-button" type="button" data-download>멘토 JSON</button>
-              <button class="admin-button" type="button" data-reset>멘토 초기화</button>
-            </div>
-            <div class="admin-status" data-mentor-status role="status"></div>
-
-            <div class="admin-table-wrap">
-              <table class="admin-table">
-                <thead>
-                  <tr>
-                    <th>성명</th>
-                    <th>연구축</th>
-                    <th>소속</th>
-                    <th>채용상태</th>
-                  </tr>
-                </thead>
-                <tbody></tbody>
-              </table>
-            </div>
-
-            <div class="admin-output-panel">
-              <label for="mentor-output">content.js 반영용 멘토 데이터</label>
-              <textarea id="mentor-output" readonly spellcheck="false"></textarea>
-            </div>
-          </section>
 
           <section class="admin-section" aria-labelledby="fellow-admin-title">
             <div class="admin-section-heading">
@@ -145,7 +102,7 @@
       <p>DGIST InnoCORE E-MatAX Research Center</p>
     </footer>
 
-    <script src="./content.js?v=20261101-boards"></script>
-    <script src="./admin.js?v=20261101-boards"></script>
+    <script src="./content.js?v=20261102-mentor"></script>
+    <script src="./admin.js?v=20261102-mentor"></script>
   </body>
 </html>

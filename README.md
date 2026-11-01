@@ -94,7 +94,6 @@ The `id` is generated from the mentor's English name in `content.js`. For exampl
 Each entry supports:
 
 - `id`: PI detail page id, matching `pi.html?id=<pi-slug>`
-- `status`: recruiting status shown at the top of the card
 - `title`: opening title
 - `pi`: PI name
 - `lab`: lab or group name
@@ -120,3 +119,5 @@ This repository includes a GitHub Issue Form at `.github/ISSUE_TEMPLATE/pi-openi
 ## Release Check
 
 Before final public release, verify recruitment-specific numbers such as annual hiring count, salary, contract period, and official application links with the latest approved notice.
+
+Mentor directories and PI detail pages do not display hiring-status badges or a hiring-status column. Use verified recruitment posts for actual announcements.

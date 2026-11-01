@@ -1,17 +1,9 @@
 (function () {
-  const MENTOR_STORAGE_KEY = "innocore-mentor-recruiting-statuses";
   const FELLOW_STORAGE_KEY = "innocore-fellow-profiles";
   const NEWS_STORAGE_KEY = "innocore-news-items";
   const content = window.INNOCORE_CONTENT.ko;
-  const defaultStatus = content.mentorDefaultRecruitingStatus || "active";
-  const options = content.mentorRecruitingStatusOptions || [
-    { value: "active", label: "적극 채용중" },
-    { value: "inactive", label: "채용중 아님" },
-  ];
-  const statusLabels = content.mentorRecruitingStatusLabels || {};
 
   const state = {
-    statuses: loadMentorStatuses(),
     fellows: loadFellows(),
     news: loadNews(),
   };
@@ -27,11 +19,6 @@
     } catch {
       return fallback;
     }
-  }
-
-  function loadMentorStatuses() {
-    const stored = loadJson(MENTOR_STORAGE_KEY, {});
-    return stored && typeof stored === "object" && !Array.isArray(stored) ? stored : {};
   }
 
   function loadFellows() {
@@ -86,72 +73,6 @@
     return source.map(normalizeNewsItem);
   }
 
-  function statusFor(mentor) {
-    return state.statuses[mentor.name] || mentor.recruitingStatus || content.mentorRecruitingStatuses?.[mentor.name] || defaultStatus;
-  }
-
-  function fullStatusMap() {
-    return Object.fromEntries(content.mentors.map((mentor) => [mentor.name, statusFor(mentor)]));
-  }
-
-  function renderStatusControls(mentor) {
-    const group = document.createElement("div");
-    group.className = "admin-radio-group";
-    const current = statusFor(mentor);
-
-    options.forEach((option) => {
-      const label = document.createElement("label");
-      const input = document.createElement("input");
-      const text = document.createElement("span");
-      input.type = "radio";
-      input.name = `status-${mentor.nameEn}`;
-      input.value = option.value;
-      input.checked = current === option.value;
-      input.addEventListener("change", () => {
-        state.statuses[mentor.name] = option.value;
-        updateMentorSummary();
-      });
-      text.textContent = option.label;
-      label.append(input, text);
-      group.append(label);
-    });
-
-    return group;
-  }
-
-  function renderMentorRows() {
-    const rows = content.mentors.map((mentor) => {
-      const row = document.createElement("tr");
-      const name = document.createElement("td");
-      const nameKo = document.createElement("strong");
-      const nameEn = document.createElement("span");
-      const area = document.createElement("td");
-      const affiliation = document.createElement("td");
-      const status = document.createElement("td");
-      nameKo.textContent = mentor.name;
-      nameEn.textContent = mentor.nameEn;
-      name.append(nameKo, nameEn);
-      area.textContent = mentor.area || content.mentorAreas?.[mentor.name] || "-";
-      affiliation.textContent = mentor.affiliation || "-";
-      status.append(renderStatusControls(mentor));
-      row.append(name, area, affiliation, status);
-      return row;
-    });
-
-    document.querySelector(".admin-table tbody").replaceChildren(...rows);
-  }
-
-  function mentorOutputText() {
-    return `mentorRecruitingStatuses: ${JSON.stringify(fullStatusMap(), null, 2)},`;
-  }
-
-  function updateMentorSummary() {
-    const values = Object.values(fullStatusMap());
-    document.querySelector("[data-active-count]").textContent = String(values.filter((value) => value === "active").length);
-    document.querySelector("[data-inactive-count]").textContent = String(values.filter((value) => value === "inactive").length);
-    document.querySelector("#mentor-output").value = mentorOutputText();
-  }
-
   function setAdminStatus(selector, message, tone = "pending") {
     const element = document.querySelector(selector);
     if (!element) return;
@@ -182,35 +103,6 @@
     }
 
     return data;
-  }
-
-  function saveMentors() {
-    localStorage.setItem(MENTOR_STORAGE_KEY, JSON.stringify(fullStatusMap()));
-    state.statuses = loadMentorStatuses();
-    renderMentorRows();
-    updateMentorSummary();
-  }
-
-  async function applyMentorsToContent(commit = false) {
-    setAdminStatus("[data-mentor-status]", commit ? "content.js 반영 및 commit 중..." : "content.js 반영 중...");
-
-    try {
-      saveMentors();
-      const data = await postAdminData("/api/admin/mentors", {
-        mentorRecruitingStatuses: fullStatusMap(),
-        commit,
-      });
-      setAdminStatus("[data-mentor-status]", data.message || "멘토 데이터 반영 완료", "success");
-    } catch (error) {
-      setAdminStatus("[data-mentor-status]", directApplyHelp(error), "error");
-    }
-  }
-
-  function resetMentors() {
-    localStorage.removeItem(MENTOR_STORAGE_KEY);
-    state.statuses = {};
-    renderMentorRows();
-    updateMentorSummary();
   }
 
   function downloadJson(filename, data) {
@@ -650,17 +542,6 @@
     updateNewsSummary();
   }
 
-  document.querySelector("[data-save]").addEventListener("click", saveMentors);
-  document.querySelector("[data-apply-mentors]").addEventListener("click", () => applyMentorsToContent(false));
-  document.querySelector("[data-commit-mentors]").addEventListener("click", () => applyMentorsToContent(true));
-  document.querySelector("[data-reset]").addEventListener("click", resetMentors);
-  document.querySelector("[data-download]").addEventListener("click", () => {
-    downloadJson("mentor-recruiting-statuses.json", {
-      updatedAt: new Date().toISOString(),
-      mentorRecruitingStatuses: fullStatusMap(),
-      labels: statusLabels,
-    });
-  });
   document.querySelector("[data-save-fellows]").addEventListener("click", saveFellows);
   document.querySelector("[data-apply-fellows]").addEventListener("click", () => applyFellowsToContent(false));
   document.querySelector("[data-commit-fellows]").addEventListener("click", () => applyFellowsToContent(true));
@@ -689,8 +570,6 @@
     header.dataset.elevated = String(window.scrollY > 24);
   });
 
-  renderMentorRows();
-  updateMentorSummary();
   renderFellowEditors();
   updateFellowSummary();
   renderNewsEditors();

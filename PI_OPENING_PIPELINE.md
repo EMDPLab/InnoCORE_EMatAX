@@ -10,7 +10,6 @@ Required submitted fields:
 
 - PI name
 - Lab or group name
-- Hiring status
 - Research area
 - Project fit and preferred background
 - Hiring timeline
@@ -44,7 +43,6 @@ Use this structure:
 ```js
 {
   id: "<pi-slug>",
-  status: "<public hiring status>",
   title: "<short opening title>",
   pi: "<PI display name>",
   lab: "<lab or group name>",
@@ -88,7 +86,7 @@ Confirm that the PI page renders in this order:
 1. Back link
 2. Full-row `heroImage`
 3. PI meta cards
-4. Opening status, fit, timeline, contact, and lab website actions
+4. Project fit, timeline, contact, and lab website actions
 
 The image should not sit inside the opening text card.
 

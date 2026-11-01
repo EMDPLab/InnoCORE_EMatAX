@@ -191,33 +191,6 @@ function replaceNthProperty(source, propertyName, occurrenceIndex, value) {
   throw new Error(`${propertyName} 항목을 content.js에서 찾을 수 없습니다.`);
 }
 
-function validateMentorStatuses(rawStatuses, content) {
-  if (!rawStatuses || typeof rawStatuses !== "object" || Array.isArray(rawStatuses)) {
-    throw new Error("멘토 채용상태 데이터가 올바르지 않습니다.");
-  }
-
-  const allowedStatuses = new Set(["active", "inactive"]);
-  const mentors = content.ko.mentors || [];
-  const mentorNames = new Set(mentors.map((mentor) => mentor.name));
-  const defaultStatus = content.ko.mentorDefaultRecruitingStatus || "active";
-  const statuses = {};
-
-  Object.entries(rawStatuses).forEach(([name, status]) => {
-    if (!mentorNames.has(name)) {
-      throw new Error(`등록되지 않은 멘토입니다: ${name}`);
-    }
-    if (!allowedStatuses.has(status)) {
-      throw new Error(`채용상태 값이 올바르지 않습니다: ${name}`);
-    }
-  });
-
-  mentors.forEach((mentor) => {
-    statuses[mentor.name] = rawStatuses[mentor.name] || defaultStatus;
-  });
-
-  return statuses;
-}
-
 function isAllowedImageSource(image) {
   return (
     image === "" ||
@@ -376,15 +349,6 @@ async function finishUpdate(source, nextSource, shouldCommit, commitMessage) {
   };
 }
 
-async function updateMentors(payload) {
-  const source = await fs.readFile(contentFile, "utf8");
-  const content = loadContent(source);
-  const statuses = validateMentorStatuses(payload.mentorRecruitingStatuses, content);
-  let nextSource = replaceNthProperty(source, "mentorRecruitingStatuses", 0, statuses);
-  nextSource = replaceNthProperty(nextSource, "mentorRecruitingStatuses", 1, statuses);
-  return finishUpdate(source, nextSource, Boolean(payload.commit), "chore(content): update mentor statuses");
-}
-
 async function updateFellows(payload) {
   const source = await fs.readFile(contentFile, "utf8");
   loadContent(source);
@@ -449,7 +413,6 @@ async function handleApi(request, response, pathname) {
 
   const payload = await readJson(request);
   const handlers = {
-    "/api/admin/mentors": updateMentors,
     "/api/admin/fellows": updateFellows,
     "/api/admin/news": updateNews,
   };
@@ -461,7 +424,7 @@ const server = http.createServer(async (request, response) => {
   try {
     const { pathname } = new URL(request.url, `http://${host}:${port}`);
 
-    if (pathname === "/api/admin/mentors" || pathname === "/api/admin/fellows" || pathname === "/api/admin/news") {
+    if (pathname === "/api/admin/fellows" || pathname === "/api/admin/news") {
       await handleApi(request, response, pathname);
       return;
     }

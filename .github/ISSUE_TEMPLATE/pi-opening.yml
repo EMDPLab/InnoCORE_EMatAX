@@ -22,17 +22,6 @@ body:
       placeholder: "e.g., Sustainable Materials Lab"
     validations:
       required: true
-  - type: dropdown
-    id: hiring_status
-    attributes:
-      label: Hiring status
-      options:
-        - Actively recruiting
-        - Reviewing candidates
-        - Planning future recruitment
-        - Not currently recruiting
-    validations:
-      required: true
   - type: input
     id: research_area
     attributes:
